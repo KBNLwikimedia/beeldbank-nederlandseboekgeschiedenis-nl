@@ -1,3 +1,5 @@
+<img src="media-assets/Logo_koninklijke_bibliotheek.svg" alt="KB Logo" width="250" align="right">
+
 [![GitHub](https://img.shields.io/badge/GitHub-KBNLwikimedia-blue?logo=github)](https://github.com/KBNLwikimedia/beeldbank-nederlandseboekgeschiedenis-nl)
 [![Python](https://img.shields.io/badge/Python-3.8+-green?logo=python)](https://www.python.org/)
 [![License](https://img.shields.io/badge/License-Public%20Domain-brightgreen)](https://creativecommons.org/publicdomain/zero/1.0/)

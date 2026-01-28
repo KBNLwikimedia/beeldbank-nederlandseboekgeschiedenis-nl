@@ -1,3 +1,5 @@
+<img src="../media-assets/Logo_koninklijke_bibliotheek.svg" alt="KB Logo" width="250" align="right">
+
 # Preview and Review Pages
 
 These HTML pages allow you to review images before uploading to Wikimedia Commons.
