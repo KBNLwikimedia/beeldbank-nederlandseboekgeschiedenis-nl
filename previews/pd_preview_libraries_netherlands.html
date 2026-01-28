@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Libraries in the Netherlands - Public Domain Files Preview</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 { color: #333; }
+        .stats {
+            background: #e0e0e0;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .controls {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            padding: 15px 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .controls button {
+            padding: 8px 16px;
+            margin-right: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+        }
+        .controls button.primary {
+            background: #007bff;
+            color: white;
+        }
+        .controls button.secondary {
+            background: #6c757d;
+            color: white;
+        }
+        .excluded-list {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            padding: 15px 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        .excluded-list.visible {
+            display: block;
+        }
+        .excluded-list pre {
+            background: white;
+            padding: 10px;
+            border-radius: 4px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            overflow: hidden;
+            position: relative;
+            border: 3px solid transparent;
+        }
+        .card.excluded {
+            border-color: #dc3545;
+            opacity: 0.6;
+        }
+        .card img {
+            width: 100%;
+            height: 250px;
+            object-fit: contain;
+            background: #eee;
+        }
+        .card-content { padding: 15px; }
+        .card-title {
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 10px;
+            color: #1a1a1a;
+        }
+        .card-desc {
+            font-size: 12px;
+            color: #666;
+            max-height: 100px;
+            overflow-y: auto;
+            margin-bottom: 10px;
+        }
+        .card-meta {
+            font-size: 11px;
+            color: #999;
+            border-top: 1px solid #eee;
+            padding-top: 10px;
+        }
+        .card-id { font-weight: bold; color: #0066cc; }
+        .card-toggle {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 12px;
+        }
+        .card-toggle.include {
+            background: #28a745;
+            color: white;
+        }
+        .card-toggle.exclude {
+            background: #dc3545;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Public Domain Files - Category Preview: Libraries in the Netherlands</h1>
+    <div class="stats">
+        <strong>Total images:</strong> 52<br>
+        <strong>Commons category:</strong> <a href="https://commons.wikimedia.org/wiki/Category:Libraries_in_the_Netherlands" target="_blank">Category:Libraries in the Netherlands</a><br>
+        <strong>Mapped from:</strong> J: Bibliotheken en instellingen
+    </div>
+    <div class="controls">
+        <strong>Selection:</strong>
+        <span id="include-count">52</span> included,
+        <span id="exclude-count">0</span> excluded
+        &nbsp;|&nbsp;
+        <button class="secondary" onclick="toggleExcludedList()">Show/Hide Excluded List</button>
+        <button class="secondary" onclick="openJSONFile()">Open JSON File</button>
+        <button class="primary" onclick="saveSelection()">Save Selection</button>
+        <button class="secondary" onclick="resetAll()">Reset All</button>
+        <span id="save-status" style="margin-left: 10px; color: #666;"></span>
+    </div>
+    <div class="excluded-list" id="excluded-list">
+        <strong>Excluded files (will NOT get this category):</strong>
+        <pre id="excluded-ids"></pre>
+    </div>
+    <div class="grid">
+
+        <div class="card" data-id="BBB-1056">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-1056')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:461A12_1713_P001-A" alt="De universiteitsbibliotheek van Franeker, 1713" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">De universiteitsbibliotheek van Franeker, 1713</div>
+                <div class="card-desc">Tot in de zeventiende eeuw waren de boeken in Nederlandse stads- en universiteitsbibliotheken doorgaans nog met kettingen aan de lezenaars bevestigd. In Franeker werd de universiteitsbibliotheek in 1684 verbouwd tot zaalbibliotheek, en verdwenen de boeken aan kettingen. Hier zijn ze geplaatst in grote, tegen de muur geplaatste kasten, die door een hek van de leeszaal zijn gescheiden. Bezoekers mochten de boeken niet zelf pakken, maar kregen deze aangereikt door een bediende. Lezen deed men nog a...</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-1056</span><br>
+                    Classificatie: J: Bibliotheken en instellingen
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-1057">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-1057')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:RMUS_1938-1300_NR1057" alt="Het bezoek van Tsaar Peter de Grote aan het Museum Wildeanum, 1697" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Het bezoek van Tsaar Peter de Grote aan het Museum Wildeanum, 1697</div>
+                <div class="card-desc">Het Museum Wildeanum in 1697-1698, met rechts Tsaar Peter de Grote van Rusland en links de eigenaar, Jacob de Wilde. In de boekenkasten, vol met grote plaatwerken, zijn ruimtes uitgespaard voor twee globes van Blaeu. Aan de kasten hangen geometrische instrumenten. Jacob de Wilde (1645-1721) bezat een beroemde verzameling munten. Maar zijn bekende Museum Wildeanum, gelegen aan de Keizersgracht in Amsterdam, bevatte ook beelden, gesneden stenen, Egyptische oudheden en schilderijen.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-1057</span><br>
+                    Classificatie: J: Bibliotheken en instellingen
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-1084">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-1084')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:KVB-FOTO_AA-1750_NR1084" alt="Bibliotheekcatalogus van de universiteitsbibliotheek van Leiden, 1716" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Bibliotheekcatalogus van de universiteitsbibliotheek van Leiden, 1716</div>
+                <div class="card-desc">Meer dan vijfhonderd pagina's telt de catalogus van de universiteitsbibliotheek in Leiden uit 1716. De titelprent toont een bibliotheekinterieur met in het midden op een sokkel Athena. Onder de sokkel twee sleutels: het stadswapen van Leiden, daaronder een portret in medaillon van Willem van Oranje. Verder nog twee vrouwelijke figuren en portretjes van geleerden, uitgevers en Leidse bibliothecarissen zoals Franciscus Raphelengius, Daniel Heinsius, Joannes Meursius, Petrus Scriverius, Gerardus Vo...</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-1084</span><br>
+                    Classificatie: J: Bibliotheken en instellingen
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-1389">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-1389')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:KVB-PORT_AA_NR1389" alt="Abraham Jacob van der Aa (1792-1857)" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Abraham Jacob van der Aa (1792-1857)</div>
+                <div class="card-desc">Boekhandelaar, onderwijzer en lexicograaf.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-1389</span><br>
+                    Classificatie: G: Boekhandel en uitgeverij, J: Bibliotheken en instellingen
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-1409">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-1409')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:KVB-PORT_AREN_NR1409" alt="Frederik Muller (1817-1881)" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Frederik Muller (1817-1881)</div>
+                <div class="card-desc">Boekhandelaar-antiquaar en bibliograaf te Amsterdam.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-1409</span><br>
+                    Classificatie: G: Boekhandel en uitgeverij, J: Bibliotheken en instellingen
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-1426">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-1426')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:KVB-PORT_GORC_NR1426" alt="Willem van Gorcum I" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Willem van Gorcum I</div>
+                <div class="card-desc">Drukker, boekhandelaar, uitgever en leesbibliotheekhouder te Assen (firma opgericht in 1868).</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-1426</span><br>
+                    Classificatie: G: Boekhandel en uitgeverij, J: Bibliotheken en instellingen
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-1429">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-1429')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:KB-DIV_19XX_NR1429" alt="Boeken in slechte staat uit de periode 1840-1950, materiaal voor het conserveringsprogramma Metamorfoze." loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Boeken in slechte staat uit de periode 1840-1950, materiaal voor het conserveringsprogramma Metamorfoze.</div>
+                <div class="card-desc">Boeken uit de periode 1840-1950 die gedrukt zijn op zuurhoudend papier. In het kader van het Nationaal Programma voor Conservering van Bibliotheekmateriaal, Metamorfoze, worden deze boeken geconserveerd en op micofilm gezet.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-1429</span><br>
+                    Classificatie: J: Bibliotheken en instellingen
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-1432">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-1432')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:461A12_1713_P001" alt="Pagina uit de catalogus van de universiteitsbibliotheek van Franeker, 1713" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Pagina uit de catalogus van de universiteitsbibliotheek van Franeker, 1713</div>
+                <div class="card-desc">De universiteitsbibliotheek van Franeker bezat in 1713, het jaar waarin deze catalogus verscheen, zo'n 1400 titels. Hier wordt begonnen met de opsomming van de theologische boeken. De eerste vermelding is die van de beroemde Biblia Polyglotta of Koningsbijbel, uitgegeven in Antwerpen bij Plantijn in 1581.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-1432</span><br>
+                    Classificatie: J: Bibliotheken en instellingen
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-1494">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-1494')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:74J37_1601_FOL158R" alt="Eén van de vroegste afbeeldingen van het academiegebouw van de universiteit Leiden, waarin van 1587 tot 1595 de universiteitsbibliotheek was gevestigd." loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Eén van de vroegste afbeeldingen van het academiegebouw van de universiteit Leiden, waarin van 1587 tot 1595 de universiteitsbibliotheek was gevestigd.</div>
+                <div class="card-desc">Achter het tweede en derde raam links van de toegangspoort bevindt zich de gewelfkamer, waarin de bibliotheek was gehuisvest. Tot 1595 groeide de collectie van de bibliotheek tot een aantal van 442 boeken, en moest er door gebrek aan ruimte worden uitgezien naar een nieuwe locatie. In 1595 verhuisde de bibliotheek naar de bovenverdieping van de Faliede Bagijnkerk, aan de andere kant van het Rapenburg. Deze afbeelding van het academiegebouw komt uit het album amicorum van een Leids rechtenstudent...</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-1494</span><br>
+                    Classificatie: J: Bibliotheken en instellingen
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-1536">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-1536')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:9218D65_GEEL_NR1536" alt="Jacob Geel (1789-1862)." loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Jacob Geel (1789-1862).</div>
+                <div class="card-desc">Portret van Jacob Geel, bibliothecaris van de Universiteitsbibliotheek Leiden (1833-1858).</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-1536</span><br>
+                    Classificatie: J: Bibliotheken en instellingen
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-201">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-201')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:BJ26836_1880-ABC_NR201" alt="Letters I, J, K en L uit &quot;Nieuw A.B.C-prentenboek van verschillende beroepen en bedrijven&quot;, s.l., ca. 1880" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Letters I, J, K en L uit &quot;Nieuw A.B.C-prentenboek van verschillende beroepen en bedrijven&quot;, s.l., ca. 1880</div>
+                <div class="card-desc">Deze pagina komt uit een abc-boekje voor de jeugd waarin aan de hand van plaatjes en versjes enkele beroepen en bedrijven worden voorgesteld. Dit soort boekjes was gedurende de hele 19e eeuw erg populair. Op deze pagina worden drie letters die te maken hebben met het boekenvak en lezen behandeld: de drukkerij, de kiosk en de leesbibliotheek.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-201</span><br>
+                    Classificatie: D: Geschiedenis van de boekdrukkunst, J: Bibliotheken en instellingen
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-242">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-242')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:KVB-FOTO_SCHE-1757_NR0242" alt="Bibliotheca Scheurleeriana, 1757" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Bibliotheca Scheurleeriana, 1757</div>
+                <div class="card-desc">In 1750 zette Hendrik Scheurleer als eerste in Nederland een 'leesbibliotheek', d.w.z. een commerciële uitleenbibliotheek op. De boeken in zijn winkel in Den Haag waren niet alleen te koop, maar men kon ze ook lenen. Zijn fonds bestond uit wetenschappelijke werken op allerlei gebied die weetgierigen die zich de aanschaf van een duur boek niet konden permitteren mochten lenen. Aanhangers van de Verlichting, waartoe Scheurleer behoorde, droegen een brede verspreiding van nuttige kennis hoog in hun...</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-242</span><br>
+                    Classificatie: J: Bibliotheken en instellingen
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-243">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-243')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:VC36002_1763-DL2_P000-TP" alt="Catalogus van de veiling van de leesbibliotheek van Hendrik Scheurleer, 1763" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Catalogus van de veiling van de leesbibliotheek van Hendrik Scheurleer, 1763</div>
+                <div class="card-desc">De in 1750 door Hendrik Scheurleer in Den Haag opgezette 'leesbibliotheek' bleek geen langdurig commercieel leven beschoren: in 1763 werd ze gesloten terwijl de boeken in december in dat jaar per veiling verkocht moesten worden. Alles bij elkaar telt de catalogus meer dan 5000 nummers, waarbij ook nog 'rarityten' (globes, prenten, inktkokers etc.) en het ameublement komen.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-243</span><br>
+                    Classificatie: J: Bibliotheken en instellingen
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-249">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-249')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:3144E6_1762-CAT_P000-TP" alt="Catalogus van de leesbibliotheek van Hendrik Scheurleer, 1762" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Catalogus van de leesbibliotheek van Hendrik Scheurleer, 1762</div>
+                <div class="card-desc">Catalogus van de leesbibliotheek van Hendrik Scheurleer, opgericht in 1750 in Den Haag. Hij is onderverdeeld op onderwerp en telt zo'n 5008 nummers, met vermelding van de prijzen. Leesbibliotheekhouders vermeldden deze prijzen ook met het oog op verkoop, zodat dit soort catalogi tevens dienst deed als assortimentscatalogus.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-249</span><br>
+                    Classificatie: J: Bibliotheken en instellingen
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-250">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-250')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:460E16_1707-TG_NR0250" alt="&quot;De Boekzaal der geleerde werelt&quot;, januari-februari 1707" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">&quot;De Boekzaal der geleerde werelt&quot;, januari-februari 1707</div>
+                <div class="card-desc">Nog een titelprent van "De Boekzaal der geleerde werelt". Op de voorgrond is Minerva afgebeeld met een sprekende tekst in haar hand, op de achtergrond bevinden zich enkele lezers gekleed in antieke kledij in een 'geleerdenbibliotheek'. De bijenkorf in het midden is van oudsher een symbool van vlijt, zuiverheid en onsterfelijkheid. Ook dit nummer is volgeschreven door één auteur, J. van Gaveren, die zijn lezers aanspoort hem te attenderen op nieuws en bijzonderheden waarvan "hy de werelt eene kor...</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-250</span><br>
+                    Classificatie: J: Bibliotheken en instellingen, K: Maatschappelijke aspecten van boekproductie en -verspreiding, M43: Taalwetenschap, letterkunde: andere Germaanse talen
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-252">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-252')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:728F37_1650-BIBL_P000-TP" alt="Titelblad met een afbeelding van de Stads- en Athenaeumbibliotheek in Amsterdam, 1650" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Titelblad met een afbeelding van de Stads- en Athenaeumbibliotheek in Amsterdam, 1650</div>
+                <div class="card-desc">De Stads- en Athenaeumbibliotheek van Amsterdam, sinds 1632 gevestigd op de zolderverdieping van de Agnietenkapel. De houtsnede werd gebruikt als drukkersmerk door de Amsterdamse boekhandelaar en uitgever Lodewijk Spillebout.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-252</span><br>
+                    Classificatie: J: Bibliotheken en instellingen
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-253">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-253')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:2105A54_1669-LOME_P000-TP" alt="Bibliotheekgids van L. Lomeier, &quot;De bibliothecis liber singularis&quot;, Zutphen, 1669" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Bibliotheekgids van L. Lomeier, &quot;De bibliothecis liber singularis&quot;, Zutphen, 1669</div>
+                <div class="card-desc">Johannes Lomeier (1636-1699), een geleerde predikant en kenner van de klassieke talen en oudheidkunde uit Zutphen schreef dit boek dat wel wordt gezien als de eerste bibliotheekgids van Europa. Het bevat een historisch overzicht, een classificatieschema en korte beschrijvingen van beroemde openbare en particuliere bibliotheken in heel Europa.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-253</span><br>
+                    Classificatie: J: Bibliotheken en instellingen
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-254">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-254')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:3098C20_1680-LOME_P000-TG" alt="Tweede druk van de bibliotheekgeschiedenis van L. Lomeier, Utrecht, 1680" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Tweede druk van de bibliotheekgeschiedenis van L. Lomeier, Utrecht, 1680</div>
+                <div class="card-desc">Titelprent van de tweede sterk uitgebreide druk van Johannes Lomeiers "De bibliothecis liber singularis". Het boek kende internationaal veel waardering en hele stukken eruit werden door andere schrijvers overgenomen. In de boekenkasten staan de boeken afwisselend met de klampen naar voren zoals vroeger gebruikelijk was, maar ook met de ruggen naar voren.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-254</span><br>
+                    Classificatie: J: Bibliotheken en instellingen
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-257">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-257')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:460E16_1707-TG_NR0000" alt="&quot;De Boekzaal der geleerde werelt&quot;, januari-februari 1705" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">&quot;De Boekzaal der geleerde werelt&quot;, januari-februari 1705</div>
+                <div class="card-desc">In 1692 richtte Pieter Rabus (1660-1702) dit Nederlandstalig algemeen cultureel tijdschrift op, dat niet alleen geleerden maar vooral een breed publiek van belangstellenden wist te bereiken. Dit nieuwe medium, dat in de loop van de 18e eeuw veel navolgers zou krijgen, hield zijn lezers op de hoogte van ontwikkelingen op het gebied van de wetenschappen en letteren en het bevatte behalve artikelen ook samenvattingen van pas verschenen boeken. Links is het portret van Willem Séwel (1654-1720), een ...</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-257</span><br>
+                    Classificatie: J: Bibliotheken en instellingen, K: Maatschappelijke aspecten van boekproductie en -verspreiding, M43: Taalwetenschap, letterkunde: andere Germaanse talen
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-525">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-525')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:BIEM-KB_SBA-16XX_NR0525" alt="De Nieuwe Kerk in Amsterdam, 1613" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">De Nieuwe Kerk in Amsterdam, 1613</div>
+                <div class="card-desc">De Stedelijke bibliotheek van Amsterdam was vanaf ongeveer 1578 gevestigd in een bijgebouw van de Nieuwe Kerk. Hij was modern van opzet en bedoeld voor de ontwikkelde burgerij en voor iedereen die de middelen niet had om zelf boeken te kopen. Op het moment van de verhuizing naar de zolder van de Agnietenkapel in 1632 bevatte de bibliotheek zo'n 1500 banden.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-525</span><br>
+                    Classificatie: J: Bibliotheken en instellingen
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-526">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-526')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:BIEM-KB_SBA-16XX_NR0526" alt="Het Athenaeum Illustre in Amsterdam, 1664" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Het Athenaeum Illustre in Amsterdam, 1664</div>
+                <div class="card-desc">Het Athenaeum Illustre in Amsterdam, gevestigd in de Agnietenkapel. Daar bevond zich sinds 1632, op de zolderverdieping, ook de Stedelijke bibliotheek die aan de de Illustere school beschikbaar was gesteld. Tot 1838 was de bibliotheek in deze kapel gehuisvest.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-526</span><br>
+                    Classificatie: J: Bibliotheken en instellingen
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-527">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-527')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:BIEM-KB_SBA-16XX_NR0527" alt="Het Athenaeum Illustre in Amsterdam, ca. 1780" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Het Athenaeum Illustre in Amsterdam, ca. 1780</div>
+                <div class="card-desc">Het Athenaeum Illustre, gevestigd in de Agnietenkapel. Daar bevond zich sinds 1632, op de zolderverdieping, ook de Stedelijke bibliotheek van Amsterdam.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-527</span><br>
+                    Classificatie: J: Bibliotheken en instellingen
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-528">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-528')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:BIEM-KB_SBA-16XX_NR0528" alt="De Handboegdoelen, het Bushuis (Stadsmagazijn) en de Voetboogdoelen in Amsterdam, 1664" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">De Handboegdoelen, het Bushuis (Stadsmagazijn) en de Voetboogdoelen in Amsterdam, 1664</div>
+                <div class="card-desc">Op de plaats van deze gebouwen bevindt zich thans de Universiteitsbibliotheek Amsterdam (UvA). Van de oorspronkelijke panden zijn alleen de voorgevel van het Bushuis bewaard gebleven en enkele delen van de Handboogdoelen. Het laatstgenoemde gebouw dateert van ca. 1517 en werd in 1862 in gebruik werd genomen door het Athenaeum Illustre. In 1880 kwam het geheel beschikbaar voor de bibliotheek van de Universiteit van Amsterdam (officieel als zodanig gesticht in 1877). Het Bushuis uit 1606 werd tuss...</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-528</span><br>
+                    Classificatie: J: Bibliotheken en instellingen
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-529">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-529')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:BIEM-KB_SBA-16XX_NR0529" alt="Catalogus van de Stedelijke bibliotheek van Amsterdam, 1612" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Catalogus van de Stedelijke bibliotheek van Amsterdam, 1612</div>
+                <div class="card-desc">Titelpagina van de catalogus van de Stedelijke bibliotheek in Amsterdam in 1612, toen nog gevestigd in een bijgebouw van de Nieuwe Kerk. De gravure toont een boek met het stadswapen, geflankeerd door Neptunus, god van de zeevaart, en Mercurius, god van de handel. Onder het boek staat in het Grieks 'gasthuis van de ziel', het devies van de beroemde bibliotheek van Thebe.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-529</span><br>
+                    Classificatie: J: Bibliotheken en instellingen
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-530">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-530')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:BIEM-KB_SBA-16XX_NR0530" alt="Catalogus van de Stedelijke bibliotheek van Amsterdam, 1622" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Catalogus van de Stedelijke bibliotheek van Amsterdam, 1622</div>
+                <div class="card-desc">Titelpagina van de catalogus van de Stedelijke bibliotheek in Amsterdam in 1622, toen nog gevestigd in de Nieuwe Kerk. Hij telt 125 titels meer dan de cataloguus van 1612. De wapens zijn van de vier kerkmeesters die de drukkosten voor hun rekening haden genomen. Links: Michiel Reiniersz Pauw (schepen) en Pieter Jacobsz Elias (armmeester). Rechts: Gerard Hudde en Dirck Heynck (bewindhebber van de Oost-Indische Compagnie). Onderaan het wapen van Willem Eggert, die in de voorrede gehuldigd wordt al...</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-530</span><br>
+                    Classificatie: J: Bibliotheken en instellingen
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-531">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-531')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:BIEM-KB_SBA-16XX_NR0531" alt="Het Groot Doelen Logement in Amsterdam, ca. 1830" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Het Groot Doelen Logement in Amsterdam, ca. 1830</div>
+                <div class="card-desc">Het linker pand dateert uit 1517 en het werd aangeduid als de Handboogdoelen, de Grote Doelen of Garnalendoelen. Vanaf 1862 bood het onderdak aan het Athenaeum Illustre en sinds 1880 aan de Stedelijke Bibliotheek, die intussen bij de bevordering van het Athenaeum tot Universiteit in 1877 tevens Universiteitsbibliotheek was geworden. In 1880 kwam het gebouw geheel vrij voor deze bibliotheek. De twee aangrenzende panden gingen pas in de twintigste eeuw deel uitmaken van de geschiedenis van de UB: ...</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-531</span><br>
+                    Classificatie: J: Bibliotheken en instellingen
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-532">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-532')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:LZALGEM63NBG_1997_P82-PL26-DETAIL2" alt="Boekenkasten in de Universiteitsbibliotheek van Leiden, ca. 1610" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Boekenkasten in de Universiteitsbibliotheek van Leiden, ca. 1610</div>
+                <div class="card-desc">De Leidse Universiteitsbibliotheek, ca. 1610 (detail).</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-532</span><br>
+                    Classificatie: J: Bibliotheken en instellingen
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-533">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-533')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:LZALGEM63NBG_1997_XBIEM-NR0533" alt="Zeventiende-eeuwse band met bronzen ketting van de Leidse Universiteitsbibliotheek" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Zeventiende-eeuwse band met bronzen ketting van de Leidse Universiteitsbibliotheek</div>
+                <div class="card-desc">Tussen 1595 en 1653 waren de grotere formaten boeken in de Leidse Universiteitsbibliotheek vastgeketend aan de kasten om diefstal te voorkomen. De hier getoonde band bevat een handschrift uit de 16e eeuw met het commentaar van Johannes Chrysostomos op twee brieven van Paulus. Het is de enige band in de Leidse UB die nog van de bronzen bibliotheekketting is voorzien. Kenmerkend waren in de Leidse Universiteitsbibliotheek de perkamenten banden met in het midden het wapen van de universiteit voorst...</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-533</span><br>
+                    Classificatie: J: Bibliotheken en instellingen, F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-534">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-534')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:LZALGEM63NBG_1997_XBIEM-NR0534" alt="Faliede Bagijnkerk in Leiden, ca. 1732" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Faliede Bagijnkerk in Leiden, ca. 1732</div>
+                <div class="card-desc">Nog in de zestiende eeuw kreeg de Leidse Universiteit de beschikking over het kerkgebouw van het Faliede Bagijnhof aan het Rapenburg. Op de eerste verdieping werd ruimte vrijgemaakt voor het Theatrum Anatomicum en de boekerij van de universiteit. Tussen 1593 en 1819-1822, toen de kerk ingrijpend werd verbouwd, was de bibliotheek daar gehuisvest, maar ook later, zo lang als de bibliotheek zich aan het Rapenburg bevond (tot 1983), maakte de voormalige Faliede Bagijnkerk deel uit van het UB-complex...</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-534</span><br>
+                    Classificatie: J: Bibliotheken en instellingen
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-535">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-535')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:LZALGEM63NBG_1997_XBIEM-NR0535" alt="Interieur van de universiteitsbibliotheek van Leiden, begin 18e eeuw" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Interieur van de universiteitsbibliotheek van Leiden, begin 18e eeuw</div>
+                <div class="card-desc">De aankoop van de omvangrijke bibliotheek van Isaac Vossius in 1690 maakte dat de inrichting van de Leidse universiteitsbibliotheek opnieuw ingrijpend moest worden aangepast. In 1694 werd in het midden van de zaal een hoge, dubbele boekenkast getimmerd, aan weerszijden door een hek afgeschermd van het publiek. De wandkasten kregen nu deuren van gaas. Achterin, aan de zuidzijde van de bibliotheek en boven de ingang, bevond zich een gaanderij met kasten waarin met name de handschriften bewaard wer...</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-535</span><br>
+                    Classificatie: J: Bibliotheken en instellingen
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-536">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-536')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:LZALGEM63NBG_1997_XBIEM-NR0536" alt="Stempels van de Leidse universiteitsbibliotheek" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Stempels van de Leidse universiteitsbibliotheek</div>
+                <div class="card-desc">Waarschijnlijk 17e-eeuwse gietijzeren stempels waarmee de boeken en handschriften van de Leidse Universiteitsbibliotheek op de titel en de snede gemerkt werden: ACAD[emiae] LUGD[unensis]. Later werden andere, messing stempels gebruikt.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-536</span><br>
+                    Classificatie: J: Bibliotheken en instellingen
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-542">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-542')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:BIEM-DIA_LIBR_NR0542" alt="Boekenkast in Teylers Museum, Haarlem" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Boekenkast in Teylers Museum, Haarlem</div>
+                <div class="card-desc">Een van de twaalf boekenkasten op de gaanderij in de Ovale Zaal in Teylers Museum in Haarlem. De hier getoonde kast bevat encyclopedieën en naslagwerken.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-542</span><br>
+                    Classificatie: J: Bibliotheken en instellingen
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-548">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-548')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:BIEM-DIA_THYS_NR0548" alt="De Bibliotheca Thysiana in Leiden" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">De Bibliotheca Thysiana in Leiden</div>
+                <div class="card-desc">De Bibliotheca Thysiana, gevestigd aan het Rapenburg no. 25 te Leiden. De boekzaal neemt de gehele eerste verdieping in beslag. In het midden staat een zware leestafel waarvan de vier zijden enigszins schuin naar boven oplopen om het lezen te vergemakkelijken. De inrichting is karakteristiek voor een 17e eeuwse zaalbibliotheek.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-548</span><br>
+                    Classificatie: J: Bibliotheken en instellingen
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-557">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-557')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:KVB-FOTO_NOME-1595_NR0557" alt="Titelpagina van de &quot;Nomenclator&quot;, de oudste catalogus van de universiteisbibliotheek in Leiden, 1595" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Titelpagina van de &quot;Nomenclator&quot;, de oudste catalogus van de universiteisbibliotheek in Leiden, 1595</div>
+                <div class="card-desc">Titelpagina van de eerste gedrukte catalogus van de Leidse Universiteitsbibliotheek. Voor de aanschaf van boeken waren institutionele bibliotheken erg afhankelijk van schenkers. Een bibliotheekcatalogus als deze was tegelijkertijd een middel om potentiële gevers aan te moedigen boeken of geld aan de bibliotheek af te staan.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-557</span><br>
+                    Classificatie: J: Bibliotheken en instellingen
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-558">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-558')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:LZALGEM63NBG_1997-LIBR_P095" alt="Catalogusplankje van de librije van Gouda, 1664" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Catalogusplankje van de librije van Gouda, 1664</div>
+                <div class="card-desc">De catalogus van de librije in Gouda bestond uit losse houten plankjes, beplakt met papier waarop de titels van de boeken waren vermeld. Ze hingen bij de boekenkasten waar de vermelde boeken stonden.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-558</span><br>
+                    Classificatie: J: Bibliotheken en instellingen
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-559">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-559')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:LZALGEM63NBG_1997-GOUD_P096" alt="Lijst met namen van schenkers aan de Goudse librije, 1775" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Lijst met namen van schenkers aan de Goudse librije, 1775</div>
+                <div class="card-desc">De namen van prominente schenkers van boeken aan de librije in Gouda zijn op een lijst aangebracht, de zogenaamde "nomenclator", bestaande uit twee grote vellen perkament. De lijst werd op een goed zichtbare plek in de bibliotheek opgehangen.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-559</span><br>
+                    Classificatie: J: Bibliotheken en instellingen
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-560">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-560')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:UBU_HSNR15C17_NR0560" alt="Uitleenbriefje van de Stedelijke en Universitaire bibliotheek van Utrecht, 1813" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Uitleenbriefje van de Stedelijke en Universitaire bibliotheek van Utrecht, 1813</div>
+                <div class="card-desc">Een lezer, Pieter van Musschenbroek, krijgt met dit briefje toestemming van de Utrechtse Stedelijke en Universitaire bibliotheek om vanaf 15 maart 1813 drie maanden lang een boek over de natuurkunde van het heelal te lenen. De oorsprong van deze bibliotheek, een van de oudste van ons land, gaat terug tot het einde van de 16e eeuw.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-560</span><br>
+                    Classificatie: J: Bibliotheken en instellingen
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-561">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-561')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:AM-GA_1820-LMUS_NR0561" alt="Het Amsterdamse Leesmuseum, ca. 1820" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Het Amsterdamse Leesmuseum, ca. 1820</div>
+                <div class="card-desc">Leesmusea kenden op het einde van de 18e eeuw een grote verspreiding. Het Amsterdamse Leesmuseum was opgericht in 1800. In 1820 werd het gevestigd in een nieuw gebouw aan het Rokin, gefinancierd met aandelen gekocht door de leden. Tot 1900 zat het Amsterdamse Leesmuseum in dit gebouw.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-561</span><br>
+                    Classificatie: J: Bibliotheken en instellingen
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-562">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-562')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:568E4_1835_P000" alt="De universiteitsbibliotheek van Utrecht, 1859." loading="lazy">
+            <div class="card-content">
+                <div class="card-title">De universiteitsbibliotheek van Utrecht, 1859.</div>
+                <div class="card-desc">De kapel van het voormalige paleis van Lodewijk Napoleon, koning van Holland (1806-1810), werd tussen 1856 en 1858 omgebouwd tot de bibliotheekruimte van de universiteit Utrecht.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-562</span><br>
+                    Classificatie: J: Bibliotheken en instellingen
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-563">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-563')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:568E4_1835_P151" alt="De universiteitsbibliotheek van Utrecht, 1835" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">De universiteitsbibliotheek van Utrecht, 1835</div>
+                <div class="card-desc">De zogenaamde kleine bibliotheekzaal van de universiteitsbibliotheek van Utrecht, sinds 1820 gevestigd in de kapel van het voormalige paleis van koning Lodewijk Napoleon.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-563</span><br>
+                    Classificatie: J: Bibliotheken en instellingen
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-564">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-564')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:T1450_1865-ROTT_NR564" alt="Leeszaal van het Rotterdamsch Leeskabinet, ca. 1865" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Leeszaal van het Rotterdamsch Leeskabinet, ca. 1865</div>
+                <div class="card-desc">Het Rotterdamsch Leeskabinet is opgericht in 1859 op initiatief van een plaatselijk bankier, Marten Mees. In 1865 werd dit leeskabinet gevestigd in een door de leden aangekocht luxueus pand aan de Gelderschekade. Helaas ging het verloren tijdens het bombardement in 1940. Met zijn uitgebreide collectie boeken en tijdschriften op het gebied van de wetenschap, geschiedenis en cultuur trok het Rotterdamsch Leeskabinet op sommige dagen meer dan 200 bezoekers. Nu maakt de collectie deel uit van de bib...</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-564</span><br>
+                    Classificatie: J: Bibliotheken en instellingen
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-566">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-566')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:LZALGEM63NBG_1997-RM_P227" alt="De bibliotheek van het Rijkmuseum, 1885" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">De bibliotheek van het Rijkmuseum, 1885</div>
+                <div class="card-desc">De bibliotheek van het Rijkmuseum te Amsterdam, gebouwd door P.J.H. Cuypers, ging open in 1885. Het is een van de fraaiste en rijkste kunsthistorsiche bibliotheken van ons land. Wat de inrichting betreft is er sinds de oprichting weinig aan veranderd.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-566</span><br>
+                    Classificatie: J: Bibliotheken en instellingen
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-58">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-58')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:3107B12_1613-DO_FOLA1R" alt="Janus Dousa, 1613" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Janus Dousa, 1613</div>
+                <div class="card-desc">Portret van Janus Dousa (1545-1604), eerste curator en eerste bibliothecaris van de Universiteit van Leiden. Dousa was ten nauwste bij het ontstaan van deze universiteit betrokken. Ook beschikte hij over een uitgebreid netwerk van geleerden, en zo wist hij beroemdheden als bijvoorbeeld Justus Lipsius en Josephus Scaliger naar Leiden te halen.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-58</span><br>
+                    Classificatie: J: Bibliotheken en instellingen
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-59">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-59')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:3107B12_1613-HE_FOLQ1V" alt="Daniel Heinsius, 1613" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Daniel Heinsius, 1613</div>
+                <div class="card-desc">Portret van Daniel Heinsius (1580/1-1655), van 1603-1655 hoogleraar dichtkunde, Grieks, staatkunde en geschiedenis aan de universiteit van Leiden, en van 1607-1653 tevens bibliothecaris van de bibliotheek deze universiteit.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-59</span><br>
+                    Classificatie: J: Bibliotheken en instellingen
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-735">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-735')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:LHOODA21NLGRA10_1800-FLAM_TP" alt="C. S. Flament, &quot;Catalogus van de boeken der Nationale Bibliotheek&quot;, Den Haag, 1800" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">C. S. Flament, &quot;Catalogus van de boeken der Nationale Bibliotheek&quot;, Den Haag, 1800</div>
+                <div class="card-desc">Catalogus samengesteld door de eerste bibliothecaris van de Koninklijke Bibliotheek, Charles Sulpice Flament. In 1798 had de Volksvertegenwoordiging van de Bataafse Republiek besloten de oude stadhouderlijke bibliotheek om te vormen tot nationale bibliotheek. Willem V bezat aan het einde van de 18e eeuw nog maar een deel van de oorspronkelijke verzameling boeken, en zelfs daaruit werd door de Franse bezetter nog het een en ander geroofd. De catalogus met in totaal 6566 nummers gaat vooraf door e...</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-735</span><br>
+                    Classificatie: J: Bibliotheken en instellingen
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-758">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-758')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:720D51_1725-DONK_P000-TP" alt="Jacobus Donker, &quot;Oratio de hypocrisi verae religioni inimica&quot;, Delft, 1725" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Jacobus Donker, &quot;Oratio de hypocrisi verae religioni inimica&quot;, Delft, 1725</div>
+                <div class="card-desc">Ieder jaar kregen de beste leerlingen van de Latijnse school in Delft tijdens een plechtige ceremonie een zogenaamde prijsband uitgereikt. De winnende oraties werden gedrukt bij Reinier Boitet, voorzien van een passend titelblad: op een troon zit Minerva, de godin van de wijsheid, die de prijsband met de letter Y, symbool van Delft, aan de jonge winnaar overhandigt. Rechts op de achtergrond bevindt zich nog een jongeman, gekleed in een Grieks gewaad, in een bibliotheek. Hij staat te lezen aan ee...</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-758</span><br>
+                    Classificatie: F: Bindkunst, J: Bibliotheken en instellingen, M3: Maatschappijwetenschappen
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-759">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-759')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:720D51_1725-DONK_P000-TP-DE" alt="Jacobus Donker, &quot;Oratio de hypocrisi verae religioni inimica&quot;, Delft, 1725, detail" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Jacobus Donker, &quot;Oratio de hypocrisi verae religioni inimica&quot;, Delft, 1725, detail</div>
+                <div class="card-desc">Detail titelblad: een jongeman, gekleed in een Grieks gewaad, in een bibliotheek. Hij staat te lezen aan een tafel met rechtopstaande zijden waartegen de opengeslagen boeken rusten.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-759</span><br>
+                    Classificatie: J: Bibliotheken en instellingen
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-80">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-80')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:LZALGEM63NBG_1997_P82-PL26" alt="De Leidse Universiteitsbibliotheek, ca. 1610" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">De Leidse Universiteitsbibliotheek, ca. 1610</div>
+                <div class="card-desc">Interieur van de Leidse Universiteitsbibliotheek in 1610. De bibliotheek, klein van omvang maar alle terreinen van de toenmalige wetenschapsbeoefening bestrijkend, was gevestigd op de bovenverdieping van de voormalige Faliede Bagijnkerk aan het Rapenburg. De grotere formaten stonden per vakgebied in 22 zogenaamde 'plutei', open boekenkasten met een vaste, schuine leesplank, waaraan men staand de boeken kon raadplegen. Tegen de achterwand bevinden zich de afsluitbare kasten met de boeken in de kl...</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-80</span><br>
+                    Classificatie: J: Bibliotheken en instellingen
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-81">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-81')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:LZALGEM63NBG_1997_P82-PL26-DETAIL1" alt="Lezers in de Universiteitsbibliotheek van Leiden, ca. 1610" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Lezers in de Universiteitsbibliotheek van Leiden, ca. 1610</div>
+                <div class="card-desc">Onderzoek van de bewaard gebleven boeken uit deze vroege periode van de Leidse Universiteitsbibliotheek heeft uitgewezen dat deze gravure niet in alle opzichten betrouwbaar is. De grotere boeken stonden niet met de snede naar voren, maar op hun kop en met de rug naar voren in het bovenste gedeelte van de kast. De boeken waren met een bronzen ketting bevestigd aan een ijzeren stang bovenaan de leesplank, en door een boek te kantelen kon men het staand raadplegen. Slechts een zeer selecte groep ko...</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-81</span><br>
+                    Classificatie: J: Bibliotheken en instellingen, K: Maatschappelijke aspecten van boekproductie en -verspreiding
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-906">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-906')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:KB-INC_14XX_NR0906" alt="Illustratie in &quot;Tboeck vanden leven Jhesu Christi&quot;, Delft, Jacob Jacobszoon van der Meer of Christiaen Snellaert, 1488" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Illustratie in &quot;Tboeck vanden leven Jhesu Christi&quot;, Delft, Jacob Jacobszoon van der Meer of Christiaen Snellaert, 1488</div>
+                <div class="card-desc">Deze houtsnede is afkomstig uit een boek over het leven van Jezus, geschreven in de vorm van een samenspraak tussen twee figuren: 'die Mensche' en 'Scriptura'. Boven hen in een medaillon is Christus met wereldbol en scepter voorgesteld. Het houtblok waarvan deze prent gedrukt is werd enkele jaren later voor een heel ander boek, een "Legenda Aurea" nog eens gebruikt. Op de achtergrond rechts is een boekenkast te zien waar de banden niet rechtopstaand maar plat naast en op elkaar liggen. Dit was i...</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-906</span><br>
+                    Classificatie: D: Geschiedenis van de boekdrukkunst, E: Boekillustratie, J: Bibliotheken en instellingen
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-908">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-908')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:KB-INC_14XX_NR0908" alt="Twee pagina's uit Ludolphus de Saxonia, &quot;Tboeck vanden leven Jhesu Christi&quot;, Gouda, Gheraert Leeu, 1487" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Twee pagina's uit Ludolphus de Saxonia, &quot;Tboeck vanden leven Jhesu Christi&quot;, Gouda, Gheraert Leeu, 1487</div>
+                <div class="card-desc">Twee pagina's uit een ander "Tboeck vanden leven Jhesu Christi", gedrukt door Gerard Leeu in Gouda. De opmaak is net als bij een middeleeuws handschrift. De tekst is uit de proloog, waarin 'die Mensche' aan 'Scriptura' vraagt voor hem God en de schepping te verklaren. De illustratie, een met de hand gekleurde houtsnede, is van een ander houtblok gedrukt dan de vorige voorbeelden, maar de voorstelling is dezelfde. De grote boekenkast links laat de gebruikelijke manier van boeken bewaren zien: pla...</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-908</span><br>
+                    Classificatie: D: Geschiedenis van de boekdrukkunst, E: Boekillustratie, J: Bibliotheken en instellingen
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-909">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-909')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:KB-INC_14XX_NR0909" alt="Middeleeuwse boekenkast, 1487" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Middeleeuwse boekenkast, 1487</div>
+                <div class="card-desc">Detail van een pagina uit een ander "Tboeck vanden leven Jhesu Christi", gedrukt door Gerard Leeu in Gouda. De illustratie, een met de hand gekleurde houtsnede, is van een ander houtblok gedrukt dan de vorige voorbeelden, maar de voorstelling is dezelfde. De grote boekenkast laat de gebruikelijke manier van boeken bewaren zien: plat en boven op elkaar liggend.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-909</span><br>
+                    Classificatie: F: Bindkunst, J: Bibliotheken en instellingen
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script>
+        const STORAGE_KEY = 'excluded_libraries_in_netherlands';
+        let excludedIds = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+
+        // Initialize on page load - try JSON first, fallback to localStorage
+        document.addEventListener('DOMContentLoaded', function() {
+            // First apply any localStorage exclusions (will be overwritten by JSON if available)
+            applyExclusionsToUI();
+            updateCounts();
+        });
+
+        function toggleCard(btn, id) {
+            const card = btn.closest('.card');
+            const isExcluded = card.classList.contains('excluded');
+
+            if (isExcluded) {
+                // Include it
+                card.classList.remove('excluded');
+                btn.classList.remove('exclude');
+                btn.classList.add('include');
+                btn.textContent = '✓ Include';
+                excludedIds = excludedIds.filter(x => x !== id);
+            } else {
+                // Exclude it
+                card.classList.add('excluded');
+                btn.classList.remove('include');
+                btn.classList.add('exclude');
+                btn.textContent = '✗ Excluded';
+                if (!excludedIds.includes(id)) {
+                    excludedIds.push(id);
+                }
+            }
+
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(excludedIds));
+            updateCounts();
+        }
+
+        function updateCounts() {
+            const total = document.querySelectorAll('.card').length;
+            const excluded = excludedIds.length;
+            document.getElementById('exclude-count').textContent = excluded;
+            document.getElementById('include-count').textContent = total - excluded;
+            document.getElementById('excluded-ids').textContent = excludedIds.join('\n') || '(none)';
+        }
+
+        function toggleExcludedList() {
+            document.getElementById('excluded-list').classList.toggle('visible');
+        }
+
+        const CATEGORY_NAME = 'Libraries in the Netherlands';
+        const JSON_FILENAME = '../category_exclusions.json';
+        let fileHandle = null;
+
+        // Open the JSON file to get a file handle for saving
+        async function openJSONFile() {
+            if (!('showOpenFilePicker' in window)) {
+                alert('File System Access API not supported. Use Chrome or Edge.');
+                return;
+            }
+            try {
+                const [handle] = await window.showOpenFilePicker({
+                    types: [{ description: 'JSON', accept: { 'application/json': ['.json'] } }],
+                    multiple: false
+                });
+                fileHandle = handle;
+
+                // Load the file contents
+                const file = await handle.getFile();
+                const text = await file.text();
+                const data = JSON.parse(text);
+                const exclusions = data.category_exclusions || {};
+
+                // Update localStorage with all categories
+                const categoryKeys = {
+                    'Dutch typography': 'dutch_typography',
+                    'Printing in the Netherlands': 'printing_in_netherlands',
+                    'Bookbinding in the Netherlands': 'bookbinding_in_netherlands',
+                    'Libraries in the Netherlands': 'libraries_in_netherlands'
+                };
+
+                Object.entries(categoryKeys).forEach(([name, key]) => {
+                    const ids = exclusions[name] || [];
+                    localStorage.setItem('excluded_' + key, JSON.stringify(ids));
+                });
+
+                // Update current category
+                excludedIds = exclusions[CATEGORY_NAME] || [];
+                applyExclusionsToUI();
+                updateCounts();
+
+                setStatus('Opened ' + handle.name + ' - ready to save');
+            } catch (err) {
+                if (err.name !== 'AbortError') {
+                    console.error('Error opening file:', err);
+                    setStatus('Error: ' + err.message);
+                }
+            }
+        }
+
+        // Load exclusions from JSON file on page load
+        async function loadFromJSON() {
+            try {
+                const response = await fetch(JSON_FILENAME);
+                if (response.ok) {
+                    const data = await response.json();
+                    const exclusions = data.category_exclusions || {};
+
+                    // Load this category's exclusions
+                    excludedIds = exclusions[CATEGORY_NAME] || [];
+                    localStorage.setItem(STORAGE_KEY, JSON.stringify(excludedIds));
+
+                    // Update UI
+                    applyExclusionsToUI();
+                    updateCounts();
+                    setStatus('Loaded from ' + JSON_FILENAME);
+                }
+            } catch (err) {
+                console.log('Could not load JSON file:', err);
+                setStatus('Using localStorage (JSON file not found)');
+            }
+        }
+
+        function applyExclusionsToUI() {
+            document.querySelectorAll('.card').forEach(card => {
+                const id = card.dataset.id;
+                const btn = card.querySelector('.card-toggle');
+                if (excludedIds.includes(id)) {
+                    card.classList.add('excluded');
+                    btn.classList.remove('include');
+                    btn.classList.add('exclude');
+                    btn.textContent = '✗ Excluded';
+                } else {
+                    card.classList.remove('excluded');
+                    btn.classList.remove('exclude');
+                    btn.classList.add('include');
+                    btn.textContent = '✓ Include';
+                }
+            });
+        }
+
+        function setStatus(msg) {
+            document.getElementById('save-status').textContent = msg;
+        }
+
+        async function saveSelection() {
+            // Build the complete exclusions object from all localStorage
+            const allExclusions = {};
+            const categoryKeys = {
+                'dutch_typography': 'Dutch typography',
+                'printing_in_netherlands': 'Printing in the Netherlands',
+                'bookbinding_in_netherlands': 'Bookbinding in the Netherlands',
+                'libraries_in_netherlands': 'Libraries in the Netherlands'
+            };
+
+            Object.entries(categoryKeys).forEach(([key, name]) => {
+                const excluded = JSON.parse(localStorage.getItem('excluded_' + key) || '[]');
+                if (excluded.length > 0) {
+                    allExclusions[name] = excluded;
+                }
+            });
+
+            const json = JSON.stringify({ category_exclusions: allExclusions }, null, 2);
+
+            // If we have a file handle, save directly
+            if (fileHandle) {
+                try {
+                    const writable = await fileHandle.createWritable();
+                    await writable.write(json);
+                    await writable.close();
+                    setStatus('Saved ✓');
+                    return;
+                } catch (err) {
+                    console.error('Save error:', err);
+                    setStatus('Error saving: ' + err.message);
+                    return;
+                }
+            }
+
+            // No file handle - prompt user to open file first
+            if ('showOpenFilePicker' in window) {
+                setStatus('Click "Open JSON File" first to select category_exclusions.json');
+                return;
+            }
+
+            // Fallback for browsers without File System Access API: download the file
+            const blob = new Blob([json], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'category_exclusions.json';
+            a.click();
+            URL.revokeObjectURL(url);
+            setStatus('Downloaded category_exclusions.json (save to project root folder)');
+        }
+
+        // Load from JSON file when page loads
+        loadFromJSON();
+
+        function resetAll() {
+            if (confirm('Reset all selections? This will include all images again.')) {
+                excludedIds = [];
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(excludedIds));
+                document.querySelectorAll('.card.excluded').forEach(card => {
+                    card.classList.remove('excluded');
+                    const btn = card.querySelector('.card-toggle');
+                    btn.classList.remove('exclude');
+                    btn.classList.add('include');
+                    btn.textContent = '✓ Include';
+                });
+                updateCounts();
+            }
+        }
+    </script>
+</body>
+</html>

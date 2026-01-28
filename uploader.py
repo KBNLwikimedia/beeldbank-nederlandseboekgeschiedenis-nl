@@ -8,17 +8,34 @@ Usage:
     python uploader.py BBB-2           # Upload a single record by unique_id
     python uploader.py --preview BBB-2 # Preview wikitext without uploading
     python uploader.py --batch 1 10    # Upload records 1-10 (by row index)
+
+Category Exclusions:
+    The uploader reads 'category_exclusions.json' to determine which categories
+    should NOT be applied to specific files. This file is exported from the
+    preview HTML pages (previews/pd_preview_*.html) using the "Export JSON" button.
+
+    JSON structure:
+    {
+        "category_exclusions": {
+            "Dutch typography": ["BBB-123", "BBB-456"],
+            "Printing in the Netherlands": ["BBB-789"]
+        }
+    }
 """
 
 import os
 import sys
 import time
+import json
 import argparse
 import pandas as pd
 from dotenv import load_dotenv
 
 # Import the template module
 from commons_template import generate_wikitext, get_upload_filename, get_local_filepath, safe_str
+
+# Category exclusions file (exported from preview HTML pages)
+EXCLUSIONS_FILE = 'category_exclusions.json'
 
 # Load environment variables
 load_dotenv()
@@ -30,6 +47,56 @@ COMMONS_USER_AGENT = os.getenv('COMMONS_USER_AGENT')
 
 # Excel file path
 EXCEL_FILE = 'nbg-beeldbank_all_24012026.xlsx'
+
+
+def load_category_exclusions():
+    """
+    Load category exclusions from JSON file.
+
+    The JSON file is exported from the preview HTML pages and contains
+    a mapping of category names to lists of excluded unique_ids.
+
+    Returns:
+        dict: Category exclusions, e.g., {'Dutch typography': ['BBB-123', 'BBB-456']}
+    """
+    if not os.path.exists(EXCLUSIONS_FILE):
+        return {}
+
+    try:
+        with open(EXCLUSIONS_FILE, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+            return data.get('category_exclusions', {})
+    except (json.JSONDecodeError, IOError) as e:
+        print(f"Warning: Could not load exclusions file: {e}")
+        return {}
+
+
+def filter_categories_for_record(unique_id, commons_categories, exclusions):
+    """
+    Filter out excluded categories for a specific record.
+
+    Args:
+        unique_id: The unique_id of the record (e.g., 'BBB-123')
+        commons_categories: Original categories string from Excel (semicolon-separated)
+        exclusions: Dict of category exclusions from load_category_exclusions()
+
+    Returns:
+        str: Filtered categories string (semicolon-separated)
+    """
+    if not commons_categories or not exclusions:
+        return commons_categories
+
+    # Split categories
+    categories = [c.strip() for c in commons_categories.split(';') if c.strip()]
+
+    # Filter out excluded categories for this record
+    filtered = []
+    for cat in categories:
+        excluded_ids = exclusions.get(cat, [])
+        if unique_id not in excluded_ids:
+            filtered.append(cat)
+
+    return '; '.join(filtered)
 
 
 def get_commons_site():
@@ -154,16 +221,27 @@ def upload_file(site, local_path, filename, wikitext, comment="Upload from Beeld
     return result
 
 
-def preview_upload(row):
+def preview_upload(row, exclusions=None):
     """
     Preview what would be uploaded without actually uploading.
 
     Args:
         row: pandas Series with the record data
+        exclusions: Optional dict of category exclusions
     """
     unique_id = safe_str(row.get('unique_id', ''))
     filename = get_upload_filename(row)
     local_path = get_local_filepath(row)
+
+    # Apply category exclusions if provided
+    if exclusions:
+        original_cats = safe_str(row.get('commons_categories', ''))
+        filtered_cats = filter_categories_for_record(unique_id, original_cats, exclusions)
+        row = row.copy()
+        row['commons_categories'] = filtered_cats
+        if original_cats != filtered_cats:
+            print(f"Categories filtered: {original_cats} -> {filtered_cats}")
+
     wikitext = generate_wikitext(row)
 
     print("=" * 80)
@@ -197,7 +275,12 @@ def upload_single(unique_id, preview_only=False):
         print(f"ERROR: Record with unique_id '{unique_id}' not found.")
         return False
 
-    filename, local_path, wikitext = preview_upload(row)
+    # Load category exclusions
+    exclusions = load_category_exclusions()
+    if exclusions:
+        print(f"Loaded category exclusions from {EXCLUSIONS_FILE}")
+
+    filename, local_path, wikitext = preview_upload(row, exclusions)
 
     if not os.path.exists(local_path):
         print(f"\nERROR: Local file not found: {local_path}")
@@ -257,6 +340,11 @@ def upload_batch(start_idx, end_idx, preview_only=False, delay=5):
 
     print(f"Processing rows {start_idx} to {end_idx - 1} ({end_idx - start_idx} records)")
 
+    # Load category exclusions
+    exclusions = load_category_exclusions()
+    if exclusions:
+        print(f"Loaded category exclusions from {EXCLUSIONS_FILE}")
+
     if not preview_only:
         print("Connecting to Wikimedia Commons...")
         site = get_commons_site()
@@ -279,6 +367,15 @@ def upload_batch(start_idx, end_idx, preview_only=False, delay=5):
             print(f"  SKIP: Local file not found")
             skipped += 1
             continue
+
+        # Apply category exclusions
+        if exclusions:
+            original_cats = safe_str(row.get('commons_categories', ''))
+            filtered_cats = filter_categories_for_record(unique_id, original_cats, exclusions)
+            if original_cats != filtered_cats:
+                row = row.copy()
+                row['commons_categories'] = filtered_cats
+                print(f"  Categories: {original_cats} -> {filtered_cats}")
 
         if preview_only:
             wikitext = generate_wikitext(row)

@@ -1,0 +1,1641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookbinding in the Netherlands - Public Domain Files Preview</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 { color: #333; }
+        .stats {
+            background: #e0e0e0;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .controls {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            padding: 15px 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .controls button {
+            padding: 8px 16px;
+            margin-right: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+        }
+        .controls button.primary {
+            background: #007bff;
+            color: white;
+        }
+        .controls button.secondary {
+            background: #6c757d;
+            color: white;
+        }
+        .excluded-list {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            padding: 15px 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        .excluded-list.visible {
+            display: block;
+        }
+        .excluded-list pre {
+            background: white;
+            padding: 10px;
+            border-radius: 4px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            overflow: hidden;
+            position: relative;
+            border: 3px solid transparent;
+        }
+        .card.excluded {
+            border-color: #dc3545;
+            opacity: 0.6;
+        }
+        .card img {
+            width: 100%;
+            height: 250px;
+            object-fit: contain;
+            background: #eee;
+        }
+        .card-content { padding: 15px; }
+        .card-title {
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 10px;
+            color: #1a1a1a;
+        }
+        .card-desc {
+            font-size: 12px;
+            color: #666;
+            max-height: 100px;
+            overflow-y: auto;
+            margin-bottom: 10px;
+        }
+        .card-meta {
+            font-size: 11px;
+            color: #999;
+            border-top: 1px solid #eee;
+            padding-top: 10px;
+        }
+        .card-id { font-weight: bold; color: #0066cc; }
+        .card-toggle {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 12px;
+        }
+        .card-toggle.include {
+            background: #28a745;
+            color: white;
+        }
+        .card-toggle.exclude {
+            background: #dc3545;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Public Domain Files - Category Preview: Bookbinding in the Netherlands</h1>
+    <div class="stats">
+        <strong>Total images:</strong> 98<br>
+        <strong>Commons category:</strong> <a href="https://commons.wikimedia.org/wiki/Category:Bookbinding_in_the_Netherlands" target="_blank">Category:Bookbinding in the Netherlands</a><br>
+        <strong>Mapped from:</strong> F: Bindkunst
+    </div>
+    <div class="controls">
+        <strong>Selection:</strong>
+        <span id="include-count">98</span> included,
+        <span id="exclude-count">0</span> excluded
+        &nbsp;|&nbsp;
+        <button class="secondary" onclick="toggleExcludedList()">Show/Hide Excluded List</button>
+        <button class="secondary" onclick="openJSONFile()">Open JSON File</button>
+        <button class="primary" onclick="saveSelection()">Save Selection</button>
+        <button class="secondary" onclick="resetAll()">Reset All</button>
+        <span id="save-status" style="margin-left: 10px; color: #666;"></span>
+    </div>
+    <div class="excluded-list" id="excluded-list">
+        <strong>Excluded files (will NOT get this category):</strong>
+        <pre id="excluded-ids"></pre>
+    </div>
+    <div class="grid">
+
+        <div class="card" data-id="BBB-1192">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-1192')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:40E5_1631-CLU_P000-BD" alt="Boekband, ca. 1631" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Boekband, ca. 1631</div>
+                <div class="card-desc">Deze imposante folio-uitgave van de Leidse Elzeviers is gebonden in een stevige leren band met koperen sloten. Dit type regelmatig versierde banden is karakteristiek voor zeventiende-eeuwse Zuid-Nederlandse kloosterbibliotheken. Dat stemt overeen met de herkomst van het boek: het was eigendom van een jezuïetenklooster in Antwerpen.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-1192</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-1309">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-1309')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:KB-FOTO_INDBND_NR1309" alt="Industrieel vervaardigde boekband, tweede helft 19e eeuw" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Industrieel vervaardigde boekband, tweede helft 19e eeuw</div>
+                <div class="card-desc">Boekband van groen binderslinnen met een kunstpersing en verguld met een grote persstempel. De band is van F.A.L. Japin, een bekende Amsterdamse boekbinder.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-1309</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-1440">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-1440')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:1088E101_1809-1811_NR1440" alt="Atelier van een boekbinder aan het begin van de negentiende eeuw." loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Atelier van een boekbinder aan het begin van de negentiende eeuw.</div>
+                <div class="card-desc">Illustratie bij een beschrijving van de boekbindkunst als een uitvinding uit het verleden: 'de wetenschap om enkele vellen tot bladeren te vouwen, dezelven zoodanig op elkanderen te leggen en vast te hechten, dat zij als een boek doorbladerd en gelezen kunnen worden, is van tijd tot tijd tot de tegenwoordige volmaaktheid gebragt.'</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-1440</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-1460">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-1460')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:150C66_14XX_NR1460" alt="Maculatuur die uit een boekband is verwijderd, en waarvan de afzonderlijke strookjes weer samengevoegd zijn ter reconstructie van het oorspronkelijke perkamenten blad." loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Maculatuur die uit een boekband is verwijderd, en waarvan de afzonderlijke strookjes weer samengevoegd zijn ter reconstructie van het oorspronkelijke perkamenten blad.</div>
+                <div class="card-desc">Maculatuur, bestaande uit 17 strookjes die ter versteviging van het boekblok waren aangebracht op een handschrift uit de tweede helft van de vijftiende eeuw. De maculatuur is vervaardigd uit een bladzijde uit de 'Donaat', een schoolboekje geschreven door Aelius Donatus. Dit boekje is één van de eerste in Nederland gedrukte werkjes, behorende tot de zogenaamde prototypografie.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-1460</span><br>
+                    Classificatie: F: Bindkunst, M3: Maatschappijwetenschappen
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-1487">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-1487')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:HSB31GOLGOT2_1928_LXXIX" alt="Boek uit het bezit van Marcus Laurinus, met het opschrift 'M. Laurini et amicorum'." loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Boek uit het bezit van Marcus Laurinus, met het opschrift 'M. Laurini et amicorum'.</div>
+                <div class="card-desc">Bruine kalfsleren boekband, bestempeld in zwart en zilver met geometrische figuren, en gedeeltelijk beschilderd in zwart en wit. De titel van het boek is in goud, omrand door een eveneens goudgestempelde cartouche, in het midden van het voorplat gedrukt. Het gaat om een werk van Cicero: "Orationum, vol. primum", gedrukt in Parijs door S. de Colines in 1543. Het boek komt uit het bezit van Marcus Laurinus, ofwel Mark Lauweryn, een van de rijkste burgers van Brugge aan het einde van de zestiende e...</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-1487</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-179">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-179')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:26G4_1798-THI_PL01" alt="'De boekbinder', illustratie uit een laat 18e eeuws kinderboek." loading="lazy">
+            <div class="card-content">
+                <div class="card-title">'De boekbinder', illustratie uit een laat 18e eeuws kinderboek.</div>
+                <div class="card-desc">Deze handgekleurde kopergravure is uit een bekend vijftalig kinderboek waarin zaken van uiteenlopende aard, variërend van het planten- en dierenrijk tot en met naties, godheden, vermaarde mannen en ambachten worden behandeld. Aan de hand van de cijfertjes bij de onderste afbeelding wordt uitgelegd hoe het boekbinden in zijn werk gaat. Zeker tot 1800 werden de technieken zoals die in de loop der tijd ontwikkeld waren nog toegepast.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-179</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-195">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-195')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:BJ26553_1876-LEE_P029-PL" alt="'De boekbinder', in F.H. van Leent, &quot;Wat wilt gij worden?: versjes en vertellingen&quot;, Haarlem, [1876]" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">'De boekbinder', in F.H. van Leent, &quot;Wat wilt gij worden?: versjes en vertellingen&quot;, Haarlem, [1876]</div>
+                <div class="card-desc">Dit plaatje uit een kinderboek laat aan de leergierige kinderen zien hoe er met de hand wordt gebonden. De man rechts is in de weer met een snijploeg, links zit een jongen aan zijn naairaam, bezig met het innaaien van een boek. Vanaf de tweede helft van de 19e eeuw zal de industriële band meer en meer de handboekband gaan vervangen.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-195</span><br>
+                    Classificatie: F: Bindkunst, M43: Taalwetenschap, letterkunde: andere Germaanse talen
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-208">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-208')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:3079C2_1763-WITT_P000-TG" alt="R. Vinkeles, de boekwinkel van Hermanus de Wit in Amsterdam, 1763" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">R. Vinkeles, de boekwinkel van Hermanus de Wit in Amsterdam, 1763</div>
+                <div class="card-desc">De boekwinkel van Hermanus de Wit, gelegen op de hoek van de Molsteeg en de Nieuwezijds Voorburgwal, weergeven door de bekende tekenaar/graveur Reinier Vinkeles (1741-1816). Het is een van de zeldzame eigentijdse afbeeldingen van boekwinkels in Nederland. In vergelijking met oudere afbeeldingen is af te leiden dat de interieurs uit de 18e eeuw niet veel verschilden van die uit de eeuw daarvoor. Op de boekenplanken staan merendeels gebonden boeken (op oudere afbeeldingen zien we vaker stapels ong...</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-208</span><br>
+                    Classificatie: G: Boekhandel en uitgeverij, F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-218">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-218')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:6170D38_1881-JONK_P051" alt="Advertentie van de firma Jonker & Zoon, 1881" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Advertentie van de firma Jonker & Zoon, 1881</div>
+                <div class="card-desc">Advertentie van de firma Jonker & Zoon in Amsterdam, fabrikanten van stoom- en andere werktuigen, met een interessant aanbod in onder meer papiersnijmachines, papiervouwmachines en apparatuur voor het boekbinden.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-218</span><br>
+                    Classificatie: B: Schriftdragers, inkt, F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-277">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-277')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:BANDBDTE02HV_1806_P000-TP2" alt="Titelblad van Hendrik de Haas, &quot;De Boekbinder&quot;, Dordrecht, 1806" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Titelblad van Hendrik de Haas, &quot;De Boekbinder&quot;, Dordrecht, 1806</div>
+                <div class="card-desc">Dit boek is het oudste gedrukte werk over het boekbindersvak in Nederland. Hendrik de Haas (1732-1809), geboren en getogen in Dordrecht, was niet alleen boekbinder, maar ook boekhandelaar en uitgever. Met zijn handleiding was hij in de jaren tachtig van de 18e eeuw begonnen. Hij geeft een helder beeld van het werk van een boekbinder in de achttiende eeuw en van technieken die al eeuwenlang in ons land in gebruik waren.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-277</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-278">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-278')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:BANDBDTE02HV_1806_P155-PL1" alt="Boekbindersatelier in Hendrik de Haas, &quot;De Boekbinder&quot;, Dordrecht, 1806" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Boekbindersatelier in Hendrik de Haas, &quot;De Boekbinder&quot;, Dordrecht, 1806</div>
+                <div class="card-desc">Deze prent geeft een boekbinderswerkplaats weer, met de vier 'voornaamste en meest aangelegenste gedeeltens der konst': het kloppen, d.w.z. het met een hamer op de katernen slaan om ze stevig en compact te maken; het snoeien: een speciaal mes (het ploegmes) wordt langs het boekblok gehaald om de pagina's gelijk te maken; het innaaien van de katernen, en tot slot het bruineren: het bewerken en glad maken van het leer. Achter de figuur die aan het bruineren is (de baas van het atelier) hangt een s...</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-278</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-279">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-279')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:BANDBDTE02HV_1806_P155-PL2" alt="Boekbindersgereedschappen in Hendrik de Haas, &quot;De Boekbinder&quot;, Dordrecht, 1806" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Boekbindersgereedschappen in Hendrik de Haas, &quot;De Boekbinder&quot;, Dordrecht, 1806</div>
+                <div class="card-desc">Deze plaat laat enkele belangrijke instrumenten nodig bij het boekbinden zien waaronder een klophamer (fig. 1), messen, de naaibank of naairaam (fig. 4), lijmkwast en lijmpot (fig. 6 en 7) en een blokpers. (fig. 10). De Haas heeft de tekeningen laten maken met het oog op het zelf fabriceren van deze instrumenten, die in de handel niet gemakkelijk te verkrijgen waren.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-279</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-280">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-280')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:BANDBDTE02HV_1806_P155-PL3" alt="Boekbindersgereedschappen in Hendrik de Haas, &quot;De Boekbinder&quot;, Dordrecht, 1806" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Boekbindersgereedschappen in Hendrik de Haas, &quot;De Boekbinder&quot;, Dordrecht, 1806</div>
+                <div class="card-desc">Nog een prent met instrumenten voor de boekbinder: de onderdelen van een ploegmes, de zijkant van een pers (fig. 9), een hamer, sprenkelkwastjes en een penseel. Fig. 8 toont het 'rondkloppen' van een boek, d.w.z. het rond zetten van de rug van de band.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-280</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-281">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-281')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:BANDBDTE02HV_1806_P155-PL4" alt="Het bewerken van sneden in Hendrik de Haas,&quot;De Boekbinder&quot;, Dordrecht, 1806" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Het bewerken van sneden in Hendrik de Haas,&quot;De Boekbinder&quot;, Dordrecht, 1806</div>
+                <div class="card-desc">Deze plaat toont sneden met stijfselverving (fig. 1) en vlekken, resp. uitgespaarde korrelmarmering (fig. 2). Verder zijn er een goudkussen en een goudmes (fig. 5 en 6) en een pers om een boek tussen te klemmen (fig. 7) afgebeeld. Fig. 8 laat zien hoe een velletje met bladgoud op de snede van het boek wordt aangebracht.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-281</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-282">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-282')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:BANDBDTE02HV_1806_P155-PL5" alt="Boekbindersmaterialen in Hendrik de Haas, &quot;De Boekbinder&quot;, Dordrecht, 1806" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Boekbindersmaterialen in Hendrik de Haas, &quot;De Boekbinder&quot;, Dordrecht, 1806</div>
+                <div class="card-desc">Deze plaat uit Hendrik de Haas, "De Boekbinder" toont voorbeelden van de verschillende formaten waarin bordkarton gesneden kan worden zonder verlies van resten, verder het aanrijgen van de platten, het 'kapitaalbesteken', d.w.z. het borduren rond de kern aan de boven- of onderkant van het boek, en het corderen: het spannen van touwen langs de ribben om ze strak te krijgen.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-282</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-283">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-283')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:BANDBDTE02HV_1806_P155-PL6" alt="Het versieren van boekbanden in Hendrik de Haas, &quot;De Boekbinder&quot;, Dordrecht, 1806" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Het versieren van boekbanden in Hendrik de Haas, &quot;De Boekbinder&quot;, Dordrecht, 1806</div>
+                <div class="card-desc">Deze plaat uit Hendrik de Haas, "De Boekbinder" gaat over het versieren van de band: twee soorten besprenkeling en de benodigde kwasten, het aanbrengen van goud op de rug en de verschillende handstempels die benodigd zijn voor het versieren van de band, stempels (fig. 11, 13-15, 19-20), rollen (fig. 9, 16-18) en een fileet.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-283</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-284">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-284')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:BANDBDTE02HV_1806_P155-PL7" alt="Bestempelen van boekbanden in Hendrik de Haas, &quot;De Boekbinder&quot;, Dordrecht, 1806" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Bestempelen van boekbanden in Hendrik de Haas, &quot;De Boekbinder&quot;, Dordrecht, 1806</div>
+                <div class="card-desc">Deze plaat geeft enkele soorten bestempeling van boekbanden. De bovenste helft toont twee boekruggen en twee boeken onderverdeeld in vier 'kwadranten' die elk een andere versiering laten zien. Op de onderste helft zijn wat instrumenten afgebeeld die te maken hebben met het aanbrengen van een belettering op de band.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-284</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-285">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-285')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:BANDBDTE02HV_1806_P155-PL8" alt="Versieringen op boekbanden in Hendrik de Haas, &quot;De Boekbinder&quot;, Dordrecht, 1806" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Versieringen op boekbanden in Hendrik de Haas, &quot;De Boekbinder&quot;, Dordrecht, 1806</div>
+                <div class="card-desc">Een boekband onderverdeeld in vier 'kwadranten' met verschillende voorbeelden van decoratie. De rug links toont veldjes met telkens ander rol- en stempelwerk, rechts allerlei mogelijkheden om op een rug letters aan te brengen.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-285</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-286">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-286')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:BANDBDTE02HV_1806_P155-PL9" alt="Het binden van een statenbijbel in Hendrik de Haas, &quot;De Boekbinder&quot;, Dordrecht, 1806" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Het binden van een statenbijbel in Hendrik de Haas, &quot;De Boekbinder&quot;, Dordrecht, 1806</div>
+                <div class="card-desc">Deze prent laat de specifieke eisen zien die aan een band om een statenbijbel gesteld worden. Het is een groot dik boek in folio met houten platten overtrokken met tuigleer en voorzien van beslag. De band heeft een blindstempeling in lijnen en in het midden een decoratie. Het voorbeeld wordt van alle kanten getoond. Rechts zien we het borduren rond een kapitaalkern (het kapitaalbesteken) en een ijzeren pers, waarmee plaatstempels, te groot om met de hand af te drukken, in de band gedrukt kunnen ...</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-286</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-287">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-287')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:BANDBDTE02BR_BRAY_NR0287" alt="Dirk de Bray, &quot;Onderwijs van 't Boek-Binden&quot;, 1658" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Dirk de Bray, &quot;Onderwijs van 't Boek-Binden&quot;, 1658</div>
+                <div class="card-desc">Deze afbeelding is afkomstig uit de oudst bekende beschrijving van de gang van zaken in een boekbinderswerkplaats in de noordelijke Nederlanden. De auteur is Dirk de Bray die in 1656 als leerling in het boekverkopersgilde in Haarlem stond ingeschreven. Hij was afkomstig uit een Haarlemse kunstenaarsfamilie en zou later een bekend schilder, tekenaar en graveur worden. De illustratie geeft naast de titel in een opengeslagen boek en twee stapels boeken de voor de Statenbijbel gangbare band weer: in...</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-287</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-288">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-288')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:BANDBDTE02BR_BRAY_NR0288" alt="Het vouwen van katernen in D. de Bray, &quot;Onderwijs van 't Boek-Binden&quot;, 1658" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Het vouwen van katernen in D. de Bray, &quot;Onderwijs van 't Boek-Binden&quot;, 1658</div>
+                <div class="card-desc">Op deze afbeelding uit het unieke handschriftje van Dirk de Bray over het boekbinden uit 1658 wordt getoond hoe de vellen papier waarop het boek gedrukt is in katernen gevouwen worden. De boekbinders houden de gevouwen bladzijden steeds tegen het licht om te zien of de tekstkolommen netjes op elkaar liggen. Op de voorgrond is een binder aan het kloppen, d.w.z. met een zware, platte hamer slaan op de katernen van het boek waardoor ze dunner worden.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-288</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-289">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-289')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:BANDBDTE02BR_BRAY_NR0289" alt="Boekbinders aan het werk in D. de Bray, &quot;Onderwijs van 't Boek-Binden&quot;, 1658" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Boekbinders aan het werk in D. de Bray, &quot;Onderwijs van 't Boek-Binden&quot;, 1658</div>
+                <div class="card-desc">Hier wordt het naaien en lijmen van de katernen tot een boekblok. Twee binders naaien aan hun naairamen het boekblok katern voor katern op touwen of stroken perkament. Een derde binder overlijmt de rug van een net genaaid boekblok.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-289</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-290">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-290')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:BANDBDTE02BR_BRAY_NR0290" alt="Boekbinders aan het werk in D. de Bray, &quot;Onderwijs van 't Boek-Binden&quot;, 1658" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Boekbinders aan het werk in D. de Bray, &quot;Onderwijs van 't Boek-Binden&quot;, 1658</div>
+                <div class="card-desc">De boekbindersknecht links heeft het boekblok in een snijploeg geklemd en schaaft met het mes langs het papier om de pagina's gelijk te maken. Het is niet geheel duidelijk wat de figuur rechts doet; vermoedelijk is hij bezig de snede, door sprenkelen, van een kievietsmarmering te voorzien.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-290</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-291">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-291')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:BANDBDTE02BR_BRAY_NR0291" alt="Boekbinders aan het werk in D. de Bray, &quot;Onderwijs van 't Boek-Binden&quot;, 1658" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Boekbinders aan het werk in D. de Bray, &quot;Onderwijs van 't Boek-Binden&quot;, 1658</div>
+                <div class="card-desc">De tekst bij deze afbeelding van De Bray legt o.a. het 'kapitaalbesteken' uit, en verwijst daarbij naar het figuurtje rechts, dat met twee naalden aan het werk is. De figuur links bruineert de snede, d.w.z. hij maakt die glad maakt met een agaat of berentand in een houder.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-291</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-292">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-292')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:BANDBDTE02BR_BRAY_NR0292" alt="Boekbinderswerkplaats in D. de Bray, &quot;Onderwijs van 't Boek-Binden&quot;, 1658" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Boekbinderswerkplaats in D. de Bray, &quot;Onderwijs van 't Boek-Binden&quot;, 1658</div>
+                <div class="card-desc">De figuur links is bezig een Hollandse, d.w.z. perkamenten band te maken bij een reeds gebonden boekblok. Straks zal hij de perkamenten stroken, waarop het blok genaaid is, door gleuven in de vouw gaan steken. In de kast achter bevinden zich reeds gebonden boeken en pakketten ongebonden katernen. Op de achtergrond is een bindpers te zien.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-292</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-293">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-293')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:BANDBDTE02BR_BRAY_NR0293" alt="Boekbinders aan een pers in D. de Bray, &quot;Onderwijs van 't Boek-Binden&quot;, 1658" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Boekbinders aan een pers in D. de Bray, &quot;Onderwijs van 't Boek-Binden&quot;, 1658</div>
+                <div class="card-desc">Enkele voltooide banden worden, geklemd tussen plankjes in de grote pers 'afgeperst'.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-293</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-294">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-294')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:BANDBDTE02BR_BRAY_NR0294" alt="Boekbinders aan het werk in D. de Bray, &quot;Onderwijs van 't Boek-Binden&quot;, 1658" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Boekbinders aan het werk in D. de Bray, &quot;Onderwijs van 't Boek-Binden&quot;, 1658</div>
+                <div class="card-desc">De binder links is bezig om de bindingen van touw of leer waarop een groot formaat boek (zoals de Statenbijbel) genaaid is door gaten in de hierbij gebruikte houten platten door te rijgen en met warme lijm vast te zetten. De binder rechts is bezig met de bewerking van de houten platten die aan het andere boekblok moeten worden bevestigd.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-294</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-295">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-295')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:BANDBDTE02BR_BRAY_NR0295" alt="Boekbinders aan het werk in D. de Bray, &quot;Onderwijs van 't Boek-Binden&quot;, 1658" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Boekbinders aan het werk in D. de Bray, &quot;Onderwijs van 't Boek-Binden&quot;, 1658</div>
+                <div class="card-desc">De boekbinder links is een in een speciale blokpers gezette band aan het corderen, het spannen van touwen strak langs de ribben om die scherper te laten uitkomen. De binder rechts "schalmt" de zijkanten van het leer, dat wil zeggen dat hij het aan de vleeskant uitdunt.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-295</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-296">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-296')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:BANDBDTE02BR_BRAY_NR0296" alt="Boekbinder aan het werk in Dirk de Bray, &quot;Onderwijs van 't Boek-Binden&quot;, 1658" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Boekbinder aan het werk in Dirk de Bray, &quot;Onderwijs van 't Boek-Binden&quot;, 1658</div>
+                <div class="card-desc">De boekbinder brengt het beslag (sloten, klampen en dergelijke) aan, door ze met nagels aan de houten platten vast te zetten.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-296</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-297">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-297')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:BANDBDTE02BR_BRAY_NR0297" alt="Boekbindersgereedschappen in D. de Bray, &quot;Onderwijs van 't Boek-Binden&quot;, 1658" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Boekbindersgereedschappen in D. de Bray, &quot;Onderwijs van 't Boek-Binden&quot;, 1658</div>
+                <div class="card-desc">Deze tekening van Dirk de Bray behoort bij een lijst van hetgeen een boekbinder nodig heeft, zoals een vouwbeen, allerlei soorten mesjes, tangetjes en scharen, een hamer, een winkelhaak, sprenkelkwastjes, sprenkelverf, een pot met lijm etc.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-297</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-298">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-298')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:BANDBDTE02BR_BRAY_NR0298" alt="Boekbindersgereedschappen in D. de Bray, &quot;Onderwijs van 't Boek-Binden&quot;, 1658" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Boekbindersgereedschappen in D. de Bray, &quot;Onderwijs van 't Boek-Binden&quot;, 1658</div>
+                <div class="card-desc">Nog andere instrumenten benodigd bij het boekbinden zoals linialen voor het trekken van lijnen, een kleine handpers en grote en kleine persplanken.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-298</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-299">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-299')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:BANDBDTE02BR_BRAY_NR0299" alt="Boekbinderspersen in D. de Bray, &quot;Onderwijs van 't Boek-Binden&quot;, 1658" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Boekbinderspersen in D. de Bray, &quot;Onderwijs van 't Boek-Binden&quot;, 1658</div>
+                <div class="card-desc">Twee 17e-eeuwse boekbinderspersen, links een snijpers en rechts een lijmpers.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-299</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-300">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-300')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:BANDBDTE02BR_BRAY_NR0300" alt="Een boekbinderssnijploeg in D. de Bray, &quot;Onderwijs van 't Boek-Binden&quot;, 1658" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Een boekbinderssnijploeg in D. de Bray, &quot;Onderwijs van 't Boek-Binden&quot;, 1658</div>
+                <div class="card-desc">Een boekbinderssnijploeg met rechtsonder het ronde mes dat langs het boekblok wordt gehaald om de katernen gelijk te snijden.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-300</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-301">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-301')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:BANDBDTE02BR_BRAY_NR0301" alt="Een boekbindersnaaibank in D. de Bray, &quot;Onderwijs van 't Boek-Binden&quot;, 1658" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Een boekbindersnaaibank in D. de Bray, &quot;Onderwijs van 't Boek-Binden&quot;, 1658</div>
+                <div class="card-desc">Een boekbindersnaaibank of naairaam. Aan de metalen haken konden de stroken leer of perkament worden bevestigd waartegen het boekblok werd genaaid.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-301</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-302">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-302')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:BANDBDTE02BR_BRAY_NR0302" alt="Enkele boekbindersgereedschappen in D. de Bray, &quot;Onderwijs van 't Boek-Binden&quot;, 1658." loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Enkele boekbindersgereedschappen in D. de Bray, &quot;Onderwijs van 't Boek-Binden&quot;, 1658.</div>
+                <div class="card-desc">Enkele boekbindersinstrumenten, zoals een cordeerpers, een bruineersteen, rolstempels en een klophamer.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-302</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-303">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-303')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:341A23_1584-VALO_P000-BAND" alt="Boekband, vóór 1584" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Boekband, vóór 1584</div>
+                <div class="card-desc">Dit is een met goud bestempeld, deels beschilderde boekband in bruin kalfsleer over houten platten. Beide platten zijn versierd met een sober lijnenkader met in het midden het wapen van Willem van Oranje, rood en blauw beschilderd. Het is niet zeker of deze band in Nederland gemaakt is, en ook niet precies wanneer. Maar dat het boek afkomstig is uit de bibliotheek van Willem van Oranje staat wel vast.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-303</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-304">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-304')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:137B1_1600-INST_P000-BAND" alt="Boekband, ca. 1600" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Boekband, ca. 1600</div>
+                <div class="card-desc">Met goud bestempelde blank perkamenten band met omslagen over de voorsnee. Beide platten zijn bestempeld met een lijnenkader met in elke hoek hetzelfde ornament, en in het midden het wapen van prins Maurits. In de Koninklijke Bibliotheek zijn diverse boeken met het wapen van Maurits bewaard gebleven. Ze zijn, gezien de vrijwel uniforme uitvoering, waarschijnlijk allemaal door dezelfde binder gemaakt, en vermoedelijk ook rond dezelfde tijd</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-304</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-305">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-305')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:KB-DIA_BB-1610_NR0305" alt="Boekband, tussen 1610-1620" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Boekband, tussen 1610-1620</div>
+                <div class="card-desc">Met bladgoud bestempelde boekband van bruin kalfsleer over houten platten. Beide platten zijn bestempeld met decoratieve rollen en stempels. Het centrale veld heeft in de hoeken en in het midden plaatstempels, met daartussenin rosetjes.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-305</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-306">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-306')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:850F37_1633-PILI_P000-BAND" alt="Boekband, Leiden (?), 1633" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Boekband, Leiden (?), 1633</div>
+                <div class="card-desc">Met goud bestempelde blank perkamenten boekband. Beide platten zijn bestempeld met een eenvoudig lijnkader en centraal een decoratief plaatstempel. In de 17e eeuw werden veel boeken in perkament gebonden. Het was sterk en relatief goedkoop, zeker als de band onbestempeld of blind bestempeld werd.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-306</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-307">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-307')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:142G25_1655-KEMP_P000-BAND" alt="Boekband, Den Haag, 1655" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Boekband, Den Haag, 1655</div>
+                <div class="card-desc">Band van met goud bestempeld olijfgroen marokijn. De onbekende boekbinder van deze band moet aan het einde van de jaren veertig en in de jaren vijftig van de 17e eeuw in Den Haag gewerkt hebben en vermoedelijk is hij het geweest die het stempelen met kleine krulstempels ("petits fers", een techniek die in Frankrijk als sinds het begin van de eeuw in zwang was) in Holland geïntroduceerd heeft.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-307</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-308">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-308')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:KB-DIA_BB-1679_NR0308" alt="Boekband van Albert Magnus, Amsterdam, 1679" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Boekband van Albert Magnus, Amsterdam, 1679</div>
+                <div class="card-desc">Band van met goud bestempeld rood marokijn. Hij is van de meester-boekbinder Albert Magnus (1642-1689), die sedert 1667 in Amsterdam de meest luxueuze banden maakte, en wiens invloed tot in de 18e eeuw reikte. Zijn werk is geïnspireerd op eigentijdse Franse banden.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-308</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-309">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-309')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:KB-DIA_BB-1671_NR0309" alt="Boekband uit de omgeving van Albert Magnus, Amsterdam, ca. 1671" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Boekband uit de omgeving van Albert Magnus, Amsterdam, ca. 1671</div>
+                <div class="card-desc">Band van met goud bestempeld gemarmerd kalfsleer. Beide platten zijn bestempeld met twee kaders van diverse rollen, waaronder een met vogels in ranken. De maker van de band is onbekend, maar zijn werk doet nauwelijks onder voor dat van de beroemde Amsterdamse meester-boekbinder Albert Magnus.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-309</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-313">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-313')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:KB-DIA_BB-1701_NR0313" alt="Boekband , Amsterdam, ca. 1701" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Boekband , Amsterdam, ca. 1701</div>
+                <div class="card-desc">Band van met goud bestempeld zwart marokijn. De boekbinder van dit bandje is niet geïdentificeerd. Zijn atelier wordt in Amsterdam gesitueerd en staat bekend onder de noodnaam Roset-Dubbelwiegevoet binderij.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-313</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-315">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-315')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:KB-DIA_BB-1749_NR0315" alt="Boekband , Den Haag, Eerste Stadhouderlijke binderij, 1749" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Boekband , Den Haag, Eerste Stadhouderlijke binderij, 1749</div>
+                <div class="card-desc">Band van met goud bestempeld rood marokijn. In het midden is het wapen van stadhouder Willem IV. De band is afkomstig uit de eerste Stadhouderlijke binderij, zo genoemd omdat daar veel boeken voor Willem IV zijn gebonden. Het is een van de belangrijkste ateliers geweest. Er zijn bijna 200 luxebanden uit Den Haag bekend. De mooiste zijn die met versieringen afgeleid van 16e eeuwse lintpatronen, waarvan deze band een voorbeeld is.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-315</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-316">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-316')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:KB-DIA_BB-1758_NR0316" alt="Boekband , Den Haag, Christiaan Micke, ca. 1758" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Boekband , Den Haag, Christiaan Micke, ca. 1758</div>
+                <div class="card-desc">Band van met goud bestempeld rood , donkerblauw en olijfgroen marokijn. Beide platten zijn bestempeld met een kantwerkrand. In het midden zijn bestempelde olijfgroene veldjes rond een groter donkerblauw veld aangebracht. De band is niet gesigneerd, maar de stempels van de boekbinder, Christiaan Micke, zijn bekend door de banden die hij voor de stadhouderlijke bibliotheek heeft gemaakt.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-316</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-317">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-317')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:KB-DIA_BB-177X_NR0317" alt="Boekband , Amsterdam, Van Damme-binderij, ca. 1770" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Boekband , Amsterdam, Van Damme-binderij, ca. 1770</div>
+                <div class="card-desc">Band van met goud bestempeld rood en zwart marokijn. In het midden is een zwart schild met een afbeelding van misschien aartsvader Abraham. Erboven zijn twee zegenende handen. De naam van deze binderij: Van Damme-binderij, is ontleend aan Pieter Van Damme, een Amsterdamse munt- en penningkundige, boekhandelaar en uitgever, voor wie deze binderij veel opdrachten heeft uitgevoerd.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-317</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-318">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-318')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:KB-DIA_BB-1777_NR0318" alt="Boekband , Middelburg, Satisfactie-binderij, 1777" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Boekband , Middelburg, Satisfactie-binderij, 1777</div>
+                <div class="card-desc">Band van met goud bestempeld rood marokijn. De achttiende eeuw betekende een hoogtij voor de luxeband, en bijna iedere stad van betekenis had wel een binderij. De stijl van versieren verschilde per stad. De boekband in Middelburg deelde karakteristieken met die uit Amsterdam en Den Haag.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-318</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-319">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-319')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:KB-DIA_BB-1779_NR0319" alt="Boekband , Den Haag, Thomas van Os, ca. 1779" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Boekband , Den Haag, Thomas van Os, ca. 1779</div>
+                <div class="card-desc">Band van met goud bestempeld groen marokijn. Beide platten zijn bestempeld met een kader bestaande uit a-symmetrische patronen van ranken met vruchten, vogeltjes en vlinders. Het centrale veld is leeg. De band is een van de mooiste voorbeelden van de asymmetrische Lodewijk XV-stijl in de Nederlandse bindkunst.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-319</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-321">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-321')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:KB-DIA_BB-1790_NR0321" alt="Boekband , Rotterdam, Bosch-binderij, ca. 1790" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Boekband , Rotterdam, Bosch-binderij, ca. 1790</div>
+                <div class="card-desc">Band van met goud bestempeld rood marokijn. De nog onbekende binder van de groep banden waartoe deze behoort heeft vermoedelijk regelmatig samengewerkt met de Rotterdamse uitgever J. Bosch, vandaar de naam 'Bosch-binderij'.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-321</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-322">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-322')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:KB-DIA_BB-1796_NR0322" alt="Boekband, Leiden, Tweede dissertatie-binderij, 1796" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Boekband, Leiden, Tweede dissertatie-binderij, 1796</div>
+                <div class="card-desc">Band van met goud bestempeld rood marokijn. Beide platten zijn bestempeld met twee kaders, een met parelrollen, de andere bestaande uit strakke lijnen met op de hoeken een bloemmotiefje. De ruitvormige centrale stempeling wordt gevormd door bloemen geschikt rond een medaillon. De band behoort tot een groep die veel Leidse dissertaties heeft ingebonden, vandaar de noodnaam.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-322</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-323">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-323')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:KB-DIA_BB-1814_NR0323" alt="Boekband, Amsterdam, F.J. Wenker, 1814" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Boekband, Amsterdam, F.J. Wenker, 1814</div>
+                <div class="card-desc">Band van met goud bestempeld rood saffiaan. Beide platten hebben een sobere classicistische bestempeling, gebruikelijk voor het begin van de 19e eeuw. Ook wordt rond 1800 bij luxebanden het marokijn vaak vervangen door saffiaan: een leersoort (meest schaap) met een kunstpersing. De band is op de rug gesigneerd door de binder: F.J. Wenker uit Amsterdam.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-323</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-324">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-324')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:KB-DIA_BB-1825_NR0324" alt="Boekband, Amsterdam, Conrad H.C. Wiedemann, 1825" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Boekband, Amsterdam, Conrad H.C. Wiedemann, 1825</div>
+                <div class="card-desc">Opmerkelijke band van blind en met goud bestempeld rood marokijn met leermozaïek in allerlei kleuren. De band is op de rug gesigneerd door de binder: Conrad H.C. Wiedemann uit Amsterdam.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-324</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-325">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-325')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:KB-DIA_BB-1834_NR0325" alt="Boekband, Den Haag, Joannes Vincentius van den Heuvel, ca. 1834" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Boekband, Den Haag, Joannes Vincentius van den Heuvel, ca. 1834</div>
+                <div class="card-desc">Band van met goud bestempeld blauw marokijn. Beide platten hebben een stempeling van rechte en gebogen lijnen en ranken. De rug heeft een doorlopend rankenpatroon. Joannes Vincentius van den Heuvel (1805-1891) wordt wel beschouwd als de beste Haagse binder uit de 19e eeuw. Hij was een tijdje in het buitenland geweest en had daar allerlei methoden en stijlen van binden en versieren bestudeerd.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-325</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-326">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-326')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:KB-DIA_BB-1835_NR0326" alt="Boekband, Amsterdam, Friedrich W.I.C. Kolb, ca. 1835" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Boekband, Amsterdam, Friedrich W.I.C. Kolb, ca. 1835</div>
+                <div class="card-desc">Band van blind en met goud bestempeld zwart marokijn met leermozaïek in verschillende kleuren. Beide platten zijn met brede kaders bestempeld. Friedrich Kolb was afkomstig uit Hachenburg, niet ver van Bonn. Hij vestigde zich in 1834 in Amsterdam. Deze band behoort tot het beste wat in ons land in de periode 1830-1840 is gemaakt.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-326</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-327">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-327')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:KB-DIA_BB-1848_NR0327" alt="Boekband, Amsterdam, Abraham van Rossum, 1848" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Boekband, Amsterdam, Abraham van Rossum, 1848</div>
+                <div class="card-desc">Band van blind en met goud bestempeld paars marokijn. Zowel de platten als de rug vertonen een neobarokke versiering. Het teruggrijpen naar voorbije stijlen is een typisch 19e eeuws verschijnsel. Abraham van Rossum (de band is binnenin gesigneerd op een etiketje) was vermoedelijk de langstwerkende en productiefste binder van Amsterdam in de eerste helft van de 19e eeuw.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-327</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-328">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-328')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:KB-DIA_BB-1855_NR0328" alt="Boekband, Dordrecht, Jacobus Giltay, ca. 1855" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Boekband, Dordrecht, Jacobus Giltay, ca. 1855</div>
+                <div class="card-desc">Band van blind en met goud bestempeld donkerpaars segrijn. Beide platten zijn voorzien van een neobarokke decoratie. De vlakke rug heeft een doorlopende neogotische versiering. Teruggrijpen op voorbije stijlen is een typisch 19e eeuws verschijnsel. Circa 1845 kwam voor luxebanden segrijn op, net als saffiaan leer met een kunstpersing. Saffiaan heeft kleine evenwijdige streepjes, segrijn kleine 'pukkeltjes'.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-328</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-329">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-329')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:KB-DIA_BB-1859_NR0329" alt="Boekband, Utrecht, F. Herfkens & zoon, 1859" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Boekband, Utrecht, F. Herfkens & zoon, 1859</div>
+                <div class="card-desc">Band van met goud bestempeld rood fluweel. Beide platten zijn met een lijnkader en met grote, halfnaturalistische, half neobarokke hoekstempels versierd. Centraal op het voorplat staat Minerva, de godin van de wijsheid en beschermster van de kunsten. Naast marokijn, saffiaan en segrijn gebruikten binders in de 19e eeuw ook regelmatig fluweel.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-329</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-330">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-330')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:KB-DIA_BB-1862_NR0330" alt="Boekband, Den Haag, Joannes Vincentius van den Heuvel, 1862" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Boekband, Den Haag, Joannes Vincentius van den Heuvel, 1862</div>
+                <div class="card-desc">Band van blauw fluweel, goud en blind bestempeld. Beide platten hebben een blind lijnkader en daarbinnen een versiering van maureske-achtige krullen. Centraal is het wapen van Willem III aangebracht. Fluweel werd in de 19e eeuw ook voor boekbanden regelmatig gebruikt. De band is een voorbeeld van het opnieuw toepassen van versieringsstijlen uit het verleden, hier de maureske, populair in de Franse bindkunst van rond 1550.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-330</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-331">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-331')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:KB-DIA_BB-1865_NR0331" alt="Boekband, Amsterdam, Douwe Goethart van Bommel, ca. 1865" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Boekband, Amsterdam, Douwe Goethart van Bommel, ca. 1865</div>
+                <div class="card-desc">Band van bruin segrijn, blind en met goud bestempeld. Beide platten hebben een lijnstempeling in driehoeken en een centrale ruit, waarbinnen kleine stempels. Douwe Goethart van Bommel (1822-1897) was een productief binder in Amsterdam, en vader van de nog beroemdere binder Elias Pieter van Bommel.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-331</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-339">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-339')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:KB-DIA_BB-1720_NR0339" alt="Tweelingband, Amsterdam (?), ca. 1720" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Tweelingband, Amsterdam (?), ca. 1720</div>
+                <div class="card-desc">Tweelingband van met geoxydeerd zilver bestempeld perkament, groen en bruin gemarmerd. Beide platten zijn bestempeld met twee kaders, waartussen o.a. vogels en bloemen. Centraal zijn op beide voorplatten twee platen afgedrukt met de voostelling van Fides (geloof) en Charitas (liefdadigheid). Bij tweelingbanden vormt het achterplat van het ene boek tegelijkertijd het achterplat van het andere. Er bestaan ook 'vierlingbanden', maar eigenlijk zijn dit soort banden vooral bedoeld als grappigheidjes.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-339</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-340">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-340')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:KB-DIA_BB-1720_NR0340" alt="Tweelingband, Amsterdam (?), ca. 1720, voorplat" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Tweelingband, Amsterdam (?), ca. 1720, voorplat</div>
+                <div class="card-desc">Voorkant van de tweelingband.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-340</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-341">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-341')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:KB-DIA_BB-1776_NR0341" alt="Boekband , Middelburg, Satisfactie-binderij, 1776" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Boekband , Middelburg, Satisfactie-binderij, 1776</div>
+                <div class="card-desc">Zogenaamd rugloze band, in diverse kleuren beschilderde zijde over kartonnen platten. Beide platten zijn versierd met een rococo kader, waarbinnen aan een gestrikt lint het wapenschild van Daniel Tulleken, burgemeester van Middelburg is aangebracht. De band was aan hem opgedragen.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-341</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-342">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-342')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:KB-DIA_BB-1776_NR0342" alt="Schuifhoes, Middelburg, Satisfactie-binderij, 1776" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Schuifhoes, Middelburg, Satisfactie-binderij, 1776</div>
+                <div class="card-desc">Deze schuifhoes van rood marokijn behoort bij de rugloze satijnen band, opgedragen aan Daniel Tulleken. Zowel de voor- als de achterkant zijn uitzonderlijk rijk met goud bestempeld. Alhoewel veel luxueuze banden vroeger in een schuifhoes afgeleverd werden, zijn er toch maar weing bewaard gebleven, mogelijk omdat bij het insteken en uithalen van het boek slijtage optrad.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-342</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-343">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-343')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:KB-DIA_BB-1757_NR0343" alt="Boekband , Middelburg, Suenonius Mandelgreen, 1757" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Boekband , Middelburg, Suenonius Mandelgreen, 1757</div>
+                <div class="card-desc">Bruinkarmijn marokijn, met goud bestempeld. Op beide platten staat een doorlopend randschrift waaruit blijkt dat de band met de tien in rood schapeleer gebonden miniatuurboekjes een geschenk was voor Willem van Borssele bij zijn geboorte in 1757. De band is op het voorplat gesigneerd door Suenonius Mandelgreen, boekbinder afkomstig uit Zweden, maar werkzaam in Middelburg tussen 1736 en 1757. Gesigneerde banden zijn in de 18e eeuw uiterst zeldzaam.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-343</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-344">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-344')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:KB-DIA_BB-1757_NR0344" alt="Boekband , Middelburg, Suenonius Mandelgreen, 1757" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Boekband , Middelburg, Suenonius Mandelgreen, 1757</div>
+                <div class="card-desc">De inhoud van het uiterst zeldzame reisbibliotheekje waarvan de band gemaakt is door Suenonius Mandelgreen, boekbinder afkomstig uit Zweden, maar werkzaam in Middelburg tussen 1736 en 1757.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-344</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-345">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-345')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:144A14_1671-KIRC_BND" alt="Boekband , Amsterdam, Kircher-binder, ca. 1671" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Boekband , Amsterdam, Kircher-binder, ca. 1671</div>
+                <div class="card-desc">Band van met goud bestempeld donker bruinrood marokijn. De platten zijn versierd met motieven als vogels in wijnranken, krullen en kelken. Hij wordt toegeschreven aan een anonieme Amsterdamse boekbinder, Kircher-binder genoemd, omdat hij vrij veel boeken heeft gebonden van Athansias Kircher (1602-1680), een Duitse theoloog die een groot gedeelte van zijn publicaties in Amsterdam heeft laten uitgeven. Het werk van de Kricher-binder is sterk verwant aan dat van de meester-boekbinder Albert Magnus,...</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-345</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-346">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-346')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:74G3_1497-GET_BND" alt="Boekband , Noordelijke Nederlanden, 1497" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Boekband , Noordelijke Nederlanden, 1497</div>
+                <div class="card-desc">Band van bruin kalfsleer over houten platten, blind bestempeld, met twee verguld zilveren sloten. De band is bedrukt met een paneelstempel, een Nederlandse uitvinding die al sinds ca. 1350 werd toegepast en tot ca. 1560/70 in gebruik zou zijn. Paneelstempels waren rechthoekige plakken brons met een in reliëf uitgediepte voorstelling. Ze werden door middel van een pers in het leer gedrukt. Deze band heeft typisch Noordnederlandse kenmerken: één paneel in het midden, omringd door lijnen en groeper...</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-346</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-347">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-347')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:1708D41_1550-PLA_BND" alt="Boekband , Antwerpen, Christoffel Plantijn, 1550" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Boekband , Antwerpen, Christoffel Plantijn, 1550</div>
+                <div class="card-desc">Band van bruin kalfsleer met goud bestempeld en beschilderd met email-verf in verschillende kleuren. Christoffel Plantijn, geboren rond 1520 in Frankrijk, begon zijn carrière als boekbinder en genoot daarin grote faam. In Antwerpen introduceerde hij rond 1550 het goudstempelen, een techniek die hij in Parijs geleerd had en die ook in de Noordelijke Nederlanden op grote schaal toegepast zou gaan worden. In 1555, toen het binden hem door een ongeval onmogelijk was geworden, begon Plantijn met het ...</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-347</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-348">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-348')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:345G17_1615-BIBL_BND" alt="Boekband , ca. 1615-1620" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Boekband , ca. 1615-1620</div>
+                <div class="card-desc">Textiele boekband van witte zijde, geborduurd met vele kleuren zijde en metaaldraad. Textiel werd al vanaf de Middeleeuwen gebruikt voor het binden van boeken. Het werd vooral toegepast voor boeken in vorstelijke collecties en boeken die voor vrouwen bestemd waren. Onder invloed van de Engelse koningin Elizabeth I vonden borduursels vanaf de tweede helft van de 16e eeuw steeds meer ingang. Het soort fraaie borduurwerk zoals op deze band werd niet gemaakt door de binder zelf maar door professione...</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-348</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-352">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-352')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:145D19_1600-DOU_BND" alt="Boekband, Leiden (?), ca. 1600" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Boekband, Leiden (?), ca. 1600</div>
+                <div class="card-desc">Met goud bestempelde blank perkamenten boekband, met in het midden het wapen van prins Maurits. Nederlandse binders in het begin van de 17e eeuw hadden een voorkeur voor dit soort nogal stoere perkamenten banden, die hoofdzakelijk zijn versierd met plaatstempels. Dit boek is een opdracht-exemplaar voor prins Maurits.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-352</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-353">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-353')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:143G3_1750-BIB_BND" alt="Boekband, ca. 1750" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Boekband, ca. 1750</div>
+                <div class="card-desc">Perkamenten boekband met goud bestempeld en beige, oranje en groen beschilderd. Mooi voorbeeld van een boekband met perkament-schildering, een techniek die in Nederland in deze tijd slechts sporadisch werd toegepast.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-353</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-354">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-354')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:144F8_1776-BOEK_BND" alt="Boekband en schuifhoes, Middelburg, Satisfactie-binderij, 1776" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Boekband en schuifhoes, Middelburg, Satisfactie-binderij, 1776</div>
+                <div class="card-desc">Rugloze band en de bijbehorende schuifhoes waarvan hier de beschilderde snede en zijkant te zien zijn. Door het ciseleren en beschilderen van de snede met bijvoorbeeld bloemen, dierfiguren en teksten kregen luxebanden een nog rijker aanzien.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-354</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-355">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-355')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:345G10_1665-LIBR_BND" alt="Boekband , Amsterdam, ca. 1665" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Boekband , Amsterdam, ca. 1665</div>
+                <div class="card-desc">Boekband uitgevoerd in schildpad met verguld zilveren scharnieren, beslag en sloten. Ten tijde van de Amsterdamse meesterboekbinder Albert Magnus werd de snede ontdekt als middel om luxebanden nog meer rijkdom te geven. De snede van deze band is hiervan een voorbeeld.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-355</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-357">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-357')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:1793D103_1800-HAAS_BND" alt="Twee schuifhoezen, Hendrik de Haas (?), ca. 1800-1805" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Twee schuifhoezen, Hendrik de Haas (?), ca. 1800-1805</div>
+                <div class="card-desc">Eén schuifhoes is van met goud bestempeld roodkarmijn marokijn en zwartblauwig groen saffiaan. Deze hoes kan in een tweede hoes geborgen worden, van lilarood saffiaan, ook met goud bestempeld. Ze vormen het enige werk dat toegeschreven kan worden aan Hendrik de Haas, de boekbinder uit Dordrecht die met 'De Boekbinder of volledige beschrijving van al het gene wat tot deze konst betrekking heeft' uit 1806 het oudste gedrukte werk over het boekbindersvak in Nederland heeft geschreven.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-357</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-375">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-375')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:234N40_1723-EPIC_BND" alt="Delftse prijsband, Delft, 1723" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Delftse prijsband, Delft, 1723</div>
+                <div class="card-desc">Deze Delftse prijsband laat in stempeling het Delftse wapen zien, met de Griekse letter Y: het symbool van Delft, en de spreuk Per angusta ad augusta (langs een smalle weg naar het verhevene). Prijsbanden waren boeken die werden uitgereikt als prijs voor de beste leerling van een klas van de Latijnse school. Het was meestal een uitgave van een klassiek auteur, gebonden in perkament met op de band in goud het stadswapen gestempeld, en binnenin voorzien van een oorkonde. Deze band is ook een goed ...</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-375</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-376">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-376')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:449D43_1732-ROE_TP" alt="Bruno Röver, &quot;Oratio pro Belgis, olim adversus Romanos arma moventibus&quot;, Delft, 1732" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Bruno Röver, &quot;Oratio pro Belgis, olim adversus Romanos arma moventibus&quot;, Delft, 1732</div>
+                <div class="card-desc">De gravure op het titelblad toont een leerling van de Latijnse school in Delft die in de Waalse Kerk aldaar zijn redevoering (over de 'Nederlandse' oorlogen tegen de Romeinen) houdt. Aan de lange tafel in het midden worden de prijsbanden uitgereikt.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-376</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-457">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-457')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:BANDBDTE02BR_BRAY_NR0457" alt="Snijploeg in D. de Bray, &quot;Onderwijs van 't Boek-Binden&quot;, 1658" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Snijploeg in D. de Bray, &quot;Onderwijs van 't Boek-Binden&quot;, 1658</div>
+                <div class="card-desc">Deze afbeelding toont de onder- en de bovenkant van een snijploeg, een apparaat dat voor het schoonsnijden van de snede wordt gebruikt. Het bestaat uit een rond mes, dat van een bot geworden gedeelte naar een nog scherp gedraaid kan worden, in een houder die het mogelijk maakt het mes op de precies gewenste diepte in het boekblok te laten snijden.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-457</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-477">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-477')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:RESTAT341_1861-BRA_P000-TP" alt="&quot;Het geïllustreerde boekbindersboek&quot;, Leiden, 1861" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">&quot;Het geïllustreerde boekbindersboek&quot;, Leiden, 1861</div>
+                <div class="card-desc">19e eeuws handboek waarin in 35 hoofdstukken het boekbinden uit de doeken wordt gedaan. Het bevat ook enkele illustraties, maar veel te weinig om het boekbinden echt aanschouwelijk uit te leggen. Toch hebben de auteurs 'het onderwerp zoo klaar en bevattelijk voorgesteld, dat gelijk de meesters en de knechts, zoo ook de leerlingen een nuttig gebruik van dit boek kunnen maken'.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-477</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-478">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-478')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:RESTAT341_1861-BRA_P001" alt="19e eeuwse boekbinderij" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">19e eeuwse boekbinderij</div>
+                <div class="card-desc">Een 19e-eeuwse boekbinderij zoals die overal, ook in Nederland, voorkwam. Alhoewel nog met de hand uitgevoerd is dit bedrijf duidelijk grootschaliger en gestroomlijnder geworden dan in vorige eeuwen.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-478</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-479">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-479')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:RESTAT341_1861-BRA_P021" alt="Black's gepatenteerde vouwmachine, ca. 1850" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Black's gepatenteerde vouwmachine, ca. 1850</div>
+                <div class="card-desc">Het vouwen van de bedrukte vellen voordat ze werden ingebonden was een hele kunst, die vaak door vrouwen werd verricht. Deze vouwmachine, rond 1850 uitgevonden door ene Black uit Engeland, maakte dit werk een stuk sneller en eenvoudiger.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-479</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-480">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-480')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:RESTAT341_1861-BRA_P040" alt="Pletpers, 19e eeuw" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Pletpers, 19e eeuw</div>
+                <div class="card-desc">Pletpers van de gebroeders Heim te Offenbach, die op twee manieren gebruikt kon worden: voor het persen van boeken, waarbij de inschuifplaat (A) werd vervangen door een zware beukenhouten plank, en als verguldpers.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-480</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-481">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-481')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:RESTAT341_1861-BRA_P080" alt="Snijmachine, 19e eeuw" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Snijmachine, 19e eeuw</div>
+                <div class="card-desc">Een snijmachine in gebruik in 19e-eeuwse boekbinderijen. Zulke snijmachines werden door één persoon bewogen door middel van het draaien aan een wiel. Het boekblok lag op de plaat, terwijl het mes van boven naar beneden ging en zo alle bladzijden gelijk sneed.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-481</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-483">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-483')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:RESTAT341_1861-BRA_P028" alt="Pletmachine, 19e eeuw" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Pletmachine, 19e eeuw</div>
+                <div class="card-desc">Het kloppen of pletten van vellen papier of katernen gebeurde vroeger met de hand met een klophamer op een slagsteen. Een machine, waarbij een rol over de vellen van de boeken ging verving het moeizame klopwerk van vroeger.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-483</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-484">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-484')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:BANDBDST01CBBO01_1982_NR0001" alt="Afdrukken van boekbindersstempels, tot ca. 1785" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Afdrukken van boekbindersstempels, tot ca. 1785</div>
+                <div class="card-desc">Afdrukken van stempels die gebruikt werden om boekbanden te voorzien van vergulde motieven. Dit verguldmateriaal is afkomstig van boekbinderij Elias P. van Bommel in Amsterdam, die in 1974 geliquideerd werd. Het is voornamelijk gebruikt bij het handboekbinden. Veel stempels dateren van voor de oprichting van de boekbinderij in 1886, en zullen dus overgenomen zijn van andere boekbinders.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-484</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-485">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-485')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:BANDBDST01CBBO01_1982_NR0142" alt="Afdrukken van boekbindersstempels, classicistische stijl" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Afdrukken van boekbindersstempels, classicistische stijl</div>
+                <div class="card-desc">Classicistische afdrukken van stempels die gebruikt werden om boekbanden te voorzien van vergulde motieven, afkomstig van boekbinderij Elias P. van Bommel in Amsterdam.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-485</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-486">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-486')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:BANDBDST01CBBO01_1982_NR0298" alt="Afdrukken van boekbindersstempels, neostijlen" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Afdrukken van boekbindersstempels, neostijlen</div>
+                <div class="card-desc">Afdrukken van stempels in neostijlen die gebruikt werden om boekbanden te voorzien van vergulde motieven, afkomstig van boekbinderij Elias P. van Bommel in Amsterdam.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-486</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-488">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-488')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:BANDBDST01CBBO01_1982_NR0733" alt="Afdrukken van handfileten, classicistische stijl" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Afdrukken van handfileten, classicistische stijl</div>
+                <div class="card-desc">Afdrukken van stempels: handfileten in classicistische stijl, gebruikt om boekbanden te voorzien van vergulde motieven, afkomstig van boekbinderij Elias P. van Bommel in Amsterdam.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-488</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-489">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-489')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:BANDBDST01CBBO01_1982_NR1140" alt="Afdrukken van boekbandstempels" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Afdrukken van boekbandstempels</div>
+                <div class="card-desc">Afdrukken van persstempels gebruikt om boekbanden te voorzien van vergulde motieven, afkomstig van boekbinderij Elias P. van Bommel in Amsterdam.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-489</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-533">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-533')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:LZALGEM63NBG_1997_XBIEM-NR0533" alt="Zeventiende-eeuwse band met bronzen ketting van de Leidse Universiteitsbibliotheek" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Zeventiende-eeuwse band met bronzen ketting van de Leidse Universiteitsbibliotheek</div>
+                <div class="card-desc">Tussen 1595 en 1653 waren de grotere formaten boeken in de Leidse Universiteitsbibliotheek vastgeketend aan de kasten om diefstal te voorkomen. De hier getoonde band bevat een handschrift uit de 16e eeuw met het commentaar van Johannes Chrysostomos op twee brieven van Paulus. Het is de enige band in de Leidse UB die nog van de bronzen bibliotheekketting is voorzien. Kenmerkend waren in de Leidse Universiteitsbibliotheek de perkamenten banden met in het midden het wapen van de universiteit voorst...</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-533</span><br>
+                    Classificatie: J: Bibliotheken en instellingen, F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-54">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-54')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:192B16_1749-BI_P127" alt="'De boekbinder', uit Jan en Casper Luiken, &quot;Spiegel van het menselyk bedryf&quot;, Amsterdam, 1749" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">'De boekbinder', uit Jan en Casper Luiken, &quot;Spiegel van het menselyk bedryf&quot;, Amsterdam, 1749</div>
+                <div class="card-desc">Boekverkopers waren vaak ook boekbinders, zoals deze afbeelding van Jan Luiken laat zien. De boekbinder op de voorgrond is bezig aan zijn naairaam een boek in te naaien.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-54</span><br>
+                    Classificatie: F: Bindkunst, G: Boekhandel en uitgeverij
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-758">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-758')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:720D51_1725-DONK_P000-TP" alt="Jacobus Donker, &quot;Oratio de hypocrisi verae religioni inimica&quot;, Delft, 1725" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Jacobus Donker, &quot;Oratio de hypocrisi verae religioni inimica&quot;, Delft, 1725</div>
+                <div class="card-desc">Ieder jaar kregen de beste leerlingen van de Latijnse school in Delft tijdens een plechtige ceremonie een zogenaamde prijsband uitgereikt. De winnende oraties werden gedrukt bij Reinier Boitet, voorzien van een passend titelblad: op een troon zit Minerva, de godin van de wijsheid, die de prijsband met de letter Y, symbool van Delft, aan de jonge winnaar overhandigt. Rechts op de achtergrond bevindt zich nog een jongeman, gekleed in een Grieks gewaad, in een bibliotheek. Hij staat te lezen aan ee...</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-758</span><br>
+                    Classificatie: F: Bindkunst, J: Bibliotheken en instellingen, M3: Maatschappijwetenschappen
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-763">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-763')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:KVB-FOTO_TP-1761_NR0763" alt="&quot;Almanach der boekverkoopers, drukkers en binders&quot;, Den Haag, 1761" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">&quot;Almanach der boekverkoopers, drukkers en binders&quot;, Den Haag, 1761</div>
+                <div class="card-desc">Deze "Almanach der boekverkoopers, drukkers en binders" uit 1761 is maar één keer verschenen. Het is een verre voorloper van het jaarlijkse "Lijstenboek van de Vereeniging ter Bevordering van de Belangen des Boekhandels", nu "Adresboek Nederlandse uitgeverij en boekhandel". Behalve een opsomming van de kostbare privileges van het boekverkopersgilde geeft de auteur, Hendrik Scheurleer, een uiteenzetting aan welke vereisten een goede boekverkoper moet voldoen. Ook is er een lijst van alle in 1760 ...</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-763</span><br>
+                    Classificatie: F: Bindkunst, G: Boekhandel en uitgeverij, D: Geschiedenis van de boekdrukkunst, M0: Algemene werken: encyclopedieën, almanakken
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-820">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-820')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:1087G6_1829-KEUS_P052" alt="Boekbinder, uit &quot;De keus uit twaalf ambachten, ter vermijding van dertien ongelukken&quot;, Amsterdam, 1829" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Boekbinder, uit &quot;De keus uit twaalf ambachten, ter vermijding van dertien ongelukken&quot;, Amsterdam, 1829</div>
+                <div class="card-desc">Hier is Willem, een van de jongens die in dit boek op zoek zijn naar een passend beroep, in de leer bij een boekbinder. Hij zit aan de naaibank, 'waar hij zich doodelijk verveelde'. Ook het werken aan de klopsteen: het plat slaan van een boek, waar de jongen links mee bezig is, 'viel hem een' geruimen tijd oneindig moeijelijker dan het afsnijden, waarvan natuurlijk de zwaarte van den hamer meest de oorzaak was, alzoo deszelfs behandeling zoowel krachten vereischt als vlugheid en losheid van arm ...</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-820</span><br>
+                    Classificatie: F: Bindkunst, D: Geschiedenis van de boekdrukkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-822">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-822')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:1087E11_DL2-1843_BND" alt="Kartonnen boekband, 1843" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Kartonnen boekband, 1843</div>
+                <div class="card-desc">Boekband met kartonnen platten, overtrokken met papier waarop een houtgravure is gedrukt. Naast de gebruikelijke ingenaaide boeken waarvoor de koper naar eigen smaak een band om kon laten maken, verschenen sinds ca. 1770 steeds meer al door de uitgever gebonden boeken. Voor dit soort goedkope uitgaven werd het allereenvoudigste materiaal gebruikt.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-822</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-904">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-904')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:KB-FOTO_BOEKBAND_NR0904" alt="Vergulde frontsnede met afbeelding van de profeet Jeremias, ca. 1740" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Vergulde frontsnede met afbeelding van de profeet Jeremias, ca. 1740</div>
+                <div class="card-desc">Deze band om een Lutherse bijbel vormt het enig bekende voorbeeld van een snedeversiering die voor de vergulding op een iets uitgewaaierd boekblok is aangebracht. Alleen als men het boek opnieuw uitwaaiert is de afbeelding goed te zien. Voorgesteld is de profeet Jeremias in een landschap die een amandeltak uit de hemel ziet neerdalen.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-904</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-909">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-909')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:KB-INC_14XX_NR0909" alt="Middeleeuwse boekenkast, 1487" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Middeleeuwse boekenkast, 1487</div>
+                <div class="card-desc">Detail van een pagina uit een ander "Tboeck vanden leven Jhesu Christi", gedrukt door Gerard Leeu in Gouda. De illustratie, een met de hand gekleurde houtsnede, is van een ander houtblok gedrukt dan de vorige voorbeelden, maar de voorstelling is dezelfde. De grote boekenkast laat de gebruikelijke manier van boeken bewaren zien: plat en boven op elkaar liggend.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-909</span><br>
+                    Classificatie: F: Bindkunst, J: Bibliotheken en instellingen
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-916">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-916')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:300J45_DL38-WAES_P003" alt="Twee pagina's uit de ordonnantie voor het boekverkopersgilde in Rotterdam, 1720" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Twee pagina's uit de ordonnantie voor het boekverkopersgilde in Rotterdam, 1720</div>
+                <div class="card-desc">Artikel 4 t/m 12 in de ordonnantie voor het boekverkopersgilde in Rotterdam. Artikel 4 is de gebruikelijke bepaling dat alleen burgers van de stad in het gilde mogen worden opgenomen. Andere zaken die hier worden genoemd zijn de voorwaarden aangaande de leertijd, het voortzetten van het bedrijf door de echtgenote van de meester indien deze komt te overlijden, en het maken van een meesterproef. De meesterproef voor zowel boekverkopers als boekbinders bestond onder andere uit het binden en 'opmake...</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-916</span><br>
+                    Classificatie: D: Geschiedenis van de boekdrukkunst, G: Boekhandel en uitgeverij, F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-940">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-940')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:28G1_1803-ENK_NR0940" alt="Enkele 19e-eeuwse Enkhuizer almanakken" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Enkele 19e-eeuwse Enkhuizer almanakken</div>
+                <div class="card-desc">De "Enkhuizer Almanak", in verschillende bandjes van karton en perkament.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-940</span><br>
+                    Classificatie: F: Bindkunst
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script>
+        const STORAGE_KEY = 'excluded_bookbinding_in_netherlands';
+        let excludedIds = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+
+        // Initialize on page load - try JSON first, fallback to localStorage
+        document.addEventListener('DOMContentLoaded', function() {
+            // First apply any localStorage exclusions (will be overwritten by JSON if available)
+            applyExclusionsToUI();
+            updateCounts();
+        });
+
+        function toggleCard(btn, id) {
+            const card = btn.closest('.card');
+            const isExcluded = card.classList.contains('excluded');
+
+            if (isExcluded) {
+                // Include it
+                card.classList.remove('excluded');
+                btn.classList.remove('exclude');
+                btn.classList.add('include');
+                btn.textContent = '✓ Include';
+                excludedIds = excludedIds.filter(x => x !== id);
+            } else {
+                // Exclude it
+                card.classList.add('excluded');
+                btn.classList.remove('include');
+                btn.classList.add('exclude');
+                btn.textContent = '✗ Excluded';
+                if (!excludedIds.includes(id)) {
+                    excludedIds.push(id);
+                }
+            }
+
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(excludedIds));
+            updateCounts();
+        }
+
+        function updateCounts() {
+            const total = document.querySelectorAll('.card').length;
+            const excluded = excludedIds.length;
+            document.getElementById('exclude-count').textContent = excluded;
+            document.getElementById('include-count').textContent = total - excluded;
+            document.getElementById('excluded-ids').textContent = excludedIds.join('\n') || '(none)';
+        }
+
+        function toggleExcludedList() {
+            document.getElementById('excluded-list').classList.toggle('visible');
+        }
+
+        const CATEGORY_NAME = 'Bookbinding in the Netherlands';
+        const JSON_FILENAME = '../category_exclusions.json';
+        let fileHandle = null;
+
+        // Open the JSON file to get a file handle for saving
+        async function openJSONFile() {
+            if (!('showOpenFilePicker' in window)) {
+                alert('File System Access API not supported. Use Chrome or Edge.');
+                return;
+            }
+            try {
+                const [handle] = await window.showOpenFilePicker({
+                    types: [{ description: 'JSON', accept: { 'application/json': ['.json'] } }],
+                    multiple: false
+                });
+                fileHandle = handle;
+
+                // Load the file contents
+                const file = await handle.getFile();
+                const text = await file.text();
+                const data = JSON.parse(text);
+                const exclusions = data.category_exclusions || {};
+
+                // Update localStorage with all categories
+                const categoryKeys = {
+                    'Dutch typography': 'dutch_typography',
+                    'Printing in the Netherlands': 'printing_in_netherlands',
+                    'Bookbinding in the Netherlands': 'bookbinding_in_netherlands',
+                    'Libraries in the Netherlands': 'libraries_in_netherlands'
+                };
+
+                Object.entries(categoryKeys).forEach(([name, key]) => {
+                    const ids = exclusions[name] || [];
+                    localStorage.setItem('excluded_' + key, JSON.stringify(ids));
+                });
+
+                // Update current category
+                excludedIds = exclusions[CATEGORY_NAME] || [];
+                applyExclusionsToUI();
+                updateCounts();
+
+                setStatus('Opened ' + handle.name + ' - ready to save');
+            } catch (err) {
+                if (err.name !== 'AbortError') {
+                    console.error('Error opening file:', err);
+                    setStatus('Error: ' + err.message);
+                }
+            }
+        }
+
+        // Load exclusions from JSON file on page load
+        async function loadFromJSON() {
+            try {
+                const response = await fetch(JSON_FILENAME);
+                if (response.ok) {
+                    const data = await response.json();
+                    const exclusions = data.category_exclusions || {};
+
+                    // Load this category's exclusions
+                    excludedIds = exclusions[CATEGORY_NAME] || [];
+                    localStorage.setItem(STORAGE_KEY, JSON.stringify(excludedIds));
+
+                    // Update UI
+                    applyExclusionsToUI();
+                    updateCounts();
+                    setStatus('Loaded from ' + JSON_FILENAME);
+                }
+            } catch (err) {
+                console.log('Could not load JSON file:', err);
+                setStatus('Using localStorage (JSON file not found)');
+            }
+        }
+
+        function applyExclusionsToUI() {
+            document.querySelectorAll('.card').forEach(card => {
+                const id = card.dataset.id;
+                const btn = card.querySelector('.card-toggle');
+                if (excludedIds.includes(id)) {
+                    card.classList.add('excluded');
+                    btn.classList.remove('include');
+                    btn.classList.add('exclude');
+                    btn.textContent = '✗ Excluded';
+                } else {
+                    card.classList.remove('excluded');
+                    btn.classList.remove('exclude');
+                    btn.classList.add('include');
+                    btn.textContent = '✓ Include';
+                }
+            });
+        }
+
+        function setStatus(msg) {
+            document.getElementById('save-status').textContent = msg;
+        }
+
+        async function saveSelection() {
+            // Build the complete exclusions object from all localStorage
+            const allExclusions = {};
+            const categoryKeys = {
+                'dutch_typography': 'Dutch typography',
+                'printing_in_netherlands': 'Printing in the Netherlands',
+                'bookbinding_in_netherlands': 'Bookbinding in the Netherlands',
+                'libraries_in_netherlands': 'Libraries in the Netherlands'
+            };
+
+            Object.entries(categoryKeys).forEach(([key, name]) => {
+                const excluded = JSON.parse(localStorage.getItem('excluded_' + key) || '[]');
+                if (excluded.length > 0) {
+                    allExclusions[name] = excluded;
+                }
+            });
+
+            const json = JSON.stringify({ category_exclusions: allExclusions }, null, 2);
+
+            // If we have a file handle, save directly
+            if (fileHandle) {
+                try {
+                    const writable = await fileHandle.createWritable();
+                    await writable.write(json);
+                    await writable.close();
+                    setStatus('Saved ✓');
+                    return;
+                } catch (err) {
+                    console.error('Save error:', err);
+                    setStatus('Error saving: ' + err.message);
+                    return;
+                }
+            }
+
+            // No file handle - prompt user to open file first
+            if ('showOpenFilePicker' in window) {
+                setStatus('Click "Open JSON File" first to select category_exclusions.json');
+                return;
+            }
+
+            // Fallback for browsers without File System Access API: download the file
+            const blob = new Blob([json], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'category_exclusions.json';
+            a.click();
+            URL.revokeObjectURL(url);
+            setStatus('Downloaded category_exclusions.json (save to project root folder)');
+        }
+
+        // Load from JSON file when page loads
+        loadFromJSON();
+
+        function resetAll() {
+            if (confirm('Reset all selections? This will include all images again.')) {
+                excludedIds = [];
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(excludedIds));
+                document.querySelectorAll('.card.excluded').forEach(card => {
+                    card.classList.remove('excluded');
+                    const btn = card.querySelector('.card-toggle');
+                    btn.classList.remove('exclude');
+                    btn.classList.add('include');
+                    btn.textContent = '✓ Include';
+                });
+                updateCounts();
+            }
+        }
+    </script>
+</body>
+</html>

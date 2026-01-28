@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dutch typography - Public Domain Files Preview</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 { color: #333; }
+        .stats {
+            background: #e0e0e0;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .controls {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            padding: 15px 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .controls button {
+            padding: 8px 16px;
+            margin-right: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+        }
+        .controls button.primary {
+            background: #007bff;
+            color: white;
+        }
+        .controls button.secondary {
+            background: #6c757d;
+            color: white;
+        }
+        .excluded-list {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            padding: 15px 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        .excluded-list.visible {
+            display: block;
+        }
+        .excluded-list pre {
+            background: white;
+            padding: 10px;
+            border-radius: 4px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            overflow: hidden;
+            position: relative;
+            border: 3px solid transparent;
+        }
+        .card.excluded {
+            border-color: #dc3545;
+            opacity: 0.6;
+        }
+        .card img {
+            width: 100%;
+            height: 250px;
+            object-fit: contain;
+            background: #eee;
+        }
+        .card-content { padding: 15px; }
+        .card-title {
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 10px;
+            color: #1a1a1a;
+        }
+        .card-desc {
+            font-size: 12px;
+            color: #666;
+            max-height: 100px;
+            overflow-y: auto;
+            margin-bottom: 10px;
+        }
+        .card-meta {
+            font-size: 11px;
+            color: #999;
+            border-top: 1px solid #eee;
+            padding-top: 10px;
+        }
+        .card-id { font-weight: bold; color: #0066cc; }
+        .card-toggle {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 12px;
+        }
+        .card-toggle.include {
+            background: #28a745;
+            color: white;
+        }
+        .card-toggle.exclude {
+            background: #dc3545;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Public Domain Files - Category Preview: Dutch typography</h1>
+    <div class="stats">
+        <strong>Total images:</strong> 44<br>
+        <strong>Commons category:</strong> <a href="https://commons.wikimedia.org/wiki/Category:Dutch_typography" target="_blank">Category:Dutch typography</a><br>
+        <strong>Mapped from:</strong> C: Paleografie, letterontwerp, lettertypen, lettergieten, schrift
+    </div>
+    <div class="controls">
+        <strong>Selection:</strong>
+        <span id="include-count">44</span> included,
+        <span id="exclude-count">0</span> excluded
+        &nbsp;|&nbsp;
+        <button class="secondary" onclick="toggleExcludedList()">Show/Hide Excluded List</button>
+        <button class="secondary" onclick="openJSONFile()">Open JSON File</button>
+        <button class="primary" onclick="saveSelection()">Save Selection</button>
+        <button class="secondary" onclick="resetAll()">Reset All</button>
+        <span id="save-status" style="margin-left: 10px; color: #666;"></span>
+    </div>
+    <div class="excluded-list" id="excluded-list">
+        <strong>Excluded files (will NOT get this category):</strong>
+        <pre id="excluded-ids"></pre>
+    </div>
+    <div class="grid">
+
+        <div class="card" data-id="BBB-1428">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-1428')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:KVB-PORT_FLEI_NR1428" alt="Joan Michael Fleischman (1701-1768)" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Joan Michael Fleischman (1701-1768)</div>
+                <div class="card-desc">Lettersnijder.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-1428</span><br>
+                    Classificatie: C: Paleografie, letterontwerp, lettertypen, lettergieten, schrift
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-1438">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-1438')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:170E32_1497-TEX_FOLC1R" alt="Pagina uit een brevier uit 1497, gedrukt in het lettertype textura." loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Pagina uit een brevier uit 1497, gedrukt in het lettertype textura.</div>
+                <div class="card-desc">De textura was de meest voorkomende drukletter in de Nederlanden in de vijftiende en zestiende eeuw. Dit is een voorbeeld van een textura in de stijl die aan het einde van de vijftiende eeuw werd ontworpen door Hendrick die Lettersnider.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-1438</span><br>
+                    Classificatie: C: Paleografie, letterontwerp, lettertypen, lettergieten, schrift
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-1444">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-1444')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:150C24_1483_FOL29R" alt="Pagina gedrukt in het lettertype bastarda; het &quot;Boek van den Houte&quot;." loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Pagina gedrukt in het lettertype bastarda; het &quot;Boek van den Houte&quot;.</div>
+                <div class="card-desc">De bastarda is net als de textura een lettertype dat is gemodelleerd naar een gotisch handschrift met dezelfde naam. Het handschrift dat tot voorbeeld heeft gediend bij de vormgeving van de drukletter was echter minder formeel dan de textura, sneller te schrijven en werd meestal gebruikt voor werken in de volkstaal. De drukletter bastarda werd toegepast in de late 15e en de vroege 16e eeuw, eveneens voor Nederlandstalige werken.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-1444</span><br>
+                    Classificatie: C: Paleografie, letterontwerp, lettertypen, lettergieten, schrift
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-1445">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-1445')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:169E18_1483-PIC_FOLM3R" alt="Pagina van een boek gedrukt in het lettertype romein; &quot;Epistolae familiares&quot; van Aeneas Sylvius Piccolomini." loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Pagina van een boek gedrukt in het lettertype romein; &quot;Epistolae familiares&quot; van Aeneas Sylvius Piccolomini.</div>
+                <div class="card-desc">In de vijftiende eeuw werd de romein in Nederland maar zelden gebruikt voor het drukken van boeken. Dit boek toont één van de zeldzame voorbeelden. Pas in de zestiende eeuw werden er steeds meer Latijnse teksten in de romein gedrukt.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-1445</span><br>
+                    Classificatie: C: Paleografie, letterontwerp, lettertypen, lettergieten, schrift
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-1450">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-1450')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:231G48_1522_FOLO6R" alt="Pagina van een boek gedrukt in een cursief lettertype; &quot;Epistolae Pauli&quot; uit 1522." loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Pagina van een boek gedrukt in een cursief lettertype; &quot;Epistolae Pauli&quot; uit 1522.</div>
+                <div class="card-desc">Dit lettertype is de eerste cursief waarmee in de Nederlanden werd gedrukt. De letter is waarschijnlijk door een plaatselijke lettersnijder vervaardigd naar Italiaans voorbeeld. Al na een jaar heeft de drukker Dirk Martens deze letters vervangen door kwalitatief betere, uit Duitsland of Bazel geïmporteerde cursieven.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-1450</span><br>
+                    Classificatie: C: Paleografie, letterontwerp, lettertypen, lettergieten, schrift
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-1456">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-1456')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:1704A17_1590_P120" alt="Pagina van een boek gedrukt met het lettertype civilité; &quot;Den uutersten wille van Lowijs Porquin&quot;." loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Pagina van een boek gedrukt met het lettertype civilité; &quot;Den uutersten wille van Lowijs Porquin&quot;.</div>
+                <div class="card-desc">De eerste civilité-letter werd gesneden door de Fransman Robert Granjon in 1557. Hij vestigde zich niet lang daarna voor enige jaren in Antwerpen, waar zijn letters werden gebruikt door Antwerpse drukkers zoals Willem Silvius en Christoffel Plantijn. In 1558 vervaardigde de lettersnijder Ameet Tavernier een eigen civilité, en dat was de eerste van een reeks Nederlandse varianten van de letter die tot ver in de 18e eeuw regelmatig werden toegepast. Over het algemeen werden werken in de volkstaal ...</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-1456</span><br>
+                    Classificatie: C: Paleografie, letterontwerp, lettertypen, lettergieten, schrift
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-219">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-219')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:6170D38_1881-TETT_P054" alt="Advertentie van de lettergieterij N. Tetterode, 1881" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Advertentie van de lettergieterij N. Tetterode, 1881</div>
+                <div class="card-desc">Advertentie van N. Tetterode, lettergieterij in Amsterdam en tevens 'inrichting voor houtgravure, galvanoplastiek en stereotypie'. De houtgravure had rond 1820 haar intrede in Nederland gedaan. Deze techniek betekende een belangrijke verbetering van de houtsnede en maakte een veel gedetailleerder en nauwkeuriger afbeelding mogelijk. De galvanoplastiek was ontwikkeld in 1837, de stereotypie dateert al van het einde van de 18e eeuw.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-219</span><br>
+                    Classificatie: C: Paleografie, letterontwerp, lettertypen, lettergieten, schrift, D: Geschiedenis van de boekdrukkunst, E: Boekillustratie
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-568">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-568')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:529C67_1855-BRILL_TP" alt="Letterproef van de firma Brill in Leiden, 1855" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Letterproef van de firma Brill in Leiden, 1855</div>
+                <div class="card-desc">Deze letterproef van de firma Brill in Leiden bevat het Onze Vader in enkele niet-Europese schriften zoals het Hebreeuws, Chaldeeuws, Samaritaans, Sanskriet, Koptisch, verschillende Arabische spellingen, en het Grieks.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-568</span><br>
+                    Classificatie: C: Paleografie, letterontwerp, lettertypen, lettergieten, schrift
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-570">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-570')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:379K20_1843-BREUK_P000-TP" alt="Letterproef van H.R. de Breuk, Leiden, 1843" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Letterproef van H.R. de Breuk, Leiden, 1843</div>
+                <div class="card-desc">Letterproef van de boekdrukkerij H.R. de Breuk uit Leiden. Zo'n letterproef fungeert, behalve als een catalogus van beschikbare lettersoorten, tegelijkertijd als visitekaartje van een drukkerij, en hij wordt dan ook altijd heel verzorgd uitgegeven. Deze letterproef telt 117 pagina's, inclusief de vignetten en versieringen.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-570</span><br>
+                    Classificatie: C: Paleografie, letterontwerp, lettertypen, lettergieten, schrift
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-582">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-582')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:379K20_1843-BREUK_P000-WA" alt="Siermotieven voor allerlei soorten drukwerk in de letterproef van H.R. de Breuk" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Siermotieven voor allerlei soorten drukwerk in de letterproef van H.R. de Breuk</div>
+                <div class="card-desc">No 17 is een drukpers.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-582</span><br>
+                    Classificatie: C: Paleografie, letterontwerp, lettertypen, lettergieten, schrift
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-584">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-584')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:3118C6_1841-PROEF_NR0584" alt="Bladzijde uit de letterproef van Joh. Enschedé en Zonen, Haarlem, 1841" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Bladzijde uit de letterproef van Joh. Enschedé en Zonen, Haarlem, 1841</div>
+                <div class="card-desc">Deze letterproef van de lettergieterij Joh. Enschedé en Zonen telt meer dan 300 pagina's met een groot assortiment letters, ornamenten en vignetten waaruit de klant voor zijn drukwerk kon kiezen. Op deze pagina twee voorbeelden: een holle romein en een dubbele gotische kanon.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-584</span><br>
+                    Classificatie: C: Paleografie, letterontwerp, lettertypen, lettergieten, schrift
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-590">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-590')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:3118C6_1841-ENS_NR0590" alt="Bladzijde uit de letterproef van Joh. Enschedé en Zonen, Haarlem, 1841" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Bladzijde uit de letterproef van Joh. Enschedé en Zonen, Haarlem, 1841</div>
+                <div class="card-desc">Voorbeelden van de galjard en de brevier.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-590</span><br>
+                    Classificatie: C: Paleografie, letterontwerp, lettertypen, lettergieten, schrift
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-595">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-595')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:3118C6_1841-PROEF_NR0595" alt="Vignetten in de letterproef van Joh. Enschedé en Zonen, Haarlem, 1841" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Vignetten in de letterproef van Joh. Enschedé en Zonen, Haarlem, 1841</div>
+                <div class="card-desc">Deze letterproef bevat zo'n 644 vignetten in alle mogelijke genres en maten waaruit de klant kon kiezen.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-595</span><br>
+                    Classificatie: C: Paleografie, letterontwerp, lettertypen, lettergieten, schrift
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-597">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-597')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:3118C6_1841-PROEF_NR0597" alt="Vignet van Christus aan het kruis uit de letterproef van Joh. Enschedé en Zonen, Haarlem, 1841" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Vignet van Christus aan het kruis uit de letterproef van Joh. Enschedé en Zonen, Haarlem, 1841</div>
+                <div class="card-desc">(geen beschrijving)</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-597</span><br>
+                    Classificatie: C: Paleografie, letterontwerp, lettertypen, lettergieten, schrift
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-603">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-603')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:476D13_1861-WIEL_NR0603" alt="(Neo-)renaissance ornamenten uit de letterproef van G.W. van der Wiel in Arnhem, 1861" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">(Neo-)renaissance ornamenten uit de letterproef van G.W. van der Wiel in Arnhem, 1861</div>
+                <div class="card-desc">Uit de letterproef van de firma G.W. van der Wiel, opgericht rond 1855. Behalve een lettergieterij had Van der Wiel ook een bekende drukkerij, binderij en uitgeverij in Arnhem.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-603</span><br>
+                    Classificatie: C: Paleografie, letterontwerp, lettertypen, lettergieten, schrift
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-604">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-604')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:KVB-FOTO_PAG-1843_NR0604" alt="Blad uit de letterproef van De Passe en Menne, Amsterdam, 1843" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Blad uit de letterproef van De Passe en Menne, Amsterdam, 1843</div>
+                <div class="card-desc">Jean Baptist de Passe had het vak van lettergieten geleerd in Brussel en Parijs. Hij vestigde zich in 1841 als zelfstandig lettergieter in Amsterdam, en ging in 1842 een compagnonschap aan met ene Menne, waarschijnlijk iemand met de voornaam Hendrik. Dit is een pagina uit hun eerste letterproef. De Passe en Menne vormden met hun moderne letters een geduchte concurrent voor Joh. Enschedé en Zonen. In 1856 werd de gieterij gekocht door N. Tetterode.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-604</span><br>
+                    Classificatie: C: Paleografie, letterontwerp, lettertypen, lettergieten, schrift
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-606">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-606')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:KVB-FOTO_PAG-1865_NR0606" alt="Bladzijde uit de letterproef van Onnes, De Boer & Coers, Arnhem, [1865]" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Bladzijde uit de letterproef van Onnes, De Boer & Coers, Arnhem, [1865]</div>
+                <div class="card-desc">Onnes, De Boer & Coers was een lettergieterij in Arnhem die de in 1857 opgeheven Groningse firma Oomkens, Van Bakkenes & Damsté overnam. De nieuwe eigenaren zetten de reeks letterpoeven van de oude firma voort.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-606</span><br>
+                    Classificatie: C: Paleografie, letterontwerp, lettertypen, lettergieten, schrift
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-608">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-608')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:KVB-FOTO_PAG-1838_NR0608" alt="Bladzijde uit een letterproef van Broese & Comp., Breda, 1838" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Bladzijde uit een letterproef van Broese & Comp., Breda, 1838</div>
+                <div class="card-desc">Dit is de eerste letterproef van de in 1837 in Breda opgerichte lettergieterij van Broese & Comp., één van de gieterijen die in de eerste decennia van de 19e eeuw in ons land werkzaam waren. Een groot aantal letters in deze proef is afkomstig van matrijzen overgenomen van de lettergieterij van C.J. Hartung in Antwerpen, die ze op zijn beurt van een Frans bedrijf had overgenomen.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-608</span><br>
+                    Classificatie: C: Paleografie, letterontwerp, lettertypen, lettergieten, schrift
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-609">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-609')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:KVB-FOTO_PAG-1804_NR0609" alt="Bladzijde uit een letterproef van Harmsen & Co, Amsterdam, 1804" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Bladzijde uit een letterproef van Harmsen & Co, Amsterdam, 1804</div>
+                <div class="card-desc">Harmsen & Co., de lettergieterij van Gerrit Harmsen en zijn schoonvader Petrus Denijssen in Amsterdam, was de eerste in ons land die dit soort versierde letters op de markt bracht. De meeste letters uit de letterproef gaan terug op de matrijzen van de lettergieterij van J. de Groot en diens opvolgers, oorspronkelijk gevestigd in Den Haag. In 1818 werd Harmsen en Co. verkocht aan Enschedé, hun enige concurrent in de eerste jaren van de 19e eeuw.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-609</span><br>
+                    Classificatie: C: Paleografie, letterontwerp, lettertypen, lettergieten, schrift
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-610">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-610')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:KVB-FOTO_PAG-1781_NR0610" alt="Letterproef van J. de Groot, den Haag, 1781 (?)" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Letterproef van J. de Groot, den Haag, 1781 (?)</div>
+                <div class="card-desc">De lettergieterij van Johannes de Groot in Den Haag was rond 1739 opgericht door de vader van Johannes, Antony de Groot, van oorsprong drukker, onder andere van de "'s Gravenhaegse Courant". Het opnemen van een lettergieterij bij een drukkerij en/of uitgeverij was een normale gang van zaken.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-610</span><br>
+                    Classificatie: C: Paleografie, letterontwerp, lettertypen, lettergieten, schrift
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-611">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-611')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:KVB-FOTO_PAG-1810_NR0611" alt="Letterproef van Hendrik Bruyn & Comp., Amsterdam, ca. 1810" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Letterproef van Hendrik Bruyn & Comp., Amsterdam, ca. 1810</div>
+                <div class="card-desc">Laatste letterproef van Hendrik Bruyn & Comp., een kleine lettergieterij aan het Rokin in Amsterdam. Er bestaan twee versies van, allebei uitgegeven rond 1810. Veel van de letters zijn voor die tijd nogal gedateerd. De oorsprong van deze firma gaat terug tot het begin van de 18e eeuw.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-611</span><br>
+                    Classificatie: C: Paleografie, letterontwerp, lettertypen, lettergieten, schrift
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-612">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-612')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:KVB-FOTO_PAG-1741_NR0612" alt="Bladzijde uit een letterproef van R. & H.F. Wetstein, Amsterdam, 1741" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Bladzijde uit een letterproef van R. & H.F. Wetstein, Amsterdam, 1741</div>
+                <div class="card-desc">Letterproef uitgegeven door Rudolf Wetstein en zijn zoon Hendrik Floris, van oorsprong boekverkopers, uitgevers en drukkers. Hun lettergieterij bestond slechts een aantal jaren: overgenomen van de bekende stempelsnijder Joan Michael Fleischman in 1735 door Rudolf werd de zaak al in 1743 door Hendrik Floris verkocht aan Izaak en Johannes Enschedé.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-612</span><br>
+                    Classificatie: C: Paleografie, letterontwerp, lettertypen, lettergieten, schrift
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-613">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-613')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:3107B27_1768-ENS_NR0613" alt="Letterproef van J. Enschedé, Haarlem, 1768" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Letterproef van J. Enschedé, Haarlem, 1768</div>
+                <div class="card-desc">In het voorwoord van deze letterproef vertelt Joannes Enschedé uitgebreid over de voorgeschiedenis van zijn lettergieterij in Haarlem, die begon met de overname van de Amsterdamse zaak van Rudolf en Hendrik Floris Wetstein in 1743. Ook steekt hij de loftrompet over zijn stempelsnijder, de beroemde Joan Michael Fleischman, die veel letters voor Enschedé, opgenomen in deze letterproef, heeft gesneden. Na Fleischman's dood in 1768 kon Enschedé al diens materiaal, ruim 70 verschillende alfabetten en...</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-613</span><br>
+                    Classificatie: C: Paleografie, letterontwerp, lettertypen, lettergieten, schrift
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-614">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-614')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:3107B27_1768-ENS_NR0614" alt="Joan Michael Fleischman, stempelsnijder in Amsterdam, 1768" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Joan Michael Fleischman, stempelsnijder in Amsterdam, 1768</div>
+                <div class="card-desc">Portret van de stempelsnijder Joan Michael Fleischman (1707-1768), geboren in Wörd bij Neurenberg. Na enige jaren in Duitsland gewerkt te hebben vestigde hij zich in Amsterdam., later ook nog een paar jaar in Haarlem, waar hij vooral stempels sneed voor Joannes Enschedé. Fleischman wordt beschouwd als een van de belangrijkste stempelsnijders die in Nederland werkzaam zijn geweest.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-614</span><br>
+                    Classificatie: C: Paleografie, letterontwerp, lettertypen, lettergieten, schrift
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-615">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-615')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:3107B27_1768-ENS_NR0615" alt="Johannes I Enschedé, lettergieter en boekverkoper in Haarlem, 1768" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Johannes I Enschedé, lettergieter en boekverkoper in Haarlem, 1768</div>
+                <div class="card-desc">Portret van Johannes I Enschedé (1708-1780), zoon van Izaak Enschedé (1681-1761), boekdrukkers en lettergieters in Haarlem. Ten tijde van de publicatie van de letterproef uit 1768 waarin dit portret verscheen, ging het Joh Enschedé voor de wind. Uitbreiding van de beroemde firma geschiedde voornamelijk door overname van andere lettergieterijen.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-615</span><br>
+                    Classificatie: C: Paleografie, letterontwerp, lettertypen, lettergieten, schrift, D: Geschiedenis van de boekdrukkunst
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-617">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-617')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:3107B27_1768-ENS_NR0617" alt="Voorbeelden van een augustijn" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Voorbeelden van een augustijn</div>
+                <div class="card-desc">Voorbeelden van een augustijn romein en een augustijn cursief, gesneden door Joan Michael Fleischman in 1738. In 1733 zette Fleischman een eigen lettergieterij op, maar al na een jaar deed hij zijn bedrijf over aan Rudolf Wetstein om daarna als onafhankelijk lettersnijder een grote reputatie op te bouwen. Het meeste werkte hij voor Joannes Enschedé, een groot bewonderaar en afnemer van zijn letters.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-617</span><br>
+                    Classificatie: C: Paleografie, letterontwerp, lettertypen, lettergieten, schrift
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-619">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-619')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:3107B27_1768-ENS_NR0619" alt="Voorbeelden van enkele gotische letters, gesneden door J. M. Fleischman." loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Voorbeelden van enkele gotische letters, gesneden door J. M. Fleischman.</div>
+                <div class="card-desc">Voorbeelden van enkele "Nederduytsche Letteren [...] door de konstige Hand van den grooten J.M. Fleischman gesneden". In een toelichting vertelt Enschedé de ontstaansgeschiedenis van deze en andere Duitse letters, opgenomen in zijn letterproef uit 1768.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-619</span><br>
+                    Classificatie: C: Paleografie, letterontwerp, lettertypen, lettergieten, schrift
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-620">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-620')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:3107B27_1768-ENS_NR0620" alt="Muzieknoten gesneden door J. M. Fleischman, 1760" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Muzieknoten gesneden door J. M. Fleischman, 1760</div>
+                <div class="card-desc">Volgens de toelichting van Joannes Enschedé is dit "het allervolmaakste en het allerkonstigste werkstuk, dat ooit door eenig Lettersnyder gemaakt is". Fleischman heeft er ruim twee jaar aan gewerkt, "en al zyn Konst en Vlyt [...] daar aan besteed".</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-620</span><br>
+                    Classificatie: C: Paleografie, letterontwerp, lettertypen, lettergieten, schrift
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-621">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-621')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:3107B27_1768-ENS_NR0621" alt="Civilité-letter, gesneden door Ameet Tavernier, tweede helft 16e eeuw" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Civilité-letter, gesneden door Ameet Tavernier, tweede helft 16e eeuw</div>
+                <div class="card-desc">Een civilité-letter (een in Frankrijk ontstane gotische schrijfletter, vandaar de benaming 'oud geschreven') in text- en augustijncorps, gesneden door Ameet Tavernier voor Christoffel Plantijn in Antwerpen. Tavernier was een Fransman die zich in 1557 in Antwerpen had gevestigd. In de tweede helft van de 16e eeuw werden in de Zuidelijke Nederlanden veel nieuwe letters gesneden met sterke Franse invloed. Christoffel Plantijn heeft hierbij een belangrijke rol gespeeld.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-621</span><br>
+                    Classificatie: C: Paleografie, letterontwerp, lettertypen, lettergieten, schrift
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-625">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-625')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:3107B27_1768-ENS_NR0625" alt="Titelpagina van &quot;Oude Hollandse letteren&quot; in de letterproef van Joannes Enschedé, 1768" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Titelpagina van &quot;Oude Hollandse letteren&quot; in de letterproef van Joannes Enschedé, 1768</div>
+                <div class="card-desc">In de letterproef van Joannes Enschedé uit 1768 zijn voorbeelden opgenomen van letters, waarschijnlijk gesneden tussen 1470 en 1480 en waarvan de matrijzen zich bevonden in zijn lettergieterij in Haarlem. Ook in volgende, 19e eeuwse letterproeven van Enschedé zouden deze letters steeds opgenomen worden.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-625</span><br>
+                    Classificatie: C: Paleografie, letterontwerp, lettertypen, lettergieten, schrift
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-626">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-626')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:3107B27_1768-ENS_NR0626" alt="Voorbeelden van de allereerste drukletters" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Voorbeelden van de allereerste drukletters</div>
+                <div class="card-desc">Voorbeelden van de allereerste drukletters, met een uitleg over het procedé van de zogenaamde 'chalcographia': letters gesneden vlak na de uitvinding van de boekdrukkunst.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-626</span><br>
+                    Classificatie: C: Paleografie, letterontwerp, lettertypen, lettergieten, schrift
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-627">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-627')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:3107B27_1768-ENS_NR0627" alt="Oudhollandse letters" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Oudhollandse letters</div>
+                <div class="card-desc">Voorbeelden van oudhollandse letters, gesneden rond 1480 en gebruikt in de oudste drukkerscentra in de Noordelijke en Zuidelijke Nederlanden: Gouda, Breda, Delft, Zwolle, Schoonhoven en Antwerpen. De matrijzen waren via de beroemde 17e eeuwse lettersnijder Christoffel van Dijck in het bezit gekomen van Joannes Enschedé, die ze opnam in zijn letterproef van 1768.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-627</span><br>
+                    Classificatie: C: Paleografie, letterontwerp, lettertypen, lettergieten, schrift
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-628">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-628')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:3107B27_1768-ENS_NR0628" alt="Oudhollandse letters" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Oudhollandse letters</div>
+                <div class="card-desc">Nog een paar voorbeelden van oudhollandse letters, gesneden tussen 1470 en 1480 en van de oorspronkelijke matrijzen opnieuw gedrukt in de letterproef van Joannes Enschedé uit 1768.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-628</span><br>
+                    Classificatie: C: Paleografie, letterontwerp, lettertypen, lettergieten, schrift
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-629">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-629')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:3107B27_1768-ENS_NR0629" alt="Prijslijst in de letterproef van Joannes Enschedé, Haarlem, 1768" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Prijslijst in de letterproef van Joannes Enschedé, Haarlem, 1768</div>
+                <div class="card-desc">Eerste pagina van de uit acht bladzijden bestaande prijslijst van de letters gegoten in de lettergieterij van Joannes Enschedé in Haarlem. Joannes Enschedé waarschuwt hierin dat de prijzen eigenlijk veel hoger zouden moeten zijn: 'aangemerkt daarby noch gekomen zyn, alle de Nieuwigheden en Byvoegzelen, die zedert 20 Jaaren in de Lettergietery zyn ingevoerd, welke dezelve ongemeen kostbaar hebben gemaakt en de Loonen hebben doen verhoogen &c.'</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-629</span><br>
+                    Classificatie: C: Paleografie, letterontwerp, lettertypen, lettergieten, schrift
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-630">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-630')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:3107B27_1768-ENS_NR0630" alt="Interieur van de lettergieterij van Joannes Enschedé in Haarlem, 1768" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Interieur van de lettergieterij van Joannes Enschedé in Haarlem, 1768</div>
+                <div class="card-desc">Deze prent geeft een levendig beeld van de 18e eeuwse lettergieterij van Joannes Enschedé in Haarlem. Links en rechts worden de letters gegoten en afgewerkt, in het midden toont de eigenaar zijn zaak aan een bezoekster.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-630</span><br>
+                    Classificatie: C: Paleografie, letterontwerp, lettertypen, lettergieten, schrift
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-631">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-631')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:3107B27_1768-ENS_NR0631" alt="Letters van J.M. Fleischman" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Letters van J.M. Fleischman</div>
+                <div class="card-desc">Behalve in het voorwoord van zijn letterproef uit 1768 schrijft Joannes Enschedé ook op deze pagina zeer waarderend over zijn beroemde lettersnijder, Joan Michael Fleischman. Tevens toont hij hier een staaltje van Fleischman's kunnen: een dubbele garamond en zijn tweede voor Enschedé gesneden geschreven schrift, tevens zijn laatste 'Konst-Werkstuk voor deze Lettergieterij'.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-631</span><br>
+                    Classificatie: C: Paleografie, letterontwerp, lettertypen, lettergieten, schrift
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-632">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-632')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:3107B27_1768-ENS_NR0632" alt="Gotische letters van J.M. Fleischman en van Christoffel van Dijck" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Gotische letters van J.M. Fleischman en van Christoffel van Dijck</div>
+                <div class="card-desc">Nog een paar gotische letters uit de letterproef van de Haarlemse firma Enschedé uit 1768, beide in een mediaan-corps. Volgens het onderschrift is no. 1gesneden door J.M. Fleischman in 1744, no. 2 door Christoffel van Dijck. Van Dijck was sinds 1640 werkzaam in Amsterdam voor verschillende drukkerijen. Zijn werk werd ook in Frankrijk en Engeland zeer gewaardeerd.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-632</span><br>
+                    Classificatie: C: Paleografie, letterontwerp, lettertypen, lettergieten, schrift
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-633">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-633')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:508G31_1867-ENS_TP" alt="Letterproef van Johannes Enschedé, Haarlem, 1867" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Letterproef van Johannes Enschedé, Haarlem, 1867</div>
+                <div class="card-desc">Titelpagina van een uitgave van Joh. Enschedé en Zonen in Haarlem van letters gesneden tussen de 15e en eerste helft 18e eeuw.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-633</span><br>
+                    Classificatie: C: Paleografie, letterontwerp, lettertypen, lettergieten, schrift
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-634">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-634')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:3114C28_1784-PLO_P000" alt="Letterproef van Gebr. Ploos van Amstel, Amsterdam, 1784" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Letterproef van Gebr. Ploos van Amstel, Amsterdam, 1784</div>
+                <div class="card-desc">Twee titelbladen: Nederlands en Frans, van de letterproef van de lettergieterij opgezet door de gebroeders Adrianus en Jacob Ploos van Amstel in Amsterdam in 1763. Toen deze letterproef uitkwam was de lettergieterij niet meer in het bezit van de Ploos van Amstels, maar van Govert Jan van Rijswijk, die hem in 1784 van de weduwe van Jacob overnam en onder de naam van de oprichters in stand hield. In 1799 werd de firma opgekocht door Enschedé.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-634</span><br>
+                    Classificatie: C: Paleografie, letterontwerp, lettertypen, lettergieten, schrift
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-638">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-638')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:3114C28_1784-PLO_P000-K" alt="Voorbeelden van ornamenten in de letterproef van de Gebr. Ploos van Amstel uit 1784" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Voorbeelden van ornamenten in de letterproef van de Gebr. Ploos van Amstel uit 1784</div>
+                <div class="card-desc">Nadat de firma in handen was gegaan van Joannes Enschedé zijn veel van de matrijzen en stempels van de voormalige Gebr. Ploos van Amstel verkocht. Enschedé had dit materiaal nauwelijks nodig, maar door de koop van de lettergieterij verkreeg hij voor de komende decennia praktisch een monopoliepositie in Nederland.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-638</span><br>
+                    Classificatie: C: Paleografie, letterontwerp, lettertypen, lettergieten, schrift
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-692">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-692')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:972C81_1844-CLEEF_P040" alt="Verschillende lettersoorten, eerste helft 19e eeuw" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Verschillende lettersoorten, eerste helft 19e eeuw</div>
+                <div class="card-desc">In Nederland en Frankrijk werden andere maatstaven gebruikt bij het berekenen van het corps van de letters. Op deze twee pagina's, gepubliceerd in het eerste gedrukte Nederlandstalige drukkershandboek uit 1844, wordt de verhouding tussen de verschillende lettersoorten in beide landen uitgelegd.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-692</span><br>
+                    Classificatie: C: Paleografie, letterontwerp, lettertypen, lettergieten, schrift
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-694">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-694')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:972C81_1844-CLEEF_P046" alt="Indeling van letterkasten, eerste helft 19e eeuw" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Indeling van letterkasten, eerste helft 19e eeuw</div>
+                <div class="card-desc">Beschrijving en indeling van in Nederlandse drukkerijen gebruikte letterkasten: de Nederlandse letterkast, en de 'Anglaise' letterkast.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-694</span><br>
+                    Classificatie: C: Paleografie, letterontwerp, lettertypen, lettergieten, schrift
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-746">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-746')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:KVB-FOTO_PAG-1778_NR0746" alt="Fondslijst van Hendrick Brandt, ca. 1778" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">Fondslijst van Hendrick Brandt, ca. 1778</div>
+                <div class="card-desc">De fondslijst van Hendrick Brandt, uitgever van bijbels, kerkboeken en psalmboeken in Amsterdam sinds 1744. Het gebruik van nieuwe letters, waaronder die van Fleischman, wordt ter aanbeveling van de waar speciaal vemeld.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-746</span><br>
+                    Classificatie: C: Paleografie, letterontwerp, lettertypen, lettergieten, schrift, G: Boekhandel en uitgeverij
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="BBB-815">
+            <button class="card-toggle include" onclick="toggleCard(this, 'BBB-815')">✓ Include</button>
+            <img src="http://resolver.kb.nl/resolve?urn=urn:BBB:KVB-FOTO_ILL-1766_NR0815" alt="''t Maaken van de Letterstof', 1766" loading="lazy">
+            <div class="card-content">
+                <div class="card-title">''t Maaken van de Letterstof', 1766</div>
+                <div class="card-desc">Deze prent van de schilder/tekenaar Jacobus Buys en tekenaar/graveur Reinier Vinkeles toont het gieten van letterspecie, vermoedelijk in de lettergieterij van Ploos van Amstel in Amsterdam. Deze bekende lettergieterij was daar van 1763 tot 1799 gevestigd.</div>
+                <div class="card-meta">
+                    <span class="card-id">BBB-815</span><br>
+                    Classificatie: C: Paleografie, letterontwerp, lettertypen, lettergieten, schrift
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script>
+        const STORAGE_KEY = 'excluded_dutch_typography';
+        let excludedIds = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+
+        // Initialize on page load - try JSON first, fallback to localStorage
+        document.addEventListener('DOMContentLoaded', function() {
+            // First apply any localStorage exclusions (will be overwritten by JSON if available)
+            applyExclusionsToUI();
+            updateCounts();
+        });
+
+        function toggleCard(btn, id) {
+            const card = btn.closest('.card');
+            const isExcluded = card.classList.contains('excluded');
+
+            if (isExcluded) {
+                // Include it
+                card.classList.remove('excluded');
+                btn.classList.remove('exclude');
+                btn.classList.add('include');
+                btn.textContent = '✓ Include';
+                excludedIds = excludedIds.filter(x => x !== id);
+            } else {
+                // Exclude it
+                card.classList.add('excluded');
+                btn.classList.remove('include');
+                btn.classList.add('exclude');
+                btn.textContent = '✗ Excluded';
+                if (!excludedIds.includes(id)) {
+                    excludedIds.push(id);
+                }
+            }
+
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(excludedIds));
+            updateCounts();
+        }
+
+        function updateCounts() {
+            const total = document.querySelectorAll('.card').length;
+            const excluded = excludedIds.length;
+            document.getElementById('exclude-count').textContent = excluded;
+            document.getElementById('include-count').textContent = total - excluded;
+            document.getElementById('excluded-ids').textContent = excludedIds.join('\n') || '(none)';
+        }
+
+        function toggleExcludedList() {
+            document.getElementById('excluded-list').classList.toggle('visible');
+        }
+
+        const CATEGORY_NAME = 'Dutch typography';
+        const JSON_FILENAME = '../category_exclusions.json';
+        let fileHandle = null;
+
+        // Open the JSON file to get a file handle for saving
+        async function openJSONFile() {
+            if (!('showOpenFilePicker' in window)) {
+                alert('File System Access API not supported. Use Chrome or Edge.');
+                return;
+            }
+            try {
+                const [handle] = await window.showOpenFilePicker({
+                    types: [{ description: 'JSON', accept: { 'application/json': ['.json'] } }],
+                    multiple: false
+                });
+                fileHandle = handle;
+
+                // Load the file contents
+                const file = await handle.getFile();
+                const text = await file.text();
+                const data = JSON.parse(text);
+                const exclusions = data.category_exclusions || {};
+
+                // Update localStorage with all categories
+                const categoryKeys = {
+                    'Dutch typography': 'dutch_typography',
+                    'Printing in the Netherlands': 'printing_in_netherlands',
+                    'Bookbinding in the Netherlands': 'bookbinding_in_netherlands',
+                    'Libraries in the Netherlands': 'libraries_in_netherlands'
+                };
+
+                Object.entries(categoryKeys).forEach(([name, key]) => {
+                    const ids = exclusions[name] || [];
+                    localStorage.setItem('excluded_' + key, JSON.stringify(ids));
+                });
+
+                // Update current category
+                excludedIds = exclusions[CATEGORY_NAME] || [];
+                applyExclusionsToUI();
+                updateCounts();
+
+                setStatus('Opened ' + handle.name + ' - ready to save');
+            } catch (err) {
+                if (err.name !== 'AbortError') {
+                    console.error('Error opening file:', err);
+                    setStatus('Error: ' + err.message);
+                }
+            }
+        }
+
+        // Load exclusions from JSON file on page load
+        async function loadFromJSON() {
+            try {
+                const response = await fetch(JSON_FILENAME);
+                if (response.ok) {
+                    const data = await response.json();
+                    const exclusions = data.category_exclusions || {};
+
+                    // Load this category's exclusions
+                    excludedIds = exclusions[CATEGORY_NAME] || [];
+                    localStorage.setItem(STORAGE_KEY, JSON.stringify(excludedIds));
+
+                    // Update UI
+                    applyExclusionsToUI();
+                    updateCounts();
+                    setStatus('Loaded from ' + JSON_FILENAME);
+                }
+            } catch (err) {
+                console.log('Could not load JSON file:', err);
+                setStatus('Using localStorage (JSON file not found)');
+            }
+        }
+
+        function applyExclusionsToUI() {
+            document.querySelectorAll('.card').forEach(card => {
+                const id = card.dataset.id;
+                const btn = card.querySelector('.card-toggle');
+                if (excludedIds.includes(id)) {
+                    card.classList.add('excluded');
+                    btn.classList.remove('include');
+                    btn.classList.add('exclude');
+                    btn.textContent = '✗ Excluded';
+                } else {
+                    card.classList.remove('excluded');
+                    btn.classList.remove('exclude');
+                    btn.classList.add('include');
+                    btn.textContent = '✓ Include';
+                }
+            });
+        }
+
+        function setStatus(msg) {
+            document.getElementById('save-status').textContent = msg;
+        }
+
+        async function saveSelection() {
+            // Build the complete exclusions object from all localStorage
+            const allExclusions = {};
+            const categoryKeys = {
+                'dutch_typography': 'Dutch typography',
+                'printing_in_netherlands': 'Printing in the Netherlands',
+                'bookbinding_in_netherlands': 'Bookbinding in the Netherlands',
+                'libraries_in_netherlands': 'Libraries in the Netherlands'
+            };
+
+            Object.entries(categoryKeys).forEach(([key, name]) => {
+                const excluded = JSON.parse(localStorage.getItem('excluded_' + key) || '[]');
+                if (excluded.length > 0) {
+                    allExclusions[name] = excluded;
+                }
+            });
+
+            const json = JSON.stringify({ category_exclusions: allExclusions }, null, 2);
+
+            // If we have a file handle, save directly
+            if (fileHandle) {
+                try {
+                    const writable = await fileHandle.createWritable();
+                    await writable.write(json);
+                    await writable.close();
+                    setStatus('Saved ✓');
+                    return;
+                } catch (err) {
+                    console.error('Save error:', err);
+                    setStatus('Error saving: ' + err.message);
+                    return;
+                }
+            }
+
+            // No file handle - prompt user to open file first
+            if ('showOpenFilePicker' in window) {
+                setStatus('Click "Open JSON File" first to select category_exclusions.json');
+                return;
+            }
+
+            // Fallback for browsers without File System Access API: download the file
+            const blob = new Blob([json], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'category_exclusions.json';
+            a.click();
+            URL.revokeObjectURL(url);
+            setStatus('Downloaded category_exclusions.json (save to project root folder)');
+        }
+
+        // Load from JSON file when page loads
+        loadFromJSON();
+
+        function resetAll() {
+            if (confirm('Reset all selections? This will include all images again.')) {
+                excludedIds = [];
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(excludedIds));
+                document.querySelectorAll('.card.excluded').forEach(card => {
+                    card.classList.remove('excluded');
+                    const btn = card.querySelector('.card-toggle');
+                    btn.classList.remove('exclude');
+                    btn.classList.add('include');
+                    btn.textContent = '✓ Include';
+                });
+                updateCounts();
+            }
+        }
+    </script>
+</body>
+</html>

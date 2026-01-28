@@ -175,11 +175,12 @@ Use `create_preview.py` to generate HTML preview pages for reviewing which image
 python create_preview.py  # Creates all 4 preview pages
 ```
 
-Preview pages (in `previews/` folder):
-- [Dutch typography](previews/preview_dutch_typography.html)
-- [Printing in the Netherlands](previews/preview_printing_netherlands.html)
-- [Bookbinding in the Netherlands](previews/preview_bookbinding_netherlands.html)
-- [Libraries in the Netherlands](previews/preview_libraries_netherlands.html)
+Preview pages for public domain files (in `previews/` folder):
+- **[All categories (combined)](previews/pd_preview_all.html)** - Tabbed interface with all 4 categories
+- [Dutch typography](previews/pd_preview_dutch_typography.html) (44 images)
+- [Printing in the Netherlands](previews/pd_preview_printing_netherlands.html) (300 images)
+- [Bookbinding in the Netherlands](previews/pd_preview_bookbinding_netherlands.html) (98 images)
+- [Libraries in the Netherlands](previews/pd_preview_libraries_netherlands.html) (52 images)
 
 ## Structured Data Statements
 

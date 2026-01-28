@@ -1,0 +1,9 @@
+{
+  "category_exclusions": {
+    "Dutch typography": [
+      "BBB-1428",
+      "BBB-615",
+      "BBB-614"
+    ]
+  }
+}
