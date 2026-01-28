@@ -22,9 +22,6 @@ images/
 *- kopie.xlsx
 *-backup*.xlsx
 
-# Generated preview files
-preview_*.html
-
 # Excel temp files
 ~$*.xlsx
 

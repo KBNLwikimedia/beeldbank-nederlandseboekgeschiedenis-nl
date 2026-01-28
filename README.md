@@ -109,13 +109,6 @@ python structured_data.py --all BBB-1
 python structured_data.py --batch 0 10 --all
 ```
 
-### create_preview.py
-Generates HTML preview pages for reviewing category mappings.
-
-```bash
-python create_preview.py  # Creates all 4 preview pages
-```
-
 ## Excel Columns
 
 The main data file (`nbg-beeldbank_all_24012026.xlsx`) contains the following columns:
@@ -158,6 +151,20 @@ Only specific Dutch classifications are mapped to Commons categories (to avoid o
 - M0-M9 (general subject classifications)
 
 All files are automatically added to `[[Category:Beeldbank Nederlandse Boekgeschiedenis]]`.
+
+### Preview Category Mappings
+
+Use `create_preview.py` to generate HTML preview pages for reviewing which images are mapped to which Commons categories before uploading:
+
+```bash
+python create_preview.py  # Creates all 4 preview pages
+```
+
+Preview pages (in `previews/` folder):
+- [Dutch typography](previews/preview_dutch_typography.html)
+- [Printing in the Netherlands](previews/preview_printing_netherlands.html)
+- [Bookbinding in the Netherlands](previews/preview_bookbinding_netherlands.html)
+- [Libraries in the Netherlands](previews/preview_libraries_netherlands.html)
 
 ## Structured Data Statements
 
