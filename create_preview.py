@@ -964,6 +964,499 @@ def create_combined_preview_html(df, output_file):
     print(f'Created combined preview: {output_file}')
 
 
+def create_public_domain_review_html(df, output_file, per_page=100):
+    """
+    Create an HTML page to review ALL public domain files for copyright verification.
+
+    Shows all images with ID, title, date, and creator so user can verify
+    each is truly in the public domain. Includes pagination.
+
+    Args:
+        df: pandas DataFrame with public domain files
+        output_file: Output HTML filename
+        per_page: Number of images per page (default 100)
+    """
+    # Sort by date (newest first), then by BBB id
+    # Extract numeric part of unique_id for proper sorting (BBB-1, BBB-2, ..., BBB-1000)
+    df = df.copy()
+    df['_sort_id'] = df['unique_id'].str.extract(r'BBB-(\d+)').astype(int)
+    df = df.sort_values(by=['datum', '_sort_id'], ascending=[False, True])
+    df = df.drop(columns=['_sort_id'])
+
+    total_images = len(df)
+    total_pages = (total_images + per_page - 1) // per_page  # Ceiling division
+    print(f'Creating public domain review page: {total_images} images ({total_pages} pages, sorted by date desc, then BBB id)')
+
+    html_parts = []
+    html_parts.append(f'''<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Public Domain Files Review - Copyright Verification</title>
+    <style>
+        body {{
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }}
+        h1 {{ color: #333; }}
+        .stats {{
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            padding: 15px 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }}
+        .controls {{
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            padding: 15px 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }}
+        .controls button {{
+            padding: 8px 16px;
+            margin-right: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+        }}
+        .controls button.primary {{ background: #007bff; color: white; }}
+        .controls button.secondary {{ background: #6c757d; color: white; }}
+        .controls button.danger {{ background: #dc3545; color: white; }}
+        .filter-controls {{
+            margin-top: 10px;
+        }}
+        .filter-controls input {{
+            padding: 6px 10px;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 200px;
+        }}
+        .pagination {{
+            background: #e9ecef;
+            padding: 15px 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }}
+        .pagination button {{
+            padding: 8px 14px;
+            border: 1px solid #ccc;
+            background: white;
+            border-radius: 4px;
+            cursor: pointer;
+        }}
+        .pagination button:hover {{ background: #f0f0f0; }}
+        .pagination button.active {{
+            background: #007bff;
+            color: white;
+            border-color: #007bff;
+        }}
+        .pagination button:disabled {{
+            opacity: 0.5;
+            cursor: not-allowed;
+        }}
+        .page-info {{
+            font-weight: bold;
+            margin: 0 10px;
+        }}
+        .flagged-list {{
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            padding: 15px 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            display: none;
+        }}
+        .flagged-list.visible {{ display: block; }}
+        .flagged-list pre {{
+            background: white;
+            padding: 10px;
+            border-radius: 4px;
+            max-height: 200px;
+            overflow-y: auto;
+        }}
+        .grid {{
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 20px;
+        }}
+        .card {{
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            overflow: hidden;
+            position: relative;
+            border: 3px solid transparent;
+        }}
+        .card.flagged {{
+            border-color: #dc3545;
+            background: #fff5f5;
+        }}
+        .card.hidden {{
+            display: none;
+        }}
+        .card img {{
+            width: 100%;
+            height: 220px;
+            object-fit: contain;
+            background: #eee;
+            cursor: pointer;
+        }}
+        .card-content {{ padding: 12px; }}
+        .card-id {{
+            font-weight: bold;
+            font-size: 16px;
+            color: #0066cc;
+            margin-bottom: 5px;
+        }}
+        .card-title {{
+            font-size: 13px;
+            color: #333;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }}
+        .card-meta {{
+            font-size: 12px;
+            color: #666;
+            border-top: 1px solid #eee;
+            padding-top: 8px;
+        }}
+        .card-meta strong {{ color: #333; }}
+        .card-date {{
+            background: #e9ecef;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-weight: bold;
+        }}
+        .card-toggle {{
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 6px 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 11px;
+        }}
+        .card-toggle.ok {{
+            background: #28a745;
+            color: white;
+        }}
+        .card-toggle.flagged {{
+            background: #dc3545;
+            color: white;
+        }}
+        .lightbox {{
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }}
+        .lightbox.visible {{
+            display: flex;
+        }}
+        .lightbox img {{
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+        }}
+        .lightbox-close {{
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 40px;
+            color: white;
+            cursor: pointer;
+        }}
+    </style>
+</head>
+<body>
+    <h1>Public Domain Files Review - Copyright Verification</h1>
+    <div class="stats">
+        <strong>Total public domain files:</strong> {total_images} ({total_pages} pages of {per_page})<br>
+        <strong>Purpose:</strong> Review all images to verify they are indeed in the public domain (pre-1886 or otherwise copyright-free)
+    </div>
+    <div class="controls">
+        <strong>Review status:</strong>
+        <span id="ok-count">{total_images}</span> OK,
+        <span id="flagged-count">0</span> flagged as NOT public domain
+        &nbsp;|&nbsp;
+        <button class="secondary" onclick="toggleFlaggedList()">Show/Hide Flagged</button>
+        <button class="primary" onclick="exportFlagged()">Export Flagged IDs</button>
+        <button class="secondary" onclick="showOnlyFlagged()">Show Only Flagged</button>
+        <button class="secondary" onclick="showAll()">Show All</button>
+        <div class="filter-controls">
+            <input type="text" id="search-box" placeholder="Search by ID, title, date..." oninput="filterCards()">
+            <button class="secondary" onclick="clearSearch()">Clear</button>
+        </div>
+    </div>
+    <div class="pagination" id="pagination">
+        <button onclick="goToPage(1)" id="btn-first">« First</button>
+        <button onclick="goToPage(currentPage - 1)" id="btn-prev">‹ Prev</button>
+        <span class="page-info">Page <span id="current-page">1</span> of <span id="total-pages">{total_pages}</span></span>
+        <button onclick="goToPage(currentPage + 1)" id="btn-next">Next ›</button>
+        <button onclick="goToPage({total_pages})" id="btn-last">Last »</button>
+        <span style="margin-left: 20px;">Go to page:</span>
+        <input type="number" id="page-input" min="1" max="{total_pages}" value="1" style="width: 60px; padding: 6px;">
+        <button onclick="goToPage(parseInt(document.getElementById('page-input').value))">Go</button>
+    </div>
+    <div class="flagged-list" id="flagged-list">
+        <strong>Flagged as NOT public domain (copy these IDs to update Excel):</strong>
+        <pre id="flagged-ids"></pre>
+    </div>
+    <div class="grid" id="image-grid">
+''')
+
+    for i, (idx, row) in enumerate(df.iterrows()):
+        page_num = (i // per_page) + 1  # Calculate which page this image belongs to
+        unique_id = str(row.get('unique_id', ''))
+        title = str(row.get('titel', '')).replace('"', '&quot;').replace('<', '&lt;').replace('>', '&gt;')
+        datum = str(row.get('datum', ''))
+        if pd.isna(row.get('datum')) or datum == 'nan':
+            datum = '(geen datum)'
+        vervaardiger = str(row.get('vervaardiger', ''))
+        if pd.isna(row.get('vervaardiger')) or vervaardiger == 'nan':
+            vervaardiger = '(onbekend)'
+        vervaardiger = vervaardiger.replace('<', '&lt;').replace('>', '&gt;')
+
+        img_src = str(row.get('image_url', ''))
+        if not img_src or img_src == 'nan':
+            img_src = ''
+
+        # Truncate long titles
+        display_title = title[:120] + "..." if len(title) > 120 else title
+
+        html_parts.append(f'''        <div class="card" data-id="{unique_id}" data-title="{title.lower()}" data-date="{datum.lower()}" data-page="{page_num}">
+            <button class="card-toggle ok" onclick="toggleFlag(this, '{unique_id}')">✓ OK</button>
+            <img src="{img_src}" alt="{title}" loading="lazy" onclick="openLightbox(this.src)">
+            <div class="card-content">
+                <div class="card-id">{unique_id}</div>
+                <div class="card-title">{display_title}</div>
+                <div class="card-meta">
+                    <strong>Date:</strong> <span class="card-date">{datum}</span><br>
+                    <strong>Creator:</strong> {vervaardiger}
+                </div>
+            </div>
+        </div>
+''')
+
+    html_parts.append(f'''    </div>
+
+    <div class="pagination" id="pagination-bottom" style="margin-top: 20px;">
+        <button onclick="goToPage(1)" id="btn-first-bottom">« First</button>
+        <button onclick="goToPage(currentPage - 1)" id="btn-prev-bottom">‹ Prev</button>
+        <span class="page-info">Page <span id="current-page-bottom">1</span> of <span id="total-pages-bottom">{total_pages}</span></span>
+        <button onclick="goToPage(currentPage + 1)" id="btn-next-bottom">Next ›</button>
+        <button onclick="goToPage({total_pages})" id="btn-last-bottom">Last »</button>
+    </div>
+
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <span class="lightbox-close">&times;</span>
+        <img id="lightbox-img" src="">
+    </div>
+
+    <script>
+        const STORAGE_KEY = 'flagged_not_public_domain';
+        const TOTAL_PAGES = {total_pages};
+        const PER_PAGE = {per_page};
+        let flaggedIds = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+        let currentPage = 1;
+        let filterMode = 'pagination'; // 'pagination', 'flagged', or 'search'
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {{
+            applyFlagsToUI();
+            updateCounts();
+            goToPage(1);
+        }});
+
+        function goToPage(page) {{
+            if (page < 1 || page > TOTAL_PAGES) return;
+            currentPage = page;
+            filterMode = 'pagination';
+
+            // Hide all cards first
+            document.querySelectorAll('.card').forEach(card => {{
+                card.classList.add('hidden');
+            }});
+
+            // Show only cards for current page
+            document.querySelectorAll(`.card[data-page="${{page}}"]`).forEach(card => {{
+                card.classList.remove('hidden');
+            }});
+
+            // Update page displays
+            document.getElementById('current-page').textContent = page;
+            document.getElementById('current-page-bottom').textContent = page;
+            document.getElementById('page-input').value = page;
+
+            // Update button states
+            document.getElementById('btn-first').disabled = (page === 1);
+            document.getElementById('btn-prev').disabled = (page === 1);
+            document.getElementById('btn-next').disabled = (page === TOTAL_PAGES);
+            document.getElementById('btn-last').disabled = (page === TOTAL_PAGES);
+            document.getElementById('btn-first-bottom').disabled = (page === 1);
+            document.getElementById('btn-prev-bottom').disabled = (page === 1);
+            document.getElementById('btn-next-bottom').disabled = (page === TOTAL_PAGES);
+            document.getElementById('btn-last-bottom').disabled = (page === TOTAL_PAGES);
+
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }}
+
+        function toggleFlag(btn, id) {{
+            const card = btn.closest('.card');
+            const isFlagged = card.classList.contains('flagged');
+
+            if (isFlagged) {{
+                // Mark as OK
+                card.classList.remove('flagged');
+                btn.classList.remove('flagged');
+                btn.classList.add('ok');
+                btn.textContent = '✓ OK';
+                flaggedIds = flaggedIds.filter(x => x !== id);
+            }} else {{
+                // Flag as NOT public domain
+                card.classList.add('flagged');
+                btn.classList.remove('ok');
+                btn.classList.add('flagged');
+                btn.textContent = '⚠ NOT PD';
+                if (!flaggedIds.includes(id)) {{
+                    flaggedIds.push(id);
+                }}
+            }}
+
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(flaggedIds));
+            updateCounts();
+        }}
+
+        function updateCounts() {{
+            const total = document.querySelectorAll('.card').length;
+            const flagged = flaggedIds.length;
+            document.getElementById('flagged-count').textContent = flagged;
+            document.getElementById('ok-count').textContent = total - flagged;
+            document.getElementById('flagged-ids').textContent = flaggedIds.join('\\n') || '(none)';
+        }}
+
+        function applyFlagsToUI() {{
+            document.querySelectorAll('.card').forEach(card => {{
+                const id = card.dataset.id;
+                const btn = card.querySelector('.card-toggle');
+                if (flaggedIds.includes(id)) {{
+                    card.classList.add('flagged');
+                    btn.classList.remove('ok');
+                    btn.classList.add('flagged');
+                    btn.textContent = '⚠ NOT PD';
+                }}
+            }});
+        }}
+
+        function toggleFlaggedList() {{
+            document.getElementById('flagged-list').classList.toggle('visible');
+        }}
+
+        function exportFlagged() {{
+            if (flaggedIds.length === 0) {{
+                alert('No files flagged as NOT public domain.');
+                return;
+            }}
+            const text = flaggedIds.join('\\n');
+            const blob = new Blob([text], {{ type: 'text/plain' }});
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'flagged_not_public_domain.txt';
+            a.click();
+            URL.revokeObjectURL(url);
+        }}
+
+        function showOnlyFlagged() {{
+            filterMode = 'flagged';
+            document.querySelectorAll('.card').forEach(card => {{
+                if (flaggedIds.includes(card.dataset.id)) {{
+                    card.classList.remove('hidden');
+                }} else {{
+                    card.classList.add('hidden');
+                }}
+            }});
+        }}
+
+        function showAll() {{
+            filterMode = 'pagination';
+            document.getElementById('search-box').value = '';
+            goToPage(currentPage);
+        }}
+
+        function filterCards() {{
+            const query = document.getElementById('search-box').value.toLowerCase();
+            if (!query) {{
+                goToPage(currentPage);
+                return;
+            }}
+            filterMode = 'search';
+            document.querySelectorAll('.card').forEach(card => {{
+                const id = card.dataset.id.toLowerCase();
+                const title = card.dataset.title;
+                const date = card.dataset.date;
+                if (id.includes(query) || title.includes(query) || date.includes(query)) {{
+                    card.classList.remove('hidden');
+                }} else {{
+                    card.classList.add('hidden');
+                }}
+            }});
+        }}
+
+        function clearSearch() {{
+            document.getElementById('search-box').value = '';
+            showAll();
+        }}
+
+        function openLightbox(src) {{
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox').classList.add('visible');
+        }}
+
+        function closeLightbox() {{
+            document.getElementById('lightbox').classList.remove('visible');
+        }}
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {{
+            if (e.key === 'Escape') closeLightbox();
+            if (filterMode === 'pagination') {{
+                if (e.key === 'ArrowLeft' && currentPage > 1) goToPage(currentPage - 1);
+                if (e.key === 'ArrowRight' && currentPage < TOTAL_PAGES) goToPage(currentPage + 1);
+            }}
+        }});
+    </script>
+</body>
+</html>
+''')
+
+    with open(output_file, 'w', encoding='utf-8') as f:
+        f.write(''.join(html_parts))
+
+    print(f'Created: {output_file}')
+    return len(df)
+
+
 if __name__ == "__main__":
     # Read the public-domain-files sheet from the Excel file
     df = pd.read_excel(EXCEL_FILE, sheet_name='public-domain-files')
@@ -990,3 +1483,6 @@ if __name__ == "__main__":
 
         # Also create combined preview with tabs
         create_combined_preview_html(df, 'previews/pd_preview_all.html')
+
+        # Create public domain review page for copyright verification
+        create_public_domain_review_html(df, 'previews/pd_review_all.html')
