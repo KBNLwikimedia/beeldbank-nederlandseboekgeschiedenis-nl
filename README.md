@@ -199,18 +199,18 @@ Additionally, a Dutch label (caption) is added from the `titel` column.
 
 The `{{Artwork}}` template is populated as follows:
 
-| Template Field | Source | Required |
-|----------------|--------|----------|
-| `title` | `titel` | Optional |
-| `artist` | `vervaardiger` | Recommended |
-| `description` | `inhoud` (wrapped in `{{nl|1=...}}`) | Optional |
-| `date` | `datum` | Optional |
-| `dimensions` | `afmetingen` | Optional |
-| `object type` | `type` (formatted as `{{nl|...}} {{en|...}}`) | Optional |
-| `institution` | Static: `{{Institution:Koninklijke Bibliotheek}}` | Optional |
+| Template Field | Source / Excel column                                 | Required |
+|----------------|-------------------------------------------------------|----------|
+| `title` | `titel`                                               | Optional |
+| `artist` | `vervaardiger`                                        | Recommended |
+| `description` | `inhoud` (wrapped in `{{nl                            |1=...}}`) | Optional |
+| `date` | `datum`                                               | Optional |
+| `dimensions` | `afmetingen`                                          | Optional |
+| `object type` | `type` (formatted as `{{nl                            |...}} {{en|...}}`) | Optional |
+| `institution` | Static: `{{Institution:Koninklijke Bibliotheek}}`     | Optional |
 | `source` | Composite from `image_url`, `detail_url`, `unique_id` | **Required** |
-| `accession number` | `aanwezig_in` | Optional |
-| `notes` | `origineel` (prefixed with "Orgineel:") | Optional |
+| `accession number` | `aanwezig_in`                                         | Optional |
+| `notes` | `origineel` (prefixed with "Orgineel:")               | Optional |
 
 **License**: `{{PD-US-expired|PD-old-70}}`
 
