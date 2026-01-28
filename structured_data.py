@@ -32,7 +32,7 @@ Requirements:
 """
 
 import json
-
+import random
 import os
 import sys
 import time
@@ -52,6 +52,115 @@ COMMONS_USER_AGENT = os.getenv('COMMONS_USER_AGENT')
 
 # Excel file path
 EXCEL_FILE = 'nbg-beeldbank_all_24012026.xlsx'
+
+# Throttling and backoff configuration
+DEFAULT_DELAY = 2           # Default delay between API calls (seconds)
+MAX_DELAY = 60              # Maximum delay for backoff
+MAX_RETRIES = 3             # Maximum retries for failed API calls
+BACKOFF_FACTOR = 2          # Exponential backoff multiplier
+JITTER_MAX = 1              # Maximum random jitter to add (seconds)
+
+
+def throttled_sleep(delay, add_jitter=True):
+    """
+    Sleep for the specified delay, optionally adding random jitter.
+
+    Args:
+        delay: Base delay in seconds
+        add_jitter: If True, add random jitter to prevent thundering herd
+    """
+    if add_jitter:
+        jitter = random.uniform(0, JITTER_MAX)
+        delay = delay + jitter
+    time.sleep(delay)
+
+
+def exponential_backoff(attempt, base_delay=DEFAULT_DELAY):
+    """
+    Calculate exponential backoff delay for retries.
+
+    Args:
+        attempt: Current attempt number (0-based)
+        base_delay: Base delay in seconds
+
+    Returns:
+        float: Delay in seconds (capped at MAX_DELAY)
+    """
+    delay = base_delay * (BACKOFF_FACTOR ** attempt)
+    return min(delay, MAX_DELAY)
+
+
+def is_retryable_error(error):
+    """
+    Check if an error is retryable (transient server errors, rate limits, etc.).
+
+    Args:
+        error: The exception or API response
+
+    Returns:
+        bool: True if the error is retryable
+    """
+    error_str = str(error).lower()
+    retryable_patterns = [
+        'rate limit',
+        'too many requests',
+        '429',
+        '503',
+        '502',
+        'timeout',
+        'connection',
+        'temporary',
+        'try again',
+        'server error',
+        'maxlag',
+        'ratelimited',
+    ]
+    return any(pattern in error_str for pattern in retryable_patterns)
+
+
+def api_call_with_retry(func, *args, max_retries=MAX_RETRIES, **kwargs):
+    """
+    Execute an API call with retry logic and exponential backoff.
+
+    Args:
+        func: Function to call
+        *args: Arguments to pass to the function
+        max_retries: Maximum number of retries
+        **kwargs: Keyword arguments to pass to the function
+
+    Returns:
+        The result of the function call
+
+    Raises:
+        Exception: If all retries fail
+    """
+    last_error = None
+
+    for attempt in range(max_retries):
+        try:
+            result = func(*args, **kwargs)
+
+            # Check for API errors in the response
+            if isinstance(result, dict) and 'error' in result:
+                error_code = result.get('error', {}).get('code', '')
+                if is_retryable_error(error_code):
+                    raise Exception(f"API error: {result['error']}")
+
+            return result
+
+        except Exception as e:
+            last_error = e
+
+            if not is_retryable_error(e):
+                raise
+
+            if attempt < max_retries - 1:
+                delay = exponential_backoff(attempt)
+                print(f"    API call failed (attempt {attempt + 1}/{max_retries}): {e}")
+                print(f"    Retrying in {delay:.1f} seconds...")
+                time.sleep(delay)
+
+    raise last_error
 
 # Structured Data Constants
 # Properties
@@ -542,7 +651,39 @@ def add_dutch_description(session, csrf_token, mid, description, summary="Adding
 
 def load_excel():
     """Load the Excel file and return the DataFrame."""
-    return pd.read_excel(EXCEL_FILE)
+    return pd.read_excel(EXCEL_FILE, sheet_name='all')
+
+
+def update_structured_data_status(unique_id):
+    """
+    Update the structured_data_added column to True for a record in both sheets.
+
+    Args:
+        unique_id: The unique_id of the record (e.g., 'BBB-1')
+    """
+    try:
+        # Read both sheets
+        df_all = pd.read_excel(EXCEL_FILE, sheet_name='all')
+        df_pd = pd.read_excel(EXCEL_FILE, sheet_name='public-domain-files')
+
+        # Ensure column exists
+        if 'structured_data_added' not in df_all.columns:
+            df_all['structured_data_added'] = False
+        if 'structured_data_added' not in df_pd.columns:
+            df_pd['structured_data_added'] = False
+
+        # Update in both sheets
+        df_all.loc[df_all['unique_id'] == unique_id, 'structured_data_added'] = True
+        df_pd.loc[df_pd['unique_id'] == unique_id, 'structured_data_added'] = True
+
+        # Save
+        with pd.ExcelWriter(EXCEL_FILE, engine='openpyxl') as writer:
+            df_all.to_excel(writer, sheet_name='all', index=False)
+            df_pd.to_excel(writer, sheet_name='public-domain-files', index=False)
+
+        print(f"Updated structured_data_added=True for {unique_id}")
+    except Exception as e:
+        print(f"Warning: Could not update Excel: {e}")
 
 
 def get_record_by_id(df, unique_id):
@@ -625,6 +766,8 @@ def process_statements_single(unique_id, preview_only=False):
     success = all('error' not in r for r in results.values() if not r.get('skipped'))
     if success:
         print("\nSuccess! All statements added.")
+        # Update Excel to mark structured data as added
+        update_structured_data_status(unique_id)
     else:
         print(f"\nSome statements failed: {results}")
 

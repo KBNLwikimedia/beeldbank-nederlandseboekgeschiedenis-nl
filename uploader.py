@@ -27,6 +27,7 @@ import os
 import sys
 import time
 import json
+import random
 import argparse
 import pandas as pd
 from dotenv import load_dotenv
@@ -47,6 +48,71 @@ COMMONS_USER_AGENT = os.getenv('COMMONS_USER_AGENT')
 
 # Excel file path
 EXCEL_FILE = 'nbg-beeldbank_all_24012026.xlsx'
+
+# Throttling and backoff configuration
+DEFAULT_DELAY = 5           # Default delay between uploads (seconds)
+MIN_DELAY = 3               # Minimum delay between requests
+MAX_DELAY = 60              # Maximum delay for backoff
+MAX_RETRIES = 3             # Maximum retries for failed uploads
+BACKOFF_FACTOR = 2          # Exponential backoff multiplier
+JITTER_MAX = 2              # Maximum random jitter to add (seconds)
+
+
+def throttled_sleep(delay, add_jitter=True):
+    """
+    Sleep for the specified delay, optionally adding random jitter.
+
+    Args:
+        delay: Base delay in seconds
+        add_jitter: If True, add random jitter to prevent thundering herd
+    """
+    if add_jitter:
+        jitter = random.uniform(0, JITTER_MAX)
+        delay = delay + jitter
+    print(f"  Waiting {delay:.1f} seconds...")
+    time.sleep(delay)
+
+
+def exponential_backoff(attempt, base_delay=DEFAULT_DELAY):
+    """
+    Calculate exponential backoff delay for retries.
+
+    Args:
+        attempt: Current attempt number (0-based)
+        base_delay: Base delay in seconds
+
+    Returns:
+        float: Delay in seconds (capped at MAX_DELAY)
+    """
+    delay = base_delay * (BACKOFF_FACTOR ** attempt)
+    return min(delay, MAX_DELAY)
+
+
+def is_retryable_error(error):
+    """
+    Check if an error is retryable (transient server errors, rate limits, etc.).
+
+    Args:
+        error: The exception that was raised
+
+    Returns:
+        bool: True if the error is retryable
+    """
+    error_str = str(error).lower()
+    retryable_patterns = [
+        'rate limit',
+        'too many requests',
+        '429',
+        '503',
+        '502',
+        'timeout',
+        'connection',
+        'temporary',
+        'try again',
+        'server error',
+        'maxlag',
+    ]
+    return any(pattern in error_str for pattern in retryable_patterns)
 
 
 def load_category_exclusions():
@@ -198,7 +264,7 @@ def check_file_exists(site, filename):
 
 def upload_file(site, local_path, filename, wikitext, comment="Upload from Beeldbank Nederlandse Boekgeschiedenis - Dutch book history collection by KB, National Library of the Netherlands"):
     """
-    Upload a file to Wikimedia Commons.
+    Upload a file to Wikimedia Commons with retry logic and exponential backoff.
 
     Args:
         site: mwclient Site object
@@ -209,16 +275,41 @@ def upload_file(site, local_path, filename, wikitext, comment="Upload from Beeld
 
     Returns:
         dict: Upload result
+
+    Raises:
+        Exception: If upload fails after all retries
     """
-    with open(local_path, 'rb') as f:
-        result = site.upload(
-            file=f,
-            filename=filename,
-            description=wikitext,
-            comment=comment,
-            ignore=False  # Don't ignore warnings (like duplicate files)
-        )
-    return result
+    last_error = None
+
+    for attempt in range(MAX_RETRIES):
+        try:
+            with open(local_path, 'rb') as f:
+                result = site.upload(
+                    file=f,
+                    filename=filename,
+                    description=wikitext,
+                    comment=comment,
+                    ignore=False  # Don't ignore warnings (like duplicate files)
+                )
+            return result
+
+        except Exception as e:
+            last_error = e
+
+            if not is_retryable_error(e):
+                # Non-retryable error, raise immediately
+                raise
+
+            if attempt < MAX_RETRIES - 1:
+                delay = exponential_backoff(attempt)
+                print(f"  Upload failed (attempt {attempt + 1}/{MAX_RETRIES}): {e}")
+                print(f"  Retrying in {delay:.1f} seconds...")
+                time.sleep(delay)
+            else:
+                print(f"  Upload failed after {MAX_RETRIES} attempts")
+
+    # If we get here, all retries failed
+    raise last_error
 
 
 def preview_upload(row, exclusions=None):
@@ -403,14 +494,19 @@ def upload_batch(start_idx, end_idx, preview_only=False, delay=5):
 
             successful += 1
 
-            # Delay between uploads to be nice to the server
+            # Throttled delay between uploads to be nice to the server
             if idx < end_idx - 1:
-                print(f"  Waiting {delay} seconds...")
-                time.sleep(delay)
+                throttled_sleep(delay, add_jitter=True)
 
         except Exception as e:
             print(f"  FAILED: {e}")
             failed += 1
+
+            # Add extra delay after failures to avoid hammering the server
+            if idx < end_idx - 1:
+                backoff_delay = exponential_backoff(0, delay)  # Use base backoff
+                print(f"  Adding cooldown after failure...")
+                throttled_sleep(backoff_delay, add_jitter=True)
 
     print(f"\n{'=' * 40}")
     print(f"Batch complete: {successful} successful, {failed} failed, {skipped} skipped")
@@ -418,13 +514,22 @@ def upload_batch(start_idx, end_idx, preview_only=False, delay=5):
 
 
 def main():
-    parser = argparse.ArgumentParser(description='Upload images to Wikimedia Commons')
+    parser = argparse.ArgumentParser(
+        description='Upload images to Wikimedia Commons',
+        epilog=f'''
+Throttling defaults:
+  - Delay between uploads: {DEFAULT_DELAY} seconds (configurable with --delay)
+  - Max retries on failure: {MAX_RETRIES} (with exponential backoff)
+  - Backoff factor: {BACKOFF_FACTOR}x per retry
+  - Max backoff delay: {MAX_DELAY} seconds
+        '''
+    )
     parser.add_argument('unique_id', nargs='?', help='Unique ID of record to upload (e.g., BBB-2)')
     parser.add_argument('--preview', '-p', action='store_true', help='Preview only, do not upload')
     parser.add_argument('--batch', '-b', nargs=2, type=int, metavar=('START', 'END'),
                         help='Upload batch of records by row index')
-    parser.add_argument('--delay', '-d', type=int, default=5,
-                        help='Delay between batch uploads in seconds (default: 5)')
+    parser.add_argument('--delay', '-d', type=int, default=DEFAULT_DELAY,
+                        help=f'Delay between batch uploads in seconds (default: {DEFAULT_DELAY})')
 
     args = parser.parse_args()
 

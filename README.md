@@ -94,7 +94,7 @@ Defines the mapping between Excel columns and the `{{Artwork}}` template fields.
 - `format_bilingual_type(type_str)` - Format type as `{{nl|...}} {{en|...}}`
 
 ### uploader.py
-Uploads images to Wikimedia Commons with proper metadata.
+Uploads images to Wikimedia Commons with proper metadata. Includes throttling and exponential backoff to avoid overwhelming the server.
 
 ```bash
 # Preview upload
@@ -105,7 +105,15 @@ python uploader.py BBB-1
 
 # Batch upload (rows 0-10)
 python uploader.py --batch 0 10
+
+# Batch upload with custom delay (10 seconds between uploads)
+python uploader.py --batch 0 10 --delay 10
 ```
+
+**Throttling defaults:**
+- Delay between uploads: 5 seconds
+- Max retries on failure: 3 (with exponential backoff)
+- Backoff factor: 2x per retry (5s → 10s → 20s)
 
 ### structured_data.py
 Adds structured data (Wikibase statements) to Commons files.
@@ -147,8 +155,14 @@ The main data file (`nbg-beeldbank_all_24012026.xlsx`) contains the following co
 | `detail_url` | Link to detail page | Source field, P973 |
 | `local_image_path` | Path to downloaded image | Upload source |
 | `commons_categories` | Mapped Commons categories | Categories |
+| `in_public_domain_files` | Whether file is in public domain | Filter for upload |
 | `CommonsURL` | Wikimedia Commons file URL | After upload |
 | `CommonsMidURL` | Commons M-id entity URL | After upload |
+| `structured_data_added` | Whether structured data was added | Tracking |
+
+The Excel file contains two sheets:
+- **all**: All 1,632 records with tracking columns
+- **public-domain-files**: 803 records filtered for public domain (pre-1886)
 
 ## Classification to Commons Categories Mapping
 
@@ -167,20 +181,42 @@ Only specific Dutch classifications are mapped to Commons categories (to avoid o
 
 All files are automatically added to `[[Category:Beeldbank Nederlandse Boekgeschiedenis]]`.
 
-### Preview Category Mappings
+### Preview and Review Pages
 
-Use `create_preview.py` to generate HTML preview pages for reviewing which images are mapped to which Commons categories before uploading:
+The `previews/` folder contains HTML pages for reviewing images before upload. These require a local web server:
 
 ```bash
-python create_preview.py  # Creates all 4 preview pages
+python -m http.server 8000  # Start server in project root
 ```
 
-Preview pages for public domain files (in `previews/` folder):
+Then open pages at `http://localhost:8000/previews/...`
+
+#### Public Domain Review
+
+Review all 803 public domain images to verify copyright status:
+
+- **[Public Domain Review](previews/pd_review_all.html)** - All images with pagination (100 per page)
+
+Features: view images with ID/title/date, flag images as NOT public domain, search/filter, export flagged IDs.
+
+#### Category Selection
+
+Select which images should receive specific Commons categories:
+
 - **[All categories (combined)](previews/pd_preview_all.html)** - Tabbed interface with all 4 categories
 - [Dutch typography](previews/pd_preview_dutch_typography.html) (44 images)
 - [Printing in the Netherlands](previews/pd_preview_printing_netherlands.html) (300 images)
 - [Bookbinding in the Netherlands](previews/pd_preview_bookbinding_netherlands.html) (98 images)
-- [Libraries in the Netherlands](previews/pd_preview_libraries_netherlands.html) (52 images)
+- [Libraries in the Netherlands](previews/pd_preview_libraries_netherlands.html) (50 images)
+
+Exclusions are saved to `category_exclusions.json` which is read by `uploader.py`.
+
+**Note:** Use Chrome or Edge (Firefox doesn't support the File System Access API for saving).
+
+Generate all preview pages:
+```bash
+python create_preview.py
+```
 
 ## Structured Data Statements
 
