@@ -5,7 +5,9 @@
 
 # Beeldbank Nederlandse Boekgeschiedenis - Wikimedia Commons Upload Project
 
-Upload pipeline for the **Beeldbank (Image Bank) of Nederlandse Boekgeschiedenis (Dutch Book History)**, hosted by the KB (Koninklijke Bibliotheek / Royal Library of the Netherlands).
+Upload pipeline for the **Beeldbank (Image Bank) of Nederlandse Boekgeschiedenis (Dutch Book History)** website, hosted by the KB (Koninklijke Bibliotheek / National Library of the Netherlands).
+
+https://www.nederlandseboekgeschiedenis.nl/nl/beeldbank
 
 ## Project Scope
 
@@ -26,6 +28,9 @@ This project targets only images that are **in the public domain** - works that 
 - **Search interface**: https://www.nederlandseboekgeschiedenis.nl/nl/beeldbank
 - **Image resolver**: `http://resolver.kb.nl/resolve?urn=urn:BBB:{urn}`
 - **Commons category**: [Category:Beeldbank Nederlandse Boekgeschiedenis](https://commons.wikimedia.org/wiki/Category:Beeldbank_Nederlandse_Boekgeschiedenis)
+
+<img src="media-assets/beeldbank-homepage-with-results.jpg" alt="Beeldbank Nederlandse Boekgeschiedenis search interface" width="350"><br>
+<em>Homepage with search results of https://www.nederlandseboekgeschiedenis.nl/nl/beeldbank, dd 28-01-2026</em>
 
 ## Technical Approach
 
@@ -226,6 +231,16 @@ See `requirements.txt`:
 ## License
 
 This project uploads **public domain content** from the KB collection to Wikimedia Commons. All images in this collection are out of copyright in both the Netherlands/EU (life of author + 70 years) and the USA, making them free to use worldwide. Files are tagged with `{{PD-US-expired|PD-old-70}}` on Commons.
+
+## Examples
+
+Three example files uploaded to Wikimedia Commons:
+
+| Thumbnail | ID | Title | Commons Link |
+|:---------:|-------|-------|--------------|
+| [![BBB-1](https://commons.wikimedia.org/wiki/Special:FilePath/De_wolf_en_de_ezel_uit_de_Dyalogus_creaturarum_gedrukt_door_Gheraert_Leeu_Gouda,_1481_-_BBB-1.jpg?width=80)](https://commons.wikimedia.org/wiki/File:De_wolf_en_de_ezel_uit_de_Dyalogus_creaturarum_gedrukt_door_Gheraert_Leeu_Gouda,_1481_-_BBB-1.jpg) | BBB-1 | De wolf en de ezel uit de "Dyalogus creaturarum" gedrukt door Gheraert Leeu, Gouda, 1481 | [View on Commons](https://commons.wikimedia.org/wiki/File:De_wolf_en_de_ezel_uit_de_Dyalogus_creaturarum_gedrukt_door_Gheraert_Leeu_Gouda,_1481_-_BBB-1.jpg) |
+| [![BBB-2](https://commons.wikimedia.org/wiki/Special:FilePath/De_verdrijving_uit_het_paradijs_uit_Passio_Domini_nostri_Iesu_Christi_Amsterdam,_1523_-_BBB-2.jpg?width=80)](https://commons.wikimedia.org/wiki/File:De_verdrijving_uit_het_paradijs_uit_Passio_Domini_nostri_Iesu_Christi_Amsterdam,_1523_-_BBB-2.jpg) | BBB-2 | "De verdrijving uit het paradijs" uit "Passio Domini nostri Iesu Christi", Amsterdam, 1523 | [View on Commons](https://commons.wikimedia.org/wiki/File:De_verdrijving_uit_het_paradijs_uit_Passio_Domini_nostri_Iesu_Christi_Amsterdam,_1523_-_BBB-2.jpg) |
+| [![BBB-3](https://commons.wikimedia.org/wiki/Special:FilePath/Vita_splendida_uit_Recht_ghebruyck_ende_misbruck_van_tydlycke_have_Leiden,_1585_-_BBB-3.jpg?width=80)](https://commons.wikimedia.org/wiki/File:Vita_splendida_uit_Recht_ghebruyck_ende_misbruck_van_tydlycke_have_Leiden,_1585_-_BBB-3.jpg) | BBB-3 | 'Vita splendida' uit "Recht ghebruyck ende misbruck van tydlycke have", Leiden, 1585 | [View on Commons](https://commons.wikimedia.org/wiki/File:Vita_splendida_uit_Recht_ghebruyck_ende_misbruck_van_tydlycke_have_Leiden,_1585_-_BBB-3.jpg) |
 
 ## Links
 
