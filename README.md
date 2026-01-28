@@ -3,19 +3,18 @@
 [![License](https://img.shields.io/badge/License-Public%20Domain-brightgreen)](https://creativecommons.org/publicdomain/zero/1.0/)
 [![Wikimedia Commons](https://img.shields.io/badge/Wikimedia-Commons-006699?logo=wikimedia-commons)](https://commons.wikimedia.org/wiki/Category:Beeldbank_Nederlandse_Boekgeschiedenis)
 
-# Beeldbank Nederlandse Boekgeschiedenis - Wikimedia Commons Upload Project
+# Beeldbank Nederlandse Boekgeschiedenis - Extract-Transform-Load Project (for Wikimedia Commons)
 
-Upload pipeline for the **Beeldbank (Image Bank) of Nederlandse Boekgeschiedenis (Dutch Book History)** website, hosted by the KB (Koninklijke Bibliotheek / National Library of the Netherlands).
+ETL pipeline for the **Beeldbank (Image Bank) of Nederlandse Boekgeschiedenis (Dutch Book History)** website, hosted by the KB (Koninklijke Bibliotheek / National Library of the Netherlands).
 
 https://www.nederlandseboekgeschiedenis.nl/nl/beeldbank
 
 ## Project Scope
 
-This project harvests metadata and images from the **1,635 digitized historical book-related items** in the Beeldbank Nederlandse Boekgeschiedenis and uploads them to Wikimedia Commons with proper metadata, structured data, and categorization.
-
-### Copyright Status
-
-This project targets only images that are **in the public domain** - works that are out of copyright both in the Netherlands/EU and in the USA. The collection primarily contains historical book-related materials (manuscripts, prints, illustrations) from before the 20th century, ensuring they are no longer protected by copyright in any major jurisdiction.
+This project 
+* **Extracts** metadata and images from the **1,635 digitized historical book-related items** in the [Beeldbank Nederlandse Boekgeschiedenis](https://www.nederlandseboekgeschiedenis.nl/nl/beeldbank), 
+* **Transforms** them into Wikimedia Commons suitable data and 
+* **upLoads** them to Wikimedia Commons with proper metadata, structured data, and categorization.
 
 ### Goals
 - Scrape all metadata and image URLs from the Beeldbank
@@ -32,6 +31,20 @@ This project targets only images that are **in the public domain** - works that 
 
 <img src="media-assets/beeldbank-homepage-with-results.jpg" alt="Beeldbank Nederlandse Boekgeschiedenis search interface" width="350"><br>
 <em>Homepage with search results of https://www.nederlandseboekgeschiedenis.nl/nl/beeldbank, dd 28-01-2026</em>
+
+### Copyright Status
+
+This project targets only images that are **in the public domain** - works that are out of copyright both in the Netherlands/EU and in the USA. The collection primarily contains historical book-related materials (manuscripts, prints, illustrations) from before the 20th century, ensuring they are no longer protected by copyright in any major jurisdiction.
+
+## Examples of uploaded images
+
+Three example files uploaded to Wikimedia Commons:
+
+| Thumbnail | ID | Title | Commons Link |
+|:---------:|-------|-------|--------------|
+| [![BBB-1](https://commons.wikimedia.org/wiki/Special:FilePath/De_wolf_en_de_ezel_uit_de_Dyalogus_creaturarum_gedrukt_door_Gheraert_Leeu_Gouda,_1481_-_BBB-1.jpg?width=80)](https://commons.wikimedia.org/wiki/File:De_wolf_en_de_ezel_uit_de_Dyalogus_creaturarum_gedrukt_door_Gheraert_Leeu_Gouda,_1481_-_BBB-1.jpg) | BBB-1 | De wolf en de ezel uit de "Dyalogus creaturarum" gedrukt door Gheraert Leeu, Gouda, 1481 | [View on Commons](https://commons.wikimedia.org/wiki/File:De_wolf_en_de_ezel_uit_de_Dyalogus_creaturarum_gedrukt_door_Gheraert_Leeu_Gouda,_1481_-_BBB-1.jpg) |
+| [![BBB-2](https://commons.wikimedia.org/wiki/Special:FilePath/De_verdrijving_uit_het_paradijs_uit_Passio_Domini_nostri_Iesu_Christi_Amsterdam,_1523_-_BBB-2.jpg?width=80)](https://commons.wikimedia.org/wiki/File:De_verdrijving_uit_het_paradijs_uit_Passio_Domini_nostri_Iesu_Christi_Amsterdam,_1523_-_BBB-2.jpg) | BBB-2 | "De verdrijving uit het paradijs" uit "Passio Domini nostri Iesu Christi", Amsterdam, 1523 | [View on Commons](https://commons.wikimedia.org/wiki/File:De_verdrijving_uit_het_paradijs_uit_Passio_Domini_nostri_Iesu_Christi_Amsterdam,_1523_-_BBB-2.jpg) |
+| [![BBB-3](https://commons.wikimedia.org/wiki/Special:FilePath/Vita_splendida_uit_Recht_ghebruyck_ende_misbruck_van_tydlycke_have_Leiden,_1585_-_BBB-3.jpg?width=80)](https://commons.wikimedia.org/wiki/File:Vita_splendida_uit_Recht_ghebruyck_ende_misbruck_van_tydlycke_have_Leiden,_1585_-_BBB-3.jpg) | BBB-3 | 'Vita splendida' uit "Recht ghebruyck ende misbruck van tydlycke have", Leiden, 1585 | [View on Commons](https://commons.wikimedia.org/wiki/File:Vita_splendida_uit_Recht_ghebruyck_ende_misbruck_van_tydlycke_have_Leiden,_1585_-_BBB-3.jpg) |
 
 ## Technical Approach
 
@@ -109,16 +122,6 @@ python structured_data.py --all BBB-1
 # Batch mode
 python structured_data.py --batch 0 10 --all
 ```
-
-## Examples
-
-Three example files uploaded to Wikimedia Commons:
-
-| Thumbnail | ID | Title | Commons Link |
-|:---------:|-------|-------|--------------|
-| [![BBB-1](https://commons.wikimedia.org/wiki/Special:FilePath/De_wolf_en_de_ezel_uit_de_Dyalogus_creaturarum_gedrukt_door_Gheraert_Leeu_Gouda,_1481_-_BBB-1.jpg?width=80)](https://commons.wikimedia.org/wiki/File:De_wolf_en_de_ezel_uit_de_Dyalogus_creaturarum_gedrukt_door_Gheraert_Leeu_Gouda,_1481_-_BBB-1.jpg) | BBB-1 | De wolf en de ezel uit de "Dyalogus creaturarum" gedrukt door Gheraert Leeu, Gouda, 1481 | [View on Commons](https://commons.wikimedia.org/wiki/File:De_wolf_en_de_ezel_uit_de_Dyalogus_creaturarum_gedrukt_door_Gheraert_Leeu_Gouda,_1481_-_BBB-1.jpg) |
-| [![BBB-2](https://commons.wikimedia.org/wiki/Special:FilePath/De_verdrijving_uit_het_paradijs_uit_Passio_Domini_nostri_Iesu_Christi_Amsterdam,_1523_-_BBB-2.jpg?width=80)](https://commons.wikimedia.org/wiki/File:De_verdrijving_uit_het_paradijs_uit_Passio_Domini_nostri_Iesu_Christi_Amsterdam,_1523_-_BBB-2.jpg) | BBB-2 | "De verdrijving uit het paradijs" uit "Passio Domini nostri Iesu Christi", Amsterdam, 1523 | [View on Commons](https://commons.wikimedia.org/wiki/File:De_verdrijving_uit_het_paradijs_uit_Passio_Domini_nostri_Iesu_Christi_Amsterdam,_1523_-_BBB-2.jpg) |
-| [![BBB-3](https://commons.wikimedia.org/wiki/Special:FilePath/Vita_splendida_uit_Recht_ghebruyck_ende_misbruck_van_tydlycke_have_Leiden,_1585_-_BBB-3.jpg?width=80)](https://commons.wikimedia.org/wiki/File:Vita_splendida_uit_Recht_ghebruyck_ende_misbruck_van_tydlycke_have_Leiden,_1585_-_BBB-3.jpg) | BBB-3 | 'Vita splendida' uit "Recht ghebruyck ende misbruck van tydlycke have", Leiden, 1585 | [View on Commons](https://commons.wikimedia.org/wiki/File:Vita_splendida_uit_Recht_ghebruyck_ende_misbruck_van_tydlycke_have_Leiden,_1585_-_BBB-3.jpg) |
 
 ## Excel Columns
 
