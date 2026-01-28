@@ -1,3 +1,8 @@
+[![GitHub](https://img.shields.io/badge/GitHub-KBNLwikimedia-blue?logo=github)](https://github.com/KBNLwikimedia/beeldbank-nederlandseboekgeschiedenis-nl)
+[![Python](https://img.shields.io/badge/Python-3.8+-green?logo=python)](https://www.python.org/)
+[![License](https://img.shields.io/badge/License-Public%20Domain-brightgreen)](https://creativecommons.org/publicdomain/zero/1.0/)
+[![Wikimedia Commons](https://img.shields.io/badge/Wikimedia-Commons-006699?logo=wikimedia-commons)](https://commons.wikimedia.org/wiki/Category:Beeldbank_Nederlandse_Boekgeschiedenis)
+
 # Beeldbank Nederlandse Boekgeschiedenis - Wikimedia Commons Upload Project
 
 Upload pipeline for the **Beeldbank (Image Bank) of Nederlandse Boekgeschiedenis (Dutch Book History)**, hosted by the KB (Koninklijke Bibliotheek / Royal Library of the Netherlands).
