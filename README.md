@@ -24,10 +24,11 @@ This project targets only images that are **in the public domain** - works that 
 - Add structured data (Wikibase statements) to each file
 - Properly categorize files based on classification
 
-### Target Website
-- **Search interface**: https://www.nederlandseboekgeschiedenis.nl/nl/beeldbank
+### Relevant websites
+- **Beeldbank search interface**: https://www.nederlandseboekgeschiedenis.nl/nl/beeldbank
 - **Image resolver**: `http://resolver.kb.nl/resolve?urn=urn:BBB:{urn}`
 - **Commons category**: [Category:Beeldbank Nederlandse Boekgeschiedenis](https://commons.wikimedia.org/wiki/Category:Beeldbank_Nederlandse_Boekgeschiedenis)
+- **KB (Koninklijke Bibliotheek)**: https://www.kb.nl/
 
 <img src="media-assets/beeldbank-homepage-with-results.jpg" alt="Beeldbank Nederlandse Boekgeschiedenis search interface" width="350"><br>
 <em>Homepage with search results of https://www.nederlandseboekgeschiedenis.nl/nl/beeldbank, dd 28-01-2026</em>
@@ -248,9 +249,3 @@ See `requirements.txt`:
 ## License
 
 This project uploads **public domain content** from the KB collection to Wikimedia Commons. All images in this collection are out of copyright in both the Netherlands/EU (life of author + 70 years) and the USA, making them free to use worldwide. Files are tagged with `{{PD-US-expired|PD-old-70}}` on Commons.
-
-## Links
-
-- **Beeldbank**: https://www.nederlandseboekgeschiedenis.nl/nl/beeldbank
-- **Commons Category**: https://commons.wikimedia.org/wiki/Category:Beeldbank_Nederlandse_Boekgeschiedenis
-- **KB (Koninklijke Bibliotheek)**: https://www.kb.nl/
