@@ -15,9 +15,12 @@ venv/
 env/
 .venv/
 
-# Data files (large, contain personal data paths)
-*.xlsx
+# Data files
 images/
+
+# Excel backup/copy files (but keep main data file)
+*- kopie.xlsx
+*-backup*.xlsx
 
 # Generated preview files
 preview_*.html
