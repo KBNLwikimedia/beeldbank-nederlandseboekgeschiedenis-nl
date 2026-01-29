@@ -1,0 +1,35 @@
+# Get all images in Category:Beeldbank Nederlandse Boekgeschiedenis and their KB source URLs
+SELECT ?MediaID ?file ?url ?title ?kbsourceurl ?kbresolverurl
+WITH
+{
+  SELECT ?MediaID ?file ?title
+  WHERE
+  {
+    SERVICE wikibase:mwapi
+    {
+      bd:serviceParam wikibase:api "Generator" .
+      bd:serviceParam wikibase:endpoint "commons.wikimedia.org" .
+      bd:serviceParam mwapi:gcmtitle "Category:Beeldbank Nederlandse Boekgeschiedenis" .
+      bd:serviceParam mwapi:generator "categorymembers" .
+      bd:serviceParam mwapi:gcmtype "file" .
+      bd:serviceParam mwapi:gcmlimit "max" .
+      ?title wikibase:apiOutput mwapi:title .
+      ?pageid wikibase:apiOutput "@pageid" .
+    }
+    BIND(CONCAT('M', ?pageid) AS ?MediaID)   
+    BIND(URI(CONCAT('https://commons.wikimedia.org/entity/', ?MediaID)) AS ?file)
+  }
+} AS %get_files
+WHERE
+{
+  INCLUDE %get_files
+  ?file schema:url ?url.
+  
+  OPTIONAL {
+    ?file p:P7482 ?sourceStatement.
+    ?sourceStatement ps:P7482 ?source.
+    OPTIONAL { ?sourceStatement pq:P973 ?kbsourceurl. }
+    OPTIONAL { ?sourceStatement pq:P953 ?kbresolverurl. }
+  }
+}
+ORDER BY ?MediaID

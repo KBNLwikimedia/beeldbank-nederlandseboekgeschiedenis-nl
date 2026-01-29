@@ -29,11 +29,15 @@ import time
 import json
 import random
 import argparse
+from datetime import datetime
 import pandas as pd
 from dotenv import load_dotenv
 
 # Import the template module
 from commons_template import generate_wikitext, get_upload_filename, get_local_filepath, safe_str
+
+# Import structured data module for adding statements after upload
+import structured_data
 
 # Category exclusions file (exported from preview HTML pages)
 EXCLUSIONS_FILE = 'category_exclusions.json'
@@ -56,6 +60,82 @@ MAX_DELAY = 60              # Maximum delay for backoff
 MAX_RETRIES = 3             # Maximum retries for failed uploads
 BACKOFF_FACTOR = 2          # Exponential backoff multiplier
 JITTER_MAX = 2              # Maximum random jitter to add (seconds)
+
+
+def log(message, level="INFO"):
+    """
+    Print a timestamped log message.
+
+    Args:
+        message: The message to print
+        level: Log level (INFO, SUCCESS, ERROR, WARN, PROGRESS)
+    """
+    timestamp = datetime.now().strftime("%H:%M:%S")
+    # Use ASCII-safe characters for Windows compatibility
+    prefix = {
+        "INFO": "   ",
+        "SUCCESS": "[+]",
+        "ERROR": "[X]",
+        "WARN": "[!]",
+        "PROGRESS": ">>>"
+    }.get(level, "   ")
+    print(f"[{timestamp}]{prefix} {message}")
+
+
+def print_progress_header(current, total, unique_id, title):
+    """
+    Print a progress header for batch processing.
+
+    Args:
+        current: Current item number (1-based)
+        total: Total number of items
+        unique_id: The unique ID being processed
+        title: The title of the item
+    """
+    percent = (current / total) * 100
+    bar_length = 30
+    filled = int(bar_length * current / total)
+    # Use ASCII-safe characters for Windows compatibility
+    bar = "#" * filled + "-" * (bar_length - filled)
+
+    print()
+    print("=" * 80)
+    print(f"  [{bar}] {current}/{total} ({percent:.1f}%)")
+    print(f"  Processing: {unique_id}")
+    if title:
+        display_title = title[:60] + "..." if len(title) > 60 else title
+        print(f"  Title: {display_title}")
+    print("=" * 80)
+
+
+def add_structured_data_after_upload(unique_id):
+    """
+    Add structured data (Dutch description + statements) to a file after upload.
+
+    Args:
+        unique_id: The unique_id of the uploaded record
+
+    Returns:
+        bool: True if successful, False otherwise
+    """
+    log(f"Adding structured data for {unique_id}...", "PROGRESS")
+
+    try:
+        # Add Dutch description
+        log("Adding Dutch description (label)...")
+        structured_data.process_single(unique_id, preview_only=False)
+
+        # Add statements
+        log("Adding Wikibase statements...")
+        success = structured_data.process_statements_single(unique_id, preview_only=False)
+
+        if success:
+            log(f"Structured data added successfully for {unique_id}", "SUCCESS")
+        return success
+
+    except Exception as e:
+        log(f"Failed to add structured data: {e}", "ERROR")
+        return False
 
 
 def throttled_sleep(delay, add_jitter=True):
@@ -182,7 +262,11 @@ def get_commons_site():
 
 def load_excel():
     """Load the Excel file and return the DataFrame."""
-    return pd.read_excel(EXCEL_FILE)
+    # Try 'all' sheet first, fall back to 'Sheet1'
+    try:
+        return pd.read_excel(EXCEL_FILE, sheet_name='all')
+    except ValueError:
+        return pd.read_excel(EXCEL_FILE, sheet_name='Sheet1')
 
 
 def get_commons_mid(site, filename):
@@ -205,29 +289,53 @@ def get_commons_mid(site, filename):
 def save_commons_url(unique_id, commons_url, commons_mid_url=""):
     """
     Save the Commons URL and M-id URL to the Excel file for a given record.
+    Preserves the two-sheet structure (all, public-domain-files).
 
     Args:
         unique_id: The unique_id of the record
         commons_url: The Wikimedia Commons URL
         commons_mid_url: The Wikimedia Commons M-id URL
     """
-    df = pd.read_excel(EXCEL_FILE)
+    try:
+        # Read both sheets to preserve the two-sheet structure
+        df_all = pd.read_excel(EXCEL_FILE, sheet_name='all')
+        df_pd = pd.read_excel(EXCEL_FILE, sheet_name='public-domain-files')
+    except ValueError:
+        # Fallback if sheets don't exist - read default sheet
+        df_all = pd.read_excel(EXCEL_FILE)
+        df_pd = None
 
     # Add columns if they don't exist
-    if 'CommonsURL' not in df.columns:
-        df['CommonsURL'] = ''
-    if 'CommonsMidURL' not in df.columns:
-        df['CommonsMidURL'] = ''
+    for df in [df_all, df_pd] if df_pd is not None else [df_all]:
+        if df is None:
+            continue
+        if 'CommonsURL' not in df.columns:
+            df['CommonsURL'] = ''
+        if 'CommonsMidURL' not in df.columns:
+            df['CommonsMidURL'] = ''
 
-    # Update the URLs for this record
-    mask = df['unique_id'] == unique_id
-    df.loc[mask, 'CommonsURL'] = commons_url
+    # Update the URLs in 'all' sheet
+    mask_all = df_all['unique_id'] == unique_id
+    df_all.loc[mask_all, 'CommonsURL'] = commons_url
     if commons_mid_url:
-        df.loc[mask, 'CommonsMidURL'] = commons_mid_url
+        df_all.loc[mask_all, 'CommonsMidURL'] = commons_mid_url
 
-    # Save back to Excel
-    df.to_excel(EXCEL_FILE, index=False)
-    print(f"Saved CommonsURL and CommonsMidURL for {unique_id}")
+    # Update in 'public-domain-files' sheet if it exists
+    if df_pd is not None:
+        mask_pd = df_pd['unique_id'] == unique_id
+        df_pd.loc[mask_pd, 'CommonsURL'] = commons_url
+        if commons_mid_url:
+            df_pd.loc[mask_pd, 'CommonsMidURL'] = commons_mid_url
+
+    # Save back to Excel, preserving both sheets
+    if df_pd is not None:
+        with pd.ExcelWriter(EXCEL_FILE, engine='openpyxl') as writer:
+            df_all.to_excel(writer, sheet_name='all', index=False)
+            df_pd.to_excel(writer, sheet_name='public-domain-files', index=False)
+    else:
+        df_all.to_excel(EXCEL_FILE, index=False)
+
+    log(f"Saved URLs for {unique_id}")
 
 
 def get_record_by_id(df, unique_id):
@@ -359,55 +467,74 @@ def upload_single(unique_id, preview_only=False):
     Returns:
         bool: True if successful, False otherwise
     """
+    start_time = datetime.now()
+    log(f"Starting upload for {unique_id}", "PROGRESS")
+
     df = load_excel()
     row = get_record_by_id(df, unique_id)
 
     if row is None:
-        print(f"ERROR: Record with unique_id '{unique_id}' not found.")
+        log(f"Record with unique_id '{unique_id}' not found.", "ERROR")
         return False
 
     # Load category exclusions
     exclusions = load_category_exclusions()
     if exclusions:
-        print(f"Loaded category exclusions from {EXCLUSIONS_FILE}")
+        log(f"Loaded category exclusions from {EXCLUSIONS_FILE}")
 
     filename, local_path, wikitext = preview_upload(row, exclusions)
 
     if not os.path.exists(local_path):
-        print(f"\nERROR: Local file not found: {local_path}")
+        log(f"Local file not found: {local_path}", "ERROR")
         return False
 
     if preview_only:
-        print("\n[PREVIEW MODE - No upload performed]")
+        log("PREVIEW MODE - No upload performed", "WARN")
         return True
 
     # Connect and upload
-    print("\nConnecting to Wikimedia Commons...")
+    log("Connecting to Wikimedia Commons...", "PROGRESS")
     site = get_commons_site()
+    log("Connected successfully", "SUCCESS")
 
     # Check if file already exists
+    log("Checking if file exists on Commons...")
     if check_file_exists(site, filename):
-        print(f"\nWARNING: File already exists on Commons: {filename}")
+        log(f"File already exists on Commons: {filename}", "WARN")
         response = input("Overwrite? (y/N): ")
         if response.lower() != 'y':
-            print("Upload cancelled.")
+            log("Upload cancelled by user.", "WARN")
             return False
 
-    print(f"\nUploading: {filename}...")
+    log(f"Uploading: {filename}...", "PROGRESS")
     try:
         result = upload_file(site, local_path, filename, wikitext)
-        print(f"Upload result: {result}")
+        log(f"Upload result: {result.get('result', 'Unknown')}", "SUCCESS")
+
         commons_url = f"https://commons.wikimedia.org/wiki/File:{filename.replace(' ', '_')}"
         commons_mid_url = get_commons_mid(site, filename)
-        print(f"\nSuccess! View at: {commons_url}")
-        print(f"M-id: {commons_mid_url}")
+        log(f"Commons URL: {commons_url}", "SUCCESS")
+        log(f"M-id: {commons_mid_url}")
 
         # Save the Commons URL and M-id URL to Excel
-        save_commons_url(unique_id, commons_url, commons_mid_url)
+        try:
+            save_commons_url(unique_id, commons_url, commons_mid_url)
+            log("Saved URLs to Excel", "SUCCESS")
+        except Exception as e:
+            log(f"Could not save to Excel: {e}", "WARN")
+
+        # Add structured data immediately after upload
+        print()
+        add_structured_data_after_upload(unique_id)
+
+        # Summary
+        duration = datetime.now() - start_time
+        print()
+        log(f"Complete! Total time: {duration}", "SUCCESS")
 
         return True
     except Exception as e:
-        print(f"\nERROR during upload: {e}")
+        log(f"Upload failed: {e}", "ERROR")
         return False
 
 
@@ -424,40 +551,58 @@ def upload_batch(start_idx, end_idx, preview_only=False, delay=5):
     Returns:
         tuple: (successful_count, failed_count)
     """
+    start_time = datetime.now()
     df = load_excel()
 
     if end_idx > len(df):
         end_idx = len(df)
 
-    print(f"Processing rows {start_idx} to {end_idx - 1} ({end_idx - start_idx} records)")
+    total_count = end_idx - start_idx
+
+    print()
+    print("=" * 80)
+    print(f"  BATCH UPLOAD - {total_count} files")
+    print(f"  Started at: {start_time.strftime('%Y-%m-%d %H:%M:%S')}")
+    print(f"  Rows: {start_idx} to {end_idx - 1}")
+    print("=" * 80)
 
     # Load category exclusions
     exclusions = load_category_exclusions()
     if exclusions:
-        print(f"Loaded category exclusions from {EXCLUSIONS_FILE}")
+        log(f"Loaded category exclusions from {EXCLUSIONS_FILE}")
 
     if not preview_only:
-        print("Connecting to Wikimedia Commons...")
+        log("Connecting to Wikimedia Commons...")
         site = get_commons_site()
+        log("Connected successfully", "SUCCESS")
     else:
         site = None
+        log("PREVIEW MODE - No uploads will be performed", "WARN")
 
     successful = 0
     failed = 0
     skipped = 0
+    structured_data_success = 0
+    structured_data_failed = 0
 
     for idx in range(start_idx, end_idx):
         row = df.iloc[idx]
         unique_id = safe_str(row.get('unique_id', ''))
+        titel = safe_str(row.get('titel', ''))
         filename = get_upload_filename(row)
         local_path = get_local_filepath(row)
 
-        print(f"\n[{idx + 1}/{end_idx}] Processing: {unique_id}")
+        current_num = idx - start_idx + 1
+        print_progress_header(current_num, total_count, unique_id, titel)
 
+        # Check local file
         if not os.path.exists(local_path):
-            print(f"  SKIP: Local file not found")
+            log(f"Local file not found: {local_path}", "WARN")
+            log("SKIPPED - File not found", "WARN")
             skipped += 1
             continue
+
+        log(f"Local file: {os.path.basename(local_path)}")
 
         # Apply category exclusions
         if exclusions:
@@ -466,50 +611,79 @@ def upload_batch(start_idx, end_idx, preview_only=False, delay=5):
             if original_cats != filtered_cats:
                 row = row.copy()
                 row['commons_categories'] = filtered_cats
-                print(f"  Categories: {original_cats} -> {filtered_cats}")
+                log(f"Categories filtered: {original_cats} -> {filtered_cats}")
 
         if preview_only:
             wikitext = generate_wikitext(row)
-            print(f"  Filename: {filename}")
-            print(f"  Categories: {safe_str(row.get('commons_categories', ''))}")
+            log(f"Filename: {filename}")
+            log(f"Categories: {safe_str(row.get('commons_categories', ''))}")
+            log("PREVIEW - Would upload this file", "INFO")
             successful += 1
             continue
 
-        # Check if already exists
+        # Check if already exists on Commons
+        log("Checking if file exists on Commons...")
         if check_file_exists(site, filename):
-            print(f"  SKIP: Already exists on Commons")
+            log("File already exists on Commons", "WARN")
+            log("SKIPPED - Already uploaded", "WARN")
             skipped += 1
             continue
 
         # Upload
         try:
+            log(f"Uploading: {filename}...", "PROGRESS")
             wikitext = generate_wikitext(row)
             upload_file(site, local_path, filename, wikitext)
+
             commons_url = f"https://commons.wikimedia.org/wiki/File:{filename.replace(' ', '_')}"
             commons_mid_url = get_commons_mid(site, filename)
-            print(f"  SUCCESS: Uploaded -> {commons_url}")
+            log(f"Upload successful!", "SUCCESS")
+            log(f"Commons URL: {commons_url}")
 
             # Save the Commons URL and M-id URL to Excel
-            save_commons_url(unique_id, commons_url, commons_mid_url)
+            try:
+                save_commons_url(unique_id, commons_url, commons_mid_url)
+                log("Saved URLs to Excel", "SUCCESS")
+            except Exception as e:
+                log(f"Could not save to Excel: {e}", "WARN")
 
             successful += 1
 
-            # Throttled delay between uploads to be nice to the server
+            # Add structured data immediately after upload
+            log("", "INFO")  # Empty line for readability
+            if add_structured_data_after_upload(unique_id):
+                structured_data_success += 1
+            else:
+                structured_data_failed += 1
+
+            # Throttled delay between files
             if idx < end_idx - 1:
+                log("", "INFO")  # Empty line for readability
                 throttled_sleep(delay, add_jitter=True)
 
         except Exception as e:
-            print(f"  FAILED: {e}")
+            log(f"Upload failed: {e}", "ERROR")
             failed += 1
 
             # Add extra delay after failures to avoid hammering the server
             if idx < end_idx - 1:
-                backoff_delay = exponential_backoff(0, delay)  # Use base backoff
-                print(f"  Adding cooldown after failure...")
+                backoff_delay = exponential_backoff(0, delay)
+                log(f"Adding cooldown after failure...")
                 throttled_sleep(backoff_delay, add_jitter=True)
 
-    print(f"\n{'=' * 40}")
-    print(f"Batch complete: {successful} successful, {failed} failed, {skipped} skipped")
+    # Final summary
+    end_time = datetime.now()
+    duration = end_time - start_time
+
+    print()
+    print("=" * 80)
+    print(f"  BATCH COMPLETE")
+    print("=" * 80)
+    print(f"  Duration: {duration}")
+    print(f"  Uploads:  {successful} successful, {failed} failed, {skipped} skipped")
+    print(f"  Structured data: {structured_data_success} successful, {structured_data_failed} failed")
+    print("=" * 80)
+
     return successful, failed
 
 

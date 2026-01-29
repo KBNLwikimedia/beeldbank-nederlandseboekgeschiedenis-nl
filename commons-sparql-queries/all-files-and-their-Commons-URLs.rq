@@ -1,0 +1,26 @@
+# Get all files in Category:Beeldbank Nederlandse Boekgeschiedenis and their Commons URLs 
+SELECT ?MediaID ?file ?Title ?FullimageUrl1 ?FullimageUrl2 ?PageUrl ?PageShortUrl1
+WHERE
+{
+  SERVICE wikibase:mwapi
+  {
+    bd:serviceParam wikibase:api "Generator" .
+    bd:serviceParam wikibase:endpoint "commons.wikimedia.org" .
+    bd:serviceParam mwapi:gcmtitle "Category:Beeldbank Nederlandse Boekgeschiedenis" .
+    bd:serviceParam mwapi:generator "categorymembers" .
+    bd:serviceParam mwapi:gcmtype "file" .
+    bd:serviceParam mwapi:gcmlimit "max" .
+    bd:serviceParam mwapi:prop "imageinfo" .
+    bd:serviceParam mwapi:iiprop "url" .
+    ?Title wikibase:apiOutput mwapi:title .
+    ?pageid wikibase:apiOutput "@pageid" .
+    ?FullimageUrl1 wikibase:apiOutputURI "imageinfo/ii/@url" .
+  }
+  BIND(CONCAT('M', ?pageid) AS ?MediaID)   
+  BIND(URI(CONCAT('https://commons.wikimedia.org/entity/', ?MediaID)) AS ?file)
+  BIND(REPLACE(?Title, " ", "_") AS ?titleUnderscore)      
+  BIND(URI(CONCAT('https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file&wpvalue=', ?titleUnderscore)) AS ?FullimageUrl2)      
+  BIND(URI(CONCAT('https://commons.wikimedia.org/wiki/', ?titleUnderscore)) AS ?PageUrl) 
+  BIND(URI(CONCAT('https://commons.wikimedia.org/w/index.php?curid=', ?pageid)) AS ?PageShortUrl1)
+}
+ORDER BY ?MediaID

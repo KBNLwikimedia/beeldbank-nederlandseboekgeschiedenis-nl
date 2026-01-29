@@ -651,35 +651,51 @@ def add_dutch_description(session, csrf_token, mid, description, summary="Adding
 
 def load_excel():
     """Load the Excel file and return the DataFrame."""
-    return pd.read_excel(EXCEL_FILE, sheet_name='all')
+    # Try 'all' sheet first, fall back to 'Sheet1'
+    try:
+        return pd.read_excel(EXCEL_FILE, sheet_name='all')
+    except ValueError:
+        return pd.read_excel(EXCEL_FILE, sheet_name='Sheet1')
 
 
 def update_structured_data_status(unique_id):
     """
     Update the structured_data_added column to True for a record in both sheets.
+    Preserves the two-sheet structure (all, public-domain-files).
 
     Args:
         unique_id: The unique_id of the record (e.g., 'BBB-1')
     """
     try:
-        # Read both sheets
-        df_all = pd.read_excel(EXCEL_FILE, sheet_name='all')
-        df_pd = pd.read_excel(EXCEL_FILE, sheet_name='public-domain-files')
+        # Try to read both sheets to preserve the two-sheet structure
+        try:
+            df_all = pd.read_excel(EXCEL_FILE, sheet_name='all')
+            df_pd = pd.read_excel(EXCEL_FILE, sheet_name='public-domain-files')
+        except ValueError:
+            # Fallback if sheets don't exist - read default sheet
+            df_all = pd.read_excel(EXCEL_FILE)
+            df_pd = None
 
-        # Ensure column exists
+        # Ensure column exists in all sheet
         if 'structured_data_added' not in df_all.columns:
             df_all['structured_data_added'] = False
-        if 'structured_data_added' not in df_pd.columns:
-            df_pd['structured_data_added'] = False
 
-        # Update in both sheets
+        # Update in 'all' sheet
         df_all.loc[df_all['unique_id'] == unique_id, 'structured_data_added'] = True
-        df_pd.loc[df_pd['unique_id'] == unique_id, 'structured_data_added'] = True
 
-        # Save
-        with pd.ExcelWriter(EXCEL_FILE, engine='openpyxl') as writer:
-            df_all.to_excel(writer, sheet_name='all', index=False)
-            df_pd.to_excel(writer, sheet_name='public-domain-files', index=False)
+        # Update in 'public-domain-files' sheet if it exists
+        if df_pd is not None:
+            if 'structured_data_added' not in df_pd.columns:
+                df_pd['structured_data_added'] = False
+            df_pd.loc[df_pd['unique_id'] == unique_id, 'structured_data_added'] = True
+
+        # Save, preserving both sheets if they exist
+        if df_pd is not None:
+            with pd.ExcelWriter(EXCEL_FILE, engine='openpyxl') as writer:
+                df_all.to_excel(writer, sheet_name='all', index=False)
+                df_pd.to_excel(writer, sheet_name='public-domain-files', index=False)
+        else:
+            df_all.to_excel(EXCEL_FILE, index=False)
 
         print(f"Updated structured_data_added=True for {unique_id}")
     except Exception as e:

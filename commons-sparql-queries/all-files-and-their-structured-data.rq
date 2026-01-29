@@ -1,0 +1,98 @@
+# Get all images in Category:Beeldbank Nederlandse Boekgeschiedenis and their Structured Data fields (SDoC)
+SELECT DISTINCT ?MediaID ?file ?title ?url  
+?captionNL
+?sdc_title ?collectionLabel ?copyrightstatusLabel
+?instanceOfLabel ?mediatype
+?kbsourceurl ?kbresolverurl
+
+# Step 1: Get files from category
+WITH
+{
+  SELECT ?MediaID ?file ?title
+  WHERE
+  {
+    SERVICE wikibase:mwapi
+    {
+      bd:serviceParam wikibase:api "Generator" .
+      bd:serviceParam wikibase:endpoint "commons.wikimedia.org" .
+      bd:serviceParam mwapi:gcmtitle "Category:Beeldbank Nederlandse Boekgeschiedenis" .
+      bd:serviceParam mwapi:generator "categorymembers" .
+      bd:serviceParam mwapi:gcmtype "file" .
+      bd:serviceParam mwapi:gcmlimit "max" .
+      ?title wikibase:apiOutput mwapi:title .
+      ?pageid wikibase:apiOutput "@pageid" .
+    }
+    BIND(CONCAT('M', ?pageid) AS ?MediaID)   
+    BIND(URI(CONCAT('https://commons.wikimedia.org/entity/', ?MediaID)) AS ?file)
+  }
+} AS %get_files
+
+# Step 2: Get SDC properties (without Wikidata labels yet)
+WITH
+{
+  SELECT ?file ?url ?captionNL ?sdc_title ?collection ?copyrightstatus ?instanceOf ?mediatype ?kbsourceurl ?kbresolverurl
+  WHERE
+  {
+    INCLUDE %get_files
+    ?file schema:url ?url.
+    
+    OPTIONAL { ?file rdfs:label ?captionNL. FILTER(LANG(?captionNL) = "nl") }
+    OPTIONAL { ?file wdt:P1476 ?sdc_title. } 
+    OPTIONAL { ?file wdt:P195 ?collection. }
+    OPTIONAL { ?file wdt:P6216 ?copyrightstatus. }
+    OPTIONAL { ?file wdt:P31 ?instanceOf. }
+    OPTIONAL { ?file wdt:P1163 ?mediatype. }
+    OPTIONAL { ?file p:P7482 [ps:P7482 ?source; pq:P973 ?kbsourceurl]. }
+    OPTIONAL { ?file p:P7482 [ps:P7482 ?source; pq:P953 ?kbresolverurl]. }
+  }
+} AS %get_sdc
+
+# Step 3: Get collection labels from Wikidata (batched)
+WITH
+{
+  SELECT ?collection ?collectionLabel
+  WHERE
+  {
+    { SELECT DISTINCT ?collection WHERE { INCLUDE %get_sdc FILTER(BOUND(?collection)) } }
+    SERVICE <https://query.wikidata.org/sparql> {
+      ?collection rdfs:label ?collectionLabel. FILTER(LANG(?collectionLabel) = "en")
+    }
+  }
+} AS %get_collection_labels
+
+# Step 4: Get copyright status labels from Wikidata (batched)
+WITH
+{
+  SELECT ?copyrightstatus ?copyrightstatusLabel
+  WHERE
+  {
+    { SELECT DISTINCT ?copyrightstatus WHERE { INCLUDE %get_sdc FILTER(BOUND(?copyrightstatus)) } }
+    SERVICE <https://query.wikidata.org/sparql> {
+      ?copyrightstatus rdfs:label ?copyrightstatusLabel. FILTER(LANG(?copyrightstatusLabel) = "en")
+    }
+  }
+} AS %get_copyright_labels
+
+# Step 5: Get instanceOf labels from Wikidata (batched)
+WITH
+{
+  SELECT ?instanceOf ?instanceOfLabel
+  WHERE
+  {
+    { SELECT DISTINCT ?instanceOf WHERE { INCLUDE %get_sdc FILTER(BOUND(?instanceOf)) } }
+    SERVICE <https://query.wikidata.org/sparql> {
+      ?instanceOf rdfs:label ?instanceOfLabel. FILTER(LANG(?instanceOfLabel) = "en")
+    }
+  }
+} AS %get_instanceof_labels
+
+# Main query: Join everything together
+WHERE
+{
+  INCLUDE %get_files
+  INCLUDE %get_sdc
+  OPTIONAL { INCLUDE %get_collection_labels }
+  OPTIONAL { INCLUDE %get_copyright_labels }
+  OPTIONAL { INCLUDE %get_instanceof_labels }
+}
+ORDER BY ASC(?MediaID)

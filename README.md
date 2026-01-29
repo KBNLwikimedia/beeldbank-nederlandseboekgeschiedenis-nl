@@ -9,21 +9,33 @@
 
 ETL pipeline for the **Beeldbank (Image Bank) of Nederlandse Boekgeschiedenis (Dutch Book History)** website, hosted by the KB (Koninklijke Bibliotheek / National Library of the Netherlands).
 
-https://www.nederlandseboekgeschiedenis.nl/nl/beeldbank
+* Source of images: https://www.nederlandseboekgeschiedenis.nl/nl/beeldbank
+* Result: Images uploaded to Wikimedia Commons: [Category:Beeldbank Nederlandse Boekgeschiedenis](https://commons.wikimedia.org/wiki/Category:Beeldbank_Nederlandse_Boekgeschiedenis)
+
+## Project Status: Complete
+
+| Metric | Count |
+|--------|-------|
+| Total items in collection | 1,632 |
+| Public domain items | 803 |
+| **Uploaded to Commons** | **803 (100%)** |
+| **With structured data** | **803 (100%)** |
+
+All 803 public domain files have been successfully uploaded to Wikimedia Commons with complete metadata (using the `{{Artwork}}` template) and structured data (Wikibase statements). The uploads were completed on **29 January 2026**.
 
 ## Project Scope
 
-This project 
-* **Extracts** metadata and images from the **1,635 digitized historical book-related items** in the [Beeldbank Nederlandse Boekgeschiedenis](https://www.nederlandseboekgeschiedenis.nl/nl/beeldbank), 
-* **Transforms** them into Wikimedia Commons suitable data and 
-* **upLoads** them to Wikimedia Commons with proper metadata, structured data, and categorization.
+This project:
+* **Extracted** metadata and images from the **1,632 digitized historical book-related items** in the [Beeldbank Nederlandse Boekgeschiedenis](https://www.nederlandseboekgeschiedenis.nl/nl/beeldbank),
+* **Transformed** them into Wikimedia Commons suitable data, and
+* **Loaded** all 803 public domain files to Wikimedia Commons with proper metadata, structured data, and categorization.
 
-### Goals
-- Scrape all metadata and image URLs from the Beeldbank
-- Download high-resolution images locally
-- Upload images to Wikimedia Commons using the `{{Artwork}}` template
-- Add structured data (Wikibase statements) to each file
-- Properly categorize files based on classification
+### Completed Goals
+- Scraped all metadata and image URLs from the Beeldbank (1,632 items)
+- Downloaded high-resolution images locally
+- Uploaded 803 public domain images to Wikimedia Commons using the `{{Artwork}}` template
+- Added structured data (Wikibase statements) to all 803 files
+- Properly categorized files based on classification
 
 ### Relevant websites
 - **Beeldbank search interface**: https://www.nederlandseboekgeschiedenis.nl/nl/beeldbank
@@ -237,6 +249,25 @@ Each uploaded file receives the following Wikibase statements:
 | ↳ P973 | Described at URL | (from `detail_url`) |
 
 Additionally, a Dutch label (caption) is added from the `titel` column.
+
+## Quality Control: SPARQL Queries
+
+The `commons-sparql-queries/` folder contains SPARQL queries for quality checking the uploaded files and their structured data via the [Wikimedia Commons Query Service](https://commons.wikimedia.org/wiki/Special:SPARQL).
+
+| Query File | Description |
+|------------|-------------|
+| `all-files-and-their-structured-data.rq` | Retrieves all structured data fields for each file: Dutch caption, title (P1476), collection (P195), copyright status (P6216), instance of (P31), MIME type (P1163), and source URLs. Use this to verify completeness of structured data. |
+| `all-files-and-their-KB-source-URLs.rq` | Retrieves the KB source URLs from the P7482 (source of file) statement: P973 (described at URL) and P953 (full work available at URL). Use this to verify all files have proper source attribution. |
+| `all-files-and-their-Commons-URLs.rq` | Generates various Commons URLs for each file: full image URL, file page URL, and short URL. Useful for creating link lists or verifying file accessibility. |
+
+### Running the Queries
+
+1. Go to [Wikimedia Commons Query Service](https://commons.wikimedia.org/wiki/Special:SPARQL) (login required)
+2. Copy the content of a `.rq` file and paste it into the query editor
+3. Click "Run" to execute the query
+4. Results can be downloaded as CSV, JSON, or other formats
+
+These queries retrieve all files from [Category:Beeldbank Nederlandse Boekgeschiedenis](https://commons.wikimedia.org/wiki/Category:Beeldbank_Nederlandse_Boekgeschiedenis) and display their metadata, making it easy to identify files with missing or incorrect structured data.
 
 ## Artwork Template Mapping
 
