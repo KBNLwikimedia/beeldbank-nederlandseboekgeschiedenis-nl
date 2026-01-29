@@ -105,9 +105,9 @@ The `commons-sparql-queries/` folder contains SPARQL queries for quality checkin
 
 | Query File | Description |
 |------------|-------------|
-| `all-files-and-their-structured-data.rq` | Retrieves all structured data fields for each file: Dutch caption, title (P1476), collection (P195), copyright status (P6216), instance of (P31), MIME type (P1163), and source URLs. Use this to verify completeness of structured data. |
-| `all-files-and-their-KB-source-URLs.rq` | Retrieves the KB source URLs from the P7482 (source of file) statement: P973 (described at URL) and P953 (full work available at URL). Use this to verify all files have proper source attribution. |
-| `all-files-and-their-Commons-URLs.rq` | Generates various Commons URLs for each file: full image URL, file page URL, and short URL. Useful for creating link lists or verifying file accessibility. |
+| [`all-files-and-their-structured-data.rq`](commons-sparql-queries/all-files-and-their-structured-data.rq) | Retrieves all structured data fields for each file: Dutch caption, title (P1476), collection (P195), copyright status (P6216), instance of (P31), MIME type (P1163), and source URLs. Use this to verify completeness of structured data. |
+| [`all-files-and-their-KB-source-URLs.rq`](commons-sparql-queries/all-files-and-their-KB-source-URLs.rq) | Retrieves the KB source URLs from the P7482 (source of file) statement: P973 (described at URL) and P953 (full work available at URL). Use this to verify all files have proper source attribution. |
+| [`all-files-and-their-Commons-URLs.rq`](commons-sparql-queries/all-files-and-their-Commons-URLs.rq) | Generates various Commons URLs for each file: full image URL, file page URL, and short URL. Useful for creating link lists or verifying file accessibility. |
 
 ### Running the Queries
 
