@@ -12,6 +12,38 @@ ETL pipeline for the **Beeldbank (Image Bank) of Nederlandse Boekgeschiedenis (D
 * Source of images: https://www.nederlandseboekgeschiedenis.nl/nl/beeldbank
 * Result: Images uploaded to Wikimedia Commons: [Category:Beeldbank Nederlandse Boekgeschiedenis](https://commons.wikimedia.org/wiki/Category:Beeldbank_Nederlandse_Boekgeschiedenis)
 
+## Table of Contents
+
+### Outcomes
+- [Project Status](#project-status-complete)
+- [Examples of Uploaded Images](#examples-of-uploaded-images)
+- [Excel Data File](#excel-data-file)
+- [Quality Control: SPARQL Queries](#quality-control-sparql-queries)
+
+### Project Context
+- [Project Scope](#project-scope)
+- [Completed Goals](#completed-goals)
+- [Copyright Status](#copyright-status)
+- [Relevant Websites](#relevant-websites)
+
+### Approach
+- [Technical Approach](#technical-approach)
+- [Structured Data Statements](#structured-data-statements)
+- [Artwork Template Mapping](#artwork-template-mapping)
+- [Classification to Commons Categories Mapping](#classification-to-commons-categories-mapping)
+
+### Technical Reference
+- [Scripts](#scripts)
+- [Preview and Review Pages](#preview-and-review-pages)
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Requirements](#requirements)
+- [License](#license)
+
+---
+
+# Outcomes
+
 ## Project Status: Complete
 
 | Metric | Count |
@@ -23,34 +55,7 @@ ETL pipeline for the **Beeldbank (Image Bank) of Nederlandse Boekgeschiedenis (D
 
 All 803 public domain files have been successfully uploaded to Wikimedia Commons with complete metadata (using the `{{Artwork}}` template) and structured data (Wikibase statements). The uploads were completed on **29 January 2026**.
 
-## Project Scope
-
-This project:
-* **Extracted** metadata and images from the **1,632 digitized historical book-related items** in the [Beeldbank Nederlandse Boekgeschiedenis](https://www.nederlandseboekgeschiedenis.nl/nl/beeldbank),
-* **Transformed** them into Wikimedia Commons suitable data, and
-* **Loaded** all 803 public domain files to Wikimedia Commons with proper metadata, structured data, and categorization.
-
-### Completed Goals
-- Scraped all metadata and image URLs from the Beeldbank (1,632 items)
-- Downloaded high-resolution images locally
-- Uploaded 803 public domain images to Wikimedia Commons using the `{{Artwork}}` template
-- Added structured data (Wikibase statements) to all 803 files
-- Properly categorized files based on classification
-
-### Relevant websites
-- **Beeldbank search interface**: https://www.nederlandseboekgeschiedenis.nl/nl/beeldbank
-- **Image resolver**: `http://resolver.kb.nl/resolve?urn=urn:BBB:{urn}`
-- **Commons category**: [Category:Beeldbank Nederlandse Boekgeschiedenis](https://commons.wikimedia.org/wiki/Category:Beeldbank_Nederlandse_Boekgeschiedenis)
-- **KB (Koninklijke Bibliotheek)**: https://www.kb.nl/
-
-<img src="media-assets/beeldbank-homepage-with-results.jpg" alt="Beeldbank Nederlandse Boekgeschiedenis search interface" width="350"><br>
-<em>Homepage with search results of https://www.nederlandseboekgeschiedenis.nl/nl/beeldbank, dd 28-01-2026</em>
-
-### Copyright Status
-
-This project targets only images that are **in the public domain** - works that are out of copyright both in the Netherlands/EU and in the USA. The collection primarily contains historical book-related materials (manuscripts, prints, illustrations) from before the 20th century, ensuring they are no longer protected by copyright in any major jurisdiction.
-
-## Examples of uploaded images
+## Examples of Uploaded Images
 
 Three example files uploaded to [Wikimedia Commons](https://commons.wikimedia.org/wiki/Category:Beeldbank_Nederlandse_Boekgeschiedenis):
 
@@ -60,6 +65,95 @@ Three example files uploaded to [Wikimedia Commons](https://commons.wikimedia.or
 | [![BBB-2](https://commons.wikimedia.org/wiki/Special:FilePath/De_verdrijving_uit_het_paradijs_uit_Passio_Domini_nostri_Iesu_Christi_Amsterdam,_1523_-_BBB-2.jpg?width=80)](https://commons.wikimedia.org/wiki/File:De_verdrijving_uit_het_paradijs_uit_Passio_Domini_nostri_Iesu_Christi_Amsterdam,_1523_-_BBB-2.jpg) | BBB-2 | "De verdrijving uit het paradijs" uit "Passio Domini nostri Iesu Christi", Amsterdam, 1523 | [View on Commons](https://commons.wikimedia.org/wiki/File:De_verdrijving_uit_het_paradijs_uit_Passio_Domini_nostri_Iesu_Christi_Amsterdam,_1523_-_BBB-2.jpg) |
 | [![BBB-3](https://commons.wikimedia.org/wiki/Special:FilePath/Vita_splendida_uit_Recht_ghebruyck_ende_misbruck_van_tydlycke_have_Leiden,_1585_-_BBB-3.jpg?width=80)](https://commons.wikimedia.org/wiki/File:Vita_splendida_uit_Recht_ghebruyck_ende_misbruck_van_tydlycke_have_Leiden,_1585_-_BBB-3.jpg) | BBB-3 | 'Vita splendida' uit "Recht ghebruyck ende misbruck van tydlycke have", Leiden, 1585 | [View on Commons](https://commons.wikimedia.org/wiki/File:Vita_splendida_uit_Recht_ghebruyck_ende_misbruck_van_tydlycke_have_Leiden,_1585_-_BBB-3.jpg) |
 
+## Excel Data File
+
+The main data file (`nbg-beeldbank_all_24012026.xlsx`) contains all scraped metadata and upload tracking information.
+
+**Sheets:**
+- **all**: All 1,632 records with tracking columns
+- **public-domain-files**: 803 records filtered for public domain (pre-1886)
+
+**Columns:**
+
+| Column | Description | Used in Template |
+|--------|-------------|------------------|
+| `unique_id` | Record identifier (e.g., BBB-1) | Source field |
+| `titel` | Title of the item | `title`, P1476 |
+| `WikiCommonsFilename` | Target filename on Commons | Upload filename |
+| `datum` | Date/year | `date` |
+| `vervaardiger` | Creator/maker | `artist` |
+| `periode` | Century/period | Not used |
+| `type` | Type (Dutch, English) | `object type` (bilingual) |
+| `afmetingen` | Dimensions | `dimensions` |
+| `inhoud` | Description | `description` (wrapped in `{{nl|...}}`) |
+| `classificatie` | Classification codes | Mapped to Commons categories |
+| `gerelateerde_term` | Related terms | Not used |
+| `origineel` | Original source | `notes` (prefixed) |
+| `aanwezig_in` | Location/Institution | `accession number` |
+| `image_url` | Full resolution image URL | Source field, P953 |
+| `detail_url` | Link to detail page | Source field, P973 |
+| `local_image_path` | Path to downloaded image | Upload source |
+| `commons_categories` | Mapped Commons categories | Categories |
+| `in_public_domain_files` | Whether file is in public domain | Filter for upload |
+| `CommonsURL` | Wikimedia Commons file URL | After upload |
+| `CommonsMidURL` | Commons M-id entity URL | After upload |
+| `structured_data_added` | Whether structured data was added | Tracking |
+
+## Quality Control: SPARQL Queries
+
+The `commons-sparql-queries/` folder contains SPARQL queries for quality checking the uploaded files and their structured data via the [Wikimedia Commons Query Service](https://commons.wikimedia.org/wiki/Special:SPARQL).
+
+| Query File | Description |
+|------------|-------------|
+| `all-files-and-their-structured-data.rq` | Retrieves all structured data fields for each file: Dutch caption, title (P1476), collection (P195), copyright status (P6216), instance of (P31), MIME type (P1163), and source URLs. Use this to verify completeness of structured data. |
+| `all-files-and-their-KB-source-URLs.rq` | Retrieves the KB source URLs from the P7482 (source of file) statement: P973 (described at URL) and P953 (full work available at URL). Use this to verify all files have proper source attribution. |
+| `all-files-and-their-Commons-URLs.rq` | Generates various Commons URLs for each file: full image URL, file page URL, and short URL. Useful for creating link lists or verifying file accessibility. |
+
+### Running the Queries
+
+1. Go to [Wikimedia Commons Query Service](https://commons.wikimedia.org/wiki/Special:SPARQL) (login required)
+2. Copy the content of a `.rq` file and paste it into the query editor
+3. Click "Run" to execute the query
+4. Results can be downloaded as CSV, JSON, or other formats
+
+These queries retrieve all files from [Category:Beeldbank Nederlandse Boekgeschiedenis](https://commons.wikimedia.org/wiki/Category:Beeldbank_Nederlandse_Boekgeschiedenis) and display their metadata, making it easy to identify files with missing or incorrect structured data.
+
+---
+
+# Project Context
+
+## Project Scope
+
+This project:
+* **Extracted** metadata and images from the **1,632 digitized historical book-related items** in the [Beeldbank Nederlandse Boekgeschiedenis](https://www.nederlandseboekgeschiedenis.nl/nl/beeldbank),
+* **Transformed** them into Wikimedia Commons suitable data, and
+* **Loaded** all 803 public domain files to Wikimedia Commons with proper metadata, structured data, and categorization.
+
+## Completed Goals
+
+- Scraped all metadata and image URLs from the Beeldbank (1,632 items)
+- Downloaded high-resolution images locally
+- Uploaded 803 public domain images to Wikimedia Commons using the `{{Artwork}}` template
+- Added structured data (Wikibase statements) to all 803 files
+- Properly categorized files based on classification
+
+## Copyright Status
+
+This project targets only images that are **in the public domain** - works that are out of copyright both in the Netherlands/EU and in the USA. The collection primarily contains historical book-related materials (manuscripts, prints, illustrations) from before the 20th century, ensuring they are no longer protected by copyright in any major jurisdiction.
+
+## Relevant Websites
+
+- **Beeldbank search interface**: https://www.nederlandseboekgeschiedenis.nl/nl/beeldbank
+- **Image resolver**: `http://resolver.kb.nl/resolve?urn=urn:BBB:{urn}`
+- **Commons category**: [Category:Beeldbank Nederlandse Boekgeschiedenis](https://commons.wikimedia.org/wiki/Category:Beeldbank_Nederlandse_Boekgeschiedenis)
+- **KB (Koninklijke Bibliotheek)**: https://www.kb.nl/
+
+<img src="media-assets/beeldbank-homepage-with-results.jpg" alt="Beeldbank Nederlandse Boekgeschiedenis search interface" width="350"><br>
+<em>Homepage with search results of https://www.nederlandseboekgeschiedenis.nl/nl/beeldbank, dd 28-01-2026</em>
+
+---
+
+# Approach
 
 ## Technical Approach
 
@@ -82,6 +176,64 @@ Three example files uploaded to [Wikimedia Commons](https://commons.wikimedia.or
 4. **Map categories** - Map Dutch classifications to Commons categories
 5. **Upload to Commons** (`uploader.py`) - Upload images with `{{Artwork}}` template
 6. **Add structured data** (`structured_data.py`) - Add Wikibase statements to each file
+
+## Structured Data Statements
+
+Each uploaded file receives the following Wikibase statements:
+
+| Property | Name | Value |
+|----------|------|-------|
+| P31 | Instance of | Q1250322 (digital image) |
+| P195 | Collection | Q1526131 (Koninklijke Bibliotheek) |
+| P6216 | Copyright status | Q19652 (public domain) |
+| P1163 | MIME type | image/jpeg |
+| P1476 | Title | (from `titel` column, Dutch) |
+| P7482 | Source of file | Q74228490 (file available on the internet) |
+| ↳ P137 | Operator | Q1526131 (Koninklijke Bibliotheek) |
+| ↳ P953 | Full work available at URL | (from `image_url`) |
+| ↳ P973 | Described at URL | (from `detail_url`) |
+
+Additionally, a Dutch label (caption) is added from the `titel` column.
+
+## Artwork Template Mapping
+
+The `{{Artwork}}` template is populated as follows:
+
+| Template Field | Source / Excel column | Required |
+|----------------|----------------------|----------|
+| `title` | `titel` | Optional |
+| `artist` | `vervaardiger` | Recommended |
+| `description` | `inhoud` (wrapped in `{{nl\|1=...}}`) | Optional |
+| `date` | `datum` | Optional |
+| `dimensions` | `afmetingen` | Optional |
+| `object type` | `type` (formatted as `{{nl\|...}} {{en\|...}}`) | Optional |
+| `institution` | Static: `{{Institution:Koninklijke Bibliotheek}}` | Optional |
+| `source` | Composite from `image_url`, `detail_url`, `unique_id` | **Required** |
+| `accession number` | `aanwezig_in` | Optional |
+| `notes` | `origineel` (prefixed with "Orgineel:") | Optional |
+
+**License**: `{{PD-US-expired|PD-old-70}}`
+
+## Classification to Commons Categories Mapping
+
+Only specific Dutch classifications are mapped to Commons categories (to avoid overly broad categorization):
+
+| Code | Dutch Classification | Commons Category |
+|------|---------------------|------------------|
+| C | Paleografie, letterontwerp, lettertypen, lettergieten, schrift | [Dutch typography](https://commons.wikimedia.org/wiki/Category:Dutch_typography) |
+| D | Geschiedenis van de boekdrukkunst | [Printing in the Netherlands](https://commons.wikimedia.org/wiki/Category:Printing_in_the_Netherlands) |
+| F | Bindkunst | [Bookbinding in the Netherlands](https://commons.wikimedia.org/wiki/Category:Bookbinding_in_the_Netherlands) |
+| J | Bibliotheken en instellingen | [Libraries in the Netherlands](https://commons.wikimedia.org/wiki/Category:Libraries_in_the_Netherlands) |
+
+**Excluded classifications** (too broad):
+- B, E, G, H, K, L (book-specific but no Dutch variant)
+- M0-M9 (general subject classifications)
+
+All files are automatically added to `[[Category:Beeldbank Nederlandse Boekgeschiedenis]]`.
+
+---
+
+# Technical Reference
 
 ## Scripts
 
@@ -146,56 +298,7 @@ python structured_data.py --all BBB-1
 python structured_data.py --batch 0 10 --all
 ```
 
-## Excel Columns
-
-The main data file (`nbg-beeldbank_all_24012026.xlsx`) contains the following columns:
-
-| Column | Description | Used in Template |
-|--------|-------------|------------------|
-| `unique_id` | Record identifier (e.g., BBB-1) | Source field |
-| `titel` | Title of the item | `title`, P1476 |
-| `WikiCommonsFilename` | Target filename on Commons | Upload filename |
-| `datum` | Date/year | `date` |
-| `vervaardiger` | Creator/maker | `artist` |
-| `periode` | Century/period | Not used |
-| `type` | Type (Dutch, English) | `object type` (bilingual) |
-| `afmetingen` | Dimensions | `dimensions` |
-| `inhoud` | Description | `description` (wrapped in `{{nl|...}}`) |
-| `classificatie` | Classification codes | Mapped to Commons categories |
-| `gerelateerde_term` | Related terms | Not used |
-| `origineel` | Original source | `notes` (prefixed) |
-| `aanwezig_in` | Location/Institution | `accession number` |
-| `image_url` | Full resolution image URL | Source field, P953 |
-| `detail_url` | Link to detail page | Source field, P973 |
-| `local_image_path` | Path to downloaded image | Upload source |
-| `commons_categories` | Mapped Commons categories | Categories |
-| `in_public_domain_files` | Whether file is in public domain | Filter for upload |
-| `CommonsURL` | Wikimedia Commons file URL | After upload |
-| `CommonsMidURL` | Commons M-id entity URL | After upload |
-| `structured_data_added` | Whether structured data was added | Tracking |
-
-The Excel file contains two sheets:
-- **all**: All 1,632 records with tracking columns
-- **public-domain-files**: 803 records filtered for public domain (pre-1886)
-
-## Classification to Commons Categories Mapping
-
-Only specific Dutch classifications are mapped to Commons categories (to avoid overly broad categorization):
-
-| Code | Dutch Classification | Commons Category |
-|------|---------------------|------------------|
-| C | Paleografie, letterontwerp, lettertypen, lettergieten, schrift | [Dutch typography](https://commons.wikimedia.org/wiki/Category:Dutch_typography) |
-| D | Geschiedenis van de boekdrukkunst | [Printing in the Netherlands](https://commons.wikimedia.org/wiki/Category:Printing_in_the_Netherlands) |
-| F | Bindkunst | [Bookbinding in the Netherlands](https://commons.wikimedia.org/wiki/Category:Bookbinding_in_the_Netherlands) |
-| J | Bibliotheken en instellingen | [Libraries in the Netherlands](https://commons.wikimedia.org/wiki/Category:Libraries_in_the_Netherlands) |
-
-**Excluded classifications** (too broad):
-- B, E, G, H, K, L (book-specific but no Dutch variant)
-- M0-M9 (general subject classifications)
-
-All files are automatically added to `[[Category:Beeldbank Nederlandse Boekgeschiedenis]]`.
-
-### Preview and Review Pages
+## Preview and Review Pages
 
 The `previews/` folder contains HTML pages for reviewing images before upload. These require a local web server:
 
@@ -205,7 +308,7 @@ python -m http.server 8000  # Start server in project root
 
 Then open pages at `http://localhost:8000/previews/...`
 
-#### Public Domain Review
+### Public Domain Review
 
 Review all 803 public domain images to verify copyright status:
 
@@ -213,7 +316,7 @@ Review all 803 public domain images to verify copyright status:
 
 Features: view images with ID/title/date, flag images as NOT public domain, search/filter, export flagged IDs.
 
-#### Category Selection
+### Category Selection
 
 Select which images should receive specific Commons categories:
 
@@ -231,62 +334,6 @@ Generate all preview pages:
 ```bash
 python create_preview.py
 ```
-
-## Structured Data Statements
-
-Each uploaded file receives the following Wikibase statements:
-
-| Property | Name | Value |
-|----------|------|-------|
-| P31 | Instance of | Q1250322 (digital image) |
-| P195 | Collection | Q1526131 (Koninklijke Bibliotheek) |
-| P6216 | Copyright status | Q19652 (public domain) |
-| P1163 | MIME type | image/jpeg |
-| P1476 | Title | (from `titel` column, Dutch) |
-| P7482 | Source of file | Q74228490 (file available on the internet) |
-| ↳ P137 | Operator | Q1526131 (Koninklijke Bibliotheek) |
-| ↳ P953 | Full work available at URL | (from `image_url`) |
-| ↳ P973 | Described at URL | (from `detail_url`) |
-
-Additionally, a Dutch label (caption) is added from the `titel` column.
-
-## Quality Control: SPARQL Queries
-
-The `commons-sparql-queries/` folder contains SPARQL queries for quality checking the uploaded files and their structured data via the [Wikimedia Commons Query Service](https://commons.wikimedia.org/wiki/Special:SPARQL).
-
-| Query File | Description |
-|------------|-------------|
-| `all-files-and-their-structured-data.rq` | Retrieves all structured data fields for each file: Dutch caption, title (P1476), collection (P195), copyright status (P6216), instance of (P31), MIME type (P1163), and source URLs. Use this to verify completeness of structured data. |
-| `all-files-and-their-KB-source-URLs.rq` | Retrieves the KB source URLs from the P7482 (source of file) statement: P973 (described at URL) and P953 (full work available at URL). Use this to verify all files have proper source attribution. |
-| `all-files-and-their-Commons-URLs.rq` | Generates various Commons URLs for each file: full image URL, file page URL, and short URL. Useful for creating link lists or verifying file accessibility. |
-
-### Running the Queries
-
-1. Go to [Wikimedia Commons Query Service](https://commons.wikimedia.org/wiki/Special:SPARQL) (login required)
-2. Copy the content of a `.rq` file and paste it into the query editor
-3. Click "Run" to execute the query
-4. Results can be downloaded as CSV, JSON, or other formats
-
-These queries retrieve all files from [Category:Beeldbank Nederlandse Boekgeschiedenis](https://commons.wikimedia.org/wiki/Category:Beeldbank_Nederlandse_Boekgeschiedenis) and display their metadata, making it easy to identify files with missing or incorrect structured data.
-
-## Artwork Template Mapping
-
-The `{{Artwork}}` template is populated as follows:
-
-| Template Field | Source / Excel column                                 | Required |
-|----------------|-------------------------------------------------------|----------|
-| `title` | `titel`                                               | Optional |
-| `artist` | `vervaardiger`                                        | Recommended |
-| `description` | `inhoud` (wrapped in `{{nl                            |1=...}}`) | Optional |
-| `date` | `datum`                                               | Optional |
-| `dimensions` | `afmetingen`                                          | Optional |
-| `object type` | `type` (formatted as `{{nl                            |...}} {{en|...}}`) | Optional |
-| `institution` | Static: `{{Institution:Koninklijke Bibliotheek}}`     | Optional |
-| `source` | Composite from `image_url`, `detail_url`, `unique_id` | **Required** |
-| `accession number` | `aanwezig_in`                                         | Optional |
-| `notes` | `origineel` (prefixed with "Orgineel:")               | Optional |
-
-**License**: `{{PD-US-expired|PD-old-70}}`
 
 ## Installation
 
