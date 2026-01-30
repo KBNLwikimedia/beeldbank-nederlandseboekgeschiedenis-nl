@@ -300,39 +300,97 @@ python structured_data.py --batch 0 10 --all
 
 ## Preview and Review Pages
 
-The `previews/` folder contains HTML pages for reviewing images before upload. These require a local web server:
+The `previews/` folder contains HTML-based tools for reviewing and processing images. All pages require a local web server:
 
 ```bash
-python -m http.server 8000  # Start server in project root
+python -m http.server 8000  # Start in project root, then open http://localhost:8000/previews/
 ```
 
-Then open pages at `http://localhost:8000/previews/...`
+**Browser requirement:** Use Chrome or Edge (Firefox doesn't support the File System Access API for saving).
 
-### Public Domain Review
+See [`previews/README.md`](previews/README.md) for detailed documentation.
 
-Review all 803 public domain images to verify copyright status:
+### Overview
 
-- **[Public Domain Review](previews/pd_review_all.html)** - All images with pagination (100 per page)
+| Page | Purpose | Status |
+|------|---------|--------|
+| [pd_review_all.html](previews/pd_review_all.html) | Verify the 803 pre-1886 files are truly public domain | Completed |
+| [non_pd_review.html](previews/non_pd_review.html) | Find additional PD files among the 829 non-PD items | 197 files found |
+| [pd_template_selector.html](previews/pd_template_selector.html) | Assign license templates to newly discovered files | In progress |
+| [pd_preview_all.html](previews/pd_preview_all.html) | Select Commons categories for uploaded files | Completed |
 
-Features: view images with ID/title/date, flag images as NOT public domain, search/filter, export flagged IDs.
+---
 
-### Category Selection
+### 1. Verifying Public Domain Files (Completed)
 
-Select which images should receive specific Commons categories:
+Used `pd_review_all.html` to visually verify all 803 pre-1886 files were correctly identified as public domain.
 
-- **[All categories (combined)](previews/pd_preview_all.html)** - Tabbed interface with all 4 categories
-- [Dutch typography](previews/pd_preview_dutch_typography.html) (44 images)
-- [Printing in the Netherlands](previews/pd_preview_printing_netherlands.html) (300 images)
-- [Bookbinding in the Netherlands](previews/pd_preview_bookbinding_netherlands.html) (98 images)
-- [Libraries in the Netherlands](previews/pd_preview_libraries_netherlands.html) (50 images)
+**Features:** Pagination (100/page), flag incorrect files, search/filter, export flagged IDs.
 
-Exclusions are saved to `category_exclusions.json` which is read by `uploader.py`.
+---
 
-**Note:** Use Chrome or Edge (Firefox doesn't support the File System Access API for saving).
+### 2. Discovering Additional Public Domain Files
 
-Generate all preview pages:
+The initial 803 files were clearly public domain (pre-1886). However, the remaining 829 files may also contain public domain works:
+
+| Reason | Example |
+|--------|---------|
+| **Unknown creator** | No death date → cannot calculate copyright expiration |
+| **Anonymous work** | 70+ years since publication → public domain in EU |
+| **Institutional work** | Publishers/companies may have different rules |
+
+**Result:** 197 additional public domain files were discovered.
+
+#### Workflow
+
+```
+┌─────────────────────┐     ┌─────────────────────┐     ┌─────────────────┐
+│  1. Non-PD Review   │ --> │ 2. PD Template      │ --> │ 3. Upload to    │
+│                     │     │    Selector         │     │    Commons      │
+└─────────────────────┘     └─────────────────────┘     └─────────────────┘
+         ↓                           ↓                          ↓
+ newly_discovered_           pd_template_               Files with correct
+ public_domain.json          assignments.json           license templates
+```
+
+#### Step-by-step
+
 ```bash
-python create_preview.py
+# Generate the review pages
+python create_non_pd_review.py
+python create_pd_template_selector.py
+
+# Start webserver
+python -m http.server 8000
+```
+
+1. **Open** [non_pd_review.html](http://localhost:8000/previews/non_pd_review.html)
+2. **Review** images by creator (use sidebar), mark files that ARE public domain
+3. **Export** → Click "Export PD IDs for Upload" → saves [`newly_discovered_public_domain.json`](previews/newly_discovered_public_domain.json)
+4. **Open** [pd_template_selector.html](http://localhost:8000/previews/pd_template_selector.html)
+5. **Assign templates:**
+   - Click "Auto-assign Unknown (PD-anon-70-EU)" for anonymous works
+   - Click "Auto-assign Remaining (PD-old-70)" for known creators
+   - Review and adjust individual files as needed
+6. **Upload:** `python upload_new_pd_files.py newly_discovered_public_domain.json`
+
+---
+
+### 3. Category Selection (Completed)
+
+Used `pd_preview_all.html` to select which images receive specific Commons categories. Images are grouped by classification, allowing exclusion of specific files from each category.
+
+| Category | Images |
+|----------|--------|
+| [Dutch typography](previews/pd_preview_dutch_typography.html) | 44 |
+| [Printing in the Netherlands](previews/pd_preview_printing_netherlands.html) | 300 |
+| [Bookbinding in the Netherlands](previews/pd_preview_bookbinding_netherlands.html) | 98 |
+| [Libraries in the Netherlands](previews/pd_preview_libraries_netherlands.html) | 50 |
+
+Exclusions saved to `category_exclusions.json`, read by `uploader.py`.
+
+```bash
+python create_preview.py  # Regenerate preview pages
 ```
 
 ## Installation
