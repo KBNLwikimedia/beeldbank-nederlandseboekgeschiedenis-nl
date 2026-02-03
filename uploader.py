@@ -12,7 +12,7 @@ Usage:
 Category Exclusions:
     The uploader reads 'category_exclusions.json' to determine which categories
     should NOT be applied to specific files. This file is exported from the
-    preview HTML pages (previews/pd_preview_*.html) using the "Export JSON" button.
+    preview HTML pages (tools/previews/pd_preview_*.html) using the "Export JSON" button.
 
     JSON structure:
     {

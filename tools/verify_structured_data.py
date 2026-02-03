@@ -1,11 +1,21 @@
 """
 Verify which uploaded files have structured data on Commons.
 Updates the structured_data_added column in both Excel sheets.
+
+Usage:
+    python tools/verify_structured_data.py
 """
+import os
+import sys
+
+# Ensure we're working from project root
+script_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.dirname(script_dir)
+os.chdir(project_root)
+sys.path.insert(0, project_root)
 
 import pandas as pd
 import mwclient
-import os
 import time
 from dotenv import load_dotenv
 

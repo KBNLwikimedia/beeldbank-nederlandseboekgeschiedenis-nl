@@ -1,4 +1,4 @@
-<img src="../media-assets/Logo_koninklijke_bibliotheek.svg" alt="KB Logo" width="250" align="right">
+<img src="../../media-assets/Logo_koninklijke_bibliotheek.svg" alt="KB Logo" width="250" align="right">
 
 # Preview and Review Pages
 
@@ -8,7 +8,7 @@ These HTML pages allow you to review images before uploading to Wikimedia Common
 
 Use the **public domain review page** to visually verify all 803 images are truly in the public domain:
 
-- **[Public Domain Review](http://localhost:8000/previews/pd_review_all.html)** - Review ALL public domain files (9 pages of 100 images)
+- **[Public Domain Review](http://localhost:8000/tools/previews/pd_review_all.html)** - Review ALL public domain files (9 pages of 100 images)
 
 ### Features
 
@@ -23,7 +23,7 @@ Use the **public domain review page** to visually verify all 803 images are trul
 ### How to use
 
 1. Start local server: `python -m http.server 8000`
-2. Open: http://localhost:8000/previews/pd_review_all.html
+2. Open: http://localhost:8000/tools/previews/pd_review_all.html
 3. Navigate pages using buttons or arrow keys (← →)
 4. Click "✓ OK" on any image that is NOT in the public domain
 5. Use "Export Flagged IDs" to download the list
@@ -53,11 +53,11 @@ python -m http.server 8000
 
 With the server running, open the preview pages in your browser:
 
-- **[All categories (combined)](http://localhost:8000/previews/pd_preview_all.html)** - Tabbed interface with all 4 categories
-- [Dutch typography](http://localhost:8000/previews/pd_preview_dutch_typography.html)
-- [Printing in the Netherlands](http://localhost:8000/previews/pd_preview_printing_netherlands.html)
-- [Bookbinding in the Netherlands](http://localhost:8000/previews/pd_preview_bookbinding_netherlands.html)
-- [Libraries in the Netherlands](http://localhost:8000/previews/pd_preview_libraries_netherlands.html)
+- **[All categories (combined)](http://localhost:8000/tools/previews/pd_preview_all.html)** - Tabbed interface with all 4 categories
+- [Dutch typography](http://localhost:8000/tools/previews/pd_preview_dutch_typography.html)
+- [Printing in the Netherlands](http://localhost:8000/tools/previews/pd_preview_printing_netherlands.html)
+- [Bookbinding in the Netherlands](http://localhost:8000/tools/previews/pd_preview_bookbinding_netherlands.html)
+- [Libraries in the Netherlands](http://localhost:8000/tools/previews/pd_preview_libraries_netherlands.html)
 
 ### 3. Select Images
 
@@ -91,7 +91,7 @@ python uploader.py BBB-123            # Upload with filtered categories
 | `pd_preview_printing_netherlands.html` | Preview for Printing in the Netherlands category |
 | `pd_preview_bookbinding_netherlands.html` | Preview for Bookbinding in the Netherlands category |
 | `pd_preview_libraries_netherlands.html` | Preview for Libraries in the Netherlands category |
-| `../category_exclusions.json` | Stores excluded image IDs per category (in project root) |
+| `../../category_exclusions.json` | Stores excluded image IDs per category (in project root) |
 | `non_pd_review.html` | **Find hidden public domain files** - review non-PD images |
 | `non_pd_review_progress.json` | Stores marked items and removed creators |
 | `newly_discovered_public_domain.json` | Exported list of newly discovered PD files |
@@ -104,7 +104,7 @@ python uploader.py BBB-123            # Upload with filtered categories
 
 Use this page to find images that may have been incorrectly classified as non-public-domain:
 
-- **[Non-PD Review](http://localhost:8000/previews/non_pd_review.html)** - Review 829 non-public-domain files
+- **[Non-PD Review](http://localhost:8000/tools/previews/non_pd_review.html)** - Review 829 non-public-domain files
 
 ### Purpose
 
@@ -159,9 +159,9 @@ The **creator** and **date** fields are stored because:
 
 ### How to Use
 
-1. **Generate the page**: `python create_non_pd_review.py`
+1. **Generate the page**: `python tools/create_non_pd_review.py`
 2. **Start local server**: `python -m http.server 8000`
-3. **Open**: http://localhost:8000/previews/non_pd_review.html
+3. **Open**: http://localhost:8000/tools/previews/non_pd_review.html
 4. **Review images**:
    - Use creator sidebar to focus on specific creators
    - Click "NOT PD" button to mark images that ARE public domain
@@ -170,7 +170,11 @@ The **creator** and **date** fields are stored because:
 5. **Save progress**: Click "Save Progress" (first time: select `non_pd_review_progress.json`)
 6. **Export for upload**: Click "Export PD IDs for Upload" → downloads `newly_discovered_public_domain.json`
 7. **Assign templates**: Use the PD Template Selector (see below)
-8. **Upload**: `python upload_new_pd_files.py newly_discovered_public_domain.json`
+8. **Upload**:
+   ```bash
+   python tools/upload_new_pd_files.py --dry-run  # Preview first
+   python tools/upload_new_pd_files.py            # Upload all files
+   ```
 
 ### Browser Requirements
 
@@ -184,31 +188,30 @@ Progress auto-loads from `non_pd_review_progress.json` when you open the page.
 
 After discovering new public domain files, use this page to assign the correct Wikimedia Commons copyright template to each file:
 
-- **[PD Template Selector](http://localhost:8000/previews/pd_template_selector.html)** - Assign templates to newly discovered files
+- **[PD Template Selector](http://localhost:8000/tools/previews/pd_template_selector.html)** - Assign templates to newly discovered files
 
 ### Purpose
 
 Different public domain works require different license templates on Wikimedia Commons:
-- **Known creators**: Use `{{PD-old-70}}` if author died 70+ years ago
+- **Known creators**: Use `{{PD-old-70-expired}}` if author died 70+ years ago
 - **Unknown/anonymous creators**: Use `{{PD-anon-70-EU}}` for anonymous EU works
-- **Very old works**: Use `{{PD-old-100}}` for works over 100 years old
+- **Artwork reproductions**: Use `{{PD-Art|PD-old-70-expired}}` for faithful reproductions of 2D PD artwork
 
 ### Available Templates
 
 | Template | Use for | Documentation |
 |----------|---------|---------------|
-| `{{PD-US-expired\|PD-old-70}}` | Default - known authors who died 70+ years ago | [docs](https://commons.wikimedia.org/wiki/Template:PD-old-70) |
-| `{{PD-anon-70-EU}}` | **Unknown creators** - anonymous works 70+ years old | [docs](https://commons.wikimedia.org/wiki/Template:PD-anon-70-EU) |
-| `{{PD-old-100}}` | Very old works (100+ years) | [docs](https://commons.wikimedia.org/wiki/Template:PD-old-100) |
-| `{{PD-US-1929}}` | Published before 1929 | [docs](https://commons.wikimedia.org/wiki/Template:PD-US-1929) |
-| `{{PD-old-auto-expired\|deathyear=}}` | When death year is known | [docs](https://commons.wikimedia.org/wiki/Template:PD-old-auto-expired) |
-| `{{PD-1996}}` | PD in source country before 1996 | [docs](https://commons.wikimedia.org/wiki/Template:PD-1996) |
+| `{{PD-old-70-expired}}` | Default - known authors who died 70+ years ago | [docs](https://commons.wikimedia.org/wiki/Template:PD-old-70-expired) |
+| `{{PD-anon-70-EU}}` | **Unknown creators** - anonymous works 70+ years old (EU) | [docs](https://commons.wikimedia.org/wiki/Template:PD-anon-70-EU) |
+| `{{PD-anon-expired}}` | Anonymous work, expired copyright (70+ years since publication) | [docs](https://commons.wikimedia.org/wiki/Template:PD-anon-expired) |
+| `{{PD-Art\|PD-old-70-expired}}` | Faithful reproduction of 2D public domain artwork | [docs](https://commons.wikimedia.org/wiki/Template:PD-Art) |
 
 ### Features
 
 | Feature | Description |
 |---------|-------------|
 | **Progress bar** | Shows how many templates assigned |
+| **Bulk-assign by creator** | Select creator in sidebar, assign all their files at once |
 | **Auto-assign buttons** | One-click assign all unknown → PD-anon-70-EU |
 | **Filter/Search** | By status (assigned/unassigned), creator type, or text |
 | **Template dropdown** | Select template for each image with description |
@@ -218,12 +221,21 @@ Different public domain works require different license templates on Wikimedia C
 
 ### How to Use
 
-1. **Generate the page**: `python create_pd_template_selector.py`
+1. **Generate the page**: `python tools/create_pd_template_selector.py`
 2. **Start local server**: `python -m http.server 8000`
-3. **Open**: http://localhost:8000/previews/pd_template_selector.html
-4. **Quick assignment**:
+3. **Open**: http://localhost:8000/tools/previews/pd_template_selector.html
+4. **Bulk assignment by creator**:
+   - Select a creator in the left sidebar
+   - Use the bulk-assign buttons that appear below pagination
+   - Assign all their files to a specific template at once
+5. **Quick global assignment**:
    - Click **"Auto-assign Unknown (PD-anon-70-EU)"** for all unknown creators
-   - Click **"Auto-assign Remaining (PD-old-70)"** for remaining items
-5. **Review and adjust**: Check individual items and change templates as needed
-6. **Save**: Click "Save Assignments" (first time: select `pd_template_assignments.json`)
-7. **Export**: Click "Export for Upload" to download `pd_templates_for_upload.json`
+   - Click **"Auto-assign Remaining (PD-old-70-expired)"** for remaining items
+6. **Review and adjust**: Check individual items and change templates as needed
+7. **Save**: Click "Save Assignments" (first time: select `pd_template_assignments.json`)
+8. **Export**: Click "Export for Upload" to download `pd_templates_for_upload.json`
+9. **Upload**:
+   ```bash
+   python tools/upload_new_pd_files.py --dry-run  # Preview first
+   python tools/upload_new_pd_files.py            # Upload all files
+   ```

@@ -1,0 +1,796 @@
+{
+  "description": "PD template assignments for newly discovered public domain files",
+  "saved_at": "2026-01-31T12:31:21.440Z",
+  "total_items": 197,
+  "assigned_count": 197,
+  "assignments": {
+    "BBB-171": {
+      "templateId": "pd-anon-expired",
+      "template": "{{PD-anon-expired}}"
+    },
+    "BBB-118": {
+      "templateId": "pd-anon-expired",
+      "template": "{{PD-anon-expired}}"
+    },
+    "BBB-235": {
+      "templateId": "pd-anon-expired",
+      "template": "{{PD-anon-expired}}"
+    },
+    "BBB-236": {
+      "templateId": "pd-anon-expired",
+      "template": "{{PD-anon-expired}}"
+    },
+    "BBB-237": {
+      "templateId": "pd-anon-expired",
+      "template": "{{PD-anon-expired}}"
+    },
+    "BBB-239": {
+      "templateId": "pd-anon-expired",
+      "template": "{{PD-anon-expired}}"
+    },
+    "BBB-356": {
+      "templateId": "pd-anon-expired",
+      "template": "{{PD-anon-expired}}"
+    },
+    "BBB-393": {
+      "templateId": "pd-anon-expired",
+      "template": "{{PD-anon-expired}}"
+    },
+    "BBB-417": {
+      "templateId": "pd-anon-expired",
+      "template": "{{PD-anon-expired}}"
+    },
+    "BBB-482": {
+      "templateId": "pd-anon-expired",
+      "template": "{{PD-anon-expired}}"
+    },
+    "BBB-565": {
+      "templateId": "pd-anon-expired",
+      "template": "{{PD-anon-expired}}"
+    },
+    "BBB-567": {
+      "templateId": "pd-anon-70-eu",
+      "template": "{{PD-anon-70-EU}}"
+    },
+    "BBB-768": {
+      "templateId": "pd-anon-expired",
+      "template": "{{PD-anon-expired}}"
+    },
+    "BBB-770": {
+      "templateId": "pd-anon-expired",
+      "template": "{{PD-anon-expired}}"
+    },
+    "BBB-772": {
+      "templateId": "pd-anon-expired",
+      "template": "{{PD-anon-expired}}"
+    },
+    "BBB-773": {
+      "templateId": "pd-anon-expired",
+      "template": "{{PD-anon-expired}}"
+    },
+    "BBB-776": {
+      "templateId": "pd-anon-expired",
+      "template": "{{PD-anon-expired}}"
+    },
+    "BBB-779": {
+      "templateId": "pd-anon-expired",
+      "template": "{{PD-anon-expired}}"
+    },
+    "BBB-780": {
+      "templateId": "pd-anon-expired",
+      "template": "{{PD-anon-expired}}"
+    },
+    "BBB-781": {
+      "templateId": "pd-anon-70-eu",
+      "template": "{{PD-anon-70-EU}}"
+    },
+    "BBB-970": {
+      "templateId": "pd-anon-expired",
+      "template": "{{PD-anon-expired}}"
+    },
+    "BBB-986": {
+      "templateId": "pd-anon-expired",
+      "template": "{{PD-anon-expired}}"
+    },
+    "BBB-987": {
+      "templateId": "pd-anon-expired",
+      "template": "{{PD-anon-expired}}"
+    },
+    "BBB-988": {
+      "templateId": "pd-anon-expired",
+      "template": "{{PD-anon-expired}}"
+    },
+    "BBB-989": {
+      "templateId": "pd-anon-expired",
+      "template": "{{PD-anon-expired}}"
+    },
+    "BBB-990": {
+      "templateId": "pd-anon-expired",
+      "template": "{{PD-anon-expired}}"
+    },
+    "BBB-991": {
+      "templateId": "pd-anon-expired",
+      "template": "{{PD-anon-expired}}"
+    },
+    "BBB-993": {
+      "templateId": "pd-anon-70-eu",
+      "template": "{{PD-anon-70-EU}}"
+    },
+    "BBB-994": {
+      "templateId": "pd-anon-expired",
+      "template": "{{PD-anon-expired}}"
+    },
+    "BBB-998": {
+      "templateId": "pd-anon-expired",
+      "template": "{{PD-anon-expired}}"
+    },
+    "BBB-999": {
+      "templateId": "pd-anon-expired",
+      "template": "{{PD-anon-expired}}"
+    },
+    "BBB-1000": {
+      "templateId": "pd-anon-expired",
+      "template": "{{PD-anon-expired}}"
+    },
+    "BBB-1001": {
+      "templateId": "pd-anon-expired",
+      "template": "{{PD-anon-expired}}"
+    },
+    "BBB-1003": {
+      "templateId": "pd-anon-expired",
+      "template": "{{PD-anon-expired}}"
+    },
+    "BBB-1004": {
+      "templateId": "pd-anon-expired",
+      "template": "{{PD-anon-expired}}"
+    },
+    "BBB-1005": {
+      "templateId": "pd-anon-expired",
+      "template": "{{PD-anon-expired}}"
+    },
+    "BBB-1006": {
+      "templateId": "pd-anon-70-eu",
+      "template": "{{PD-anon-70-EU}}"
+    },
+    "BBB-1008": {
+      "templateId": "pd-anon-70-eu",
+      "template": "{{PD-anon-70-EU}}"
+    },
+    "BBB-1009": {
+      "templateId": "pd-anon-70-eu",
+      "template": "{{PD-anon-70-EU}}"
+    },
+    "BBB-1059": {
+      "templateId": "pd-anon-expired",
+      "template": "{{PD-anon-expired}}"
+    },
+    "BBB-1064": {
+      "templateId": "pd-anon-expired",
+      "template": "{{PD-anon-expired}}"
+    },
+    "BBB-1088": {
+      "templateId": "pd-anon-expired",
+      "template": "{{PD-anon-expired}}"
+    },
+    "BBB-1089": {
+      "templateId": "pd-anon-expired",
+      "template": "{{PD-anon-expired}}"
+    },
+    "BBB-1100": {
+      "templateId": "pd-anon-expired",
+      "template": "{{PD-anon-expired}}"
+    },
+    "BBB-1101": {
+      "templateId": "pd-anon-expired",
+      "template": "{{PD-anon-expired}}"
+    },
+    "BBB-1111": {
+      "templateId": "pd-anon-expired",
+      "template": "{{PD-anon-expired}}"
+    },
+    "BBB-1112": {
+      "templateId": "pd-anon-expired",
+      "template": "{{PD-anon-expired}}"
+    },
+    "BBB-1113": {
+      "templateId": "pd-anon-expired",
+      "template": "{{PD-anon-expired}}"
+    },
+    "BBB-1127": {
+      "templateId": "pd-anon-expired",
+      "template": "{{PD-anon-expired}}"
+    },
+    "BBB-1210": {
+      "templateId": "pd-anon-expired",
+      "template": "{{PD-anon-expired}}"
+    },
+    "BBB-1247": {
+      "templateId": "pd-anon-70-eu",
+      "template": "{{PD-anon-70-EU}}"
+    },
+    "BBB-1248": {
+      "templateId": "pd-anon-70-eu",
+      "template": "{{PD-anon-70-EU}}"
+    },
+    "BBB-1250": {
+      "templateId": "pd-anon-expired",
+      "template": "{{PD-anon-expired}}"
+    },
+    "BBB-1251": {
+      "templateId": "pd-anon-expired",
+      "template": "{{PD-anon-expired}}"
+    },
+    "BBB-1253": {
+      "templateId": "pd-anon-70-eu",
+      "template": "{{PD-anon-70-EU}}"
+    },
+    "BBB-1254": {
+      "templateId": "pd-anon-expired",
+      "template": "{{PD-anon-expired}}"
+    },
+    "BBB-1255": {
+      "templateId": "pd-anon-expired",
+      "template": "{{PD-anon-expired}}"
+    },
+    "BBB-1256": {
+      "templateId": "pd-anon-expired",
+      "template": "{{PD-anon-expired}}"
+    },
+    "BBB-1257": {
+      "templateId": "pd-anon-expired",
+      "template": "{{PD-anon-expired}}"
+    },
+    "BBB-1258": {
+      "templateId": "pd-anon-expired",
+      "template": "{{PD-anon-expired}}"
+    },
+    "BBB-1259": {
+      "templateId": "pd-anon-expired",
+      "template": "{{PD-anon-expired}}"
+    },
+    "BBB-1261": {
+      "templateId": "pd-anon-expired",
+      "template": "{{PD-anon-expired}}"
+    },
+    "BBB-1262": {
+      "templateId": "pd-anon-expired",
+      "template": "{{PD-anon-expired}}"
+    },
+    "BBB-1266": {
+      "templateId": "pd-anon-expired",
+      "template": "{{PD-anon-expired}}"
+    },
+    "BBB-1385": {
+      "templateId": "pd-anon-expired",
+      "template": "{{PD-anon-expired}}"
+    },
+    "BBB-1387": {
+      "templateId": "pd-anon-expired",
+      "template": "{{PD-anon-expired}}"
+    },
+    "BBB-1388": {
+      "templateId": "pd-anon-expired",
+      "template": "{{PD-anon-expired}}"
+    },
+    "BBB-1391": {
+      "templateId": "pd-anon-expired",
+      "template": "{{PD-anon-expired}}"
+    },
+    "BBB-1392": {
+      "templateId": "pd-anon-expired",
+      "template": "{{PD-anon-expired}}"
+    },
+    "BBB-1394": {
+      "templateId": "pd-anon-expired",
+      "template": "{{PD-anon-expired}}"
+    },
+    "BBB-1397": {
+      "templateId": "pd-anon-expired",
+      "template": "{{PD-anon-expired}}"
+    },
+    "BBB-1406": {
+      "templateId": "pd-anon-expired",
+      "template": "{{PD-anon-expired}}"
+    },
+    "BBB-1518": {
+      "templateId": "pd-anon-expired",
+      "template": "{{PD-anon-expired}}"
+    },
+    "BBB-1537": {
+      "templateId": "pd-anon-expired",
+      "template": "{{PD-anon-expired}}"
+    },
+    "BBB-1538": {
+      "templateId": "pd-anon-expired",
+      "template": "{{PD-anon-expired}}"
+    },
+    "BBB-1560": {
+      "templateId": "pd-anon-expired",
+      "template": "{{PD-anon-expired}}"
+    },
+    "BBB-1217": {
+      "templateId": "pd-art",
+      "template": "{{PD-Art|PD-old-70-expired}}"
+    },
+    "BBB-1218": {
+      "templateId": "pd-art",
+      "template": "{{PD-Art|PD-old-70-expired}}"
+    },
+    "BBB-1219": {
+      "templateId": "pd-art",
+      "template": "{{PD-Art|PD-old-70-expired}}"
+    },
+    "BBB-1220": {
+      "templateId": "pd-art",
+      "template": "{{PD-Art|PD-old-70-expired}}"
+    },
+    "BBB-1221": {
+      "templateId": "pd-art",
+      "template": "{{PD-Art|PD-old-70-expired}}"
+    },
+    "BBB-1223": {
+      "templateId": "pd-art",
+      "template": "{{PD-Art|PD-old-70-expired}}"
+    },
+    "BBB-1224": {
+      "templateId": "pd-art",
+      "template": "{{PD-Art|PD-old-70-expired}}"
+    },
+    "BBB-1225": {
+      "templateId": "pd-art",
+      "template": "{{PD-Art|PD-old-70-expired}}"
+    },
+    "BBB-1226": {
+      "templateId": "pd-art",
+      "template": "{{PD-Art|PD-old-70-expired}}"
+    },
+    "BBB-1227": {
+      "templateId": "pd-art",
+      "template": "{{PD-Art|PD-old-70-expired}}"
+    },
+    "BBB-1228": {
+      "templateId": "pd-art",
+      "template": "{{PD-Art|PD-old-70-expired}}"
+    },
+    "BBB-1229": {
+      "templateId": "pd-art",
+      "template": "{{PD-Art|PD-old-70-expired}}"
+    },
+    "BBB-1230": {
+      "templateId": "pd-art",
+      "template": "{{PD-Art|PD-old-70-expired}}"
+    },
+    "BBB-1231": {
+      "templateId": "pd-art",
+      "template": "{{PD-Art|PD-old-70-expired}}"
+    },
+    "BBB-1232": {
+      "templateId": "pd-art",
+      "template": "{{PD-Art|PD-old-70-expired}}"
+    },
+    "BBB-1233": {
+      "templateId": "pd-art",
+      "template": "{{PD-Art|PD-old-70-expired}}"
+    },
+    "BBB-1234": {
+      "templateId": "pd-art",
+      "template": "{{PD-Art|PD-old-70-expired}}"
+    },
+    "BBB-1236": {
+      "templateId": "pd-art",
+      "template": "{{PD-Art|PD-old-70-expired}}"
+    },
+    "BBB-641": {
+      "templateId": "pd-old-70",
+      "template": "{{PD-old-70-expired}}"
+    },
+    "BBB-642": {
+      "templateId": "pd-old-70",
+      "template": "{{PD-old-70-expired}}"
+    },
+    "BBB-643": {
+      "templateId": "pd-old-70",
+      "template": "{{PD-old-70-expired}}"
+    },
+    "BBB-644": {
+      "templateId": "pd-old-70",
+      "template": "{{PD-old-70-expired}}"
+    },
+    "BBB-645": {
+      "templateId": "pd-anon-70-eu",
+      "template": "{{PD-anon-70-EU}}"
+    },
+    "BBB-646": {
+      "templateId": "pd-anon-70-eu",
+      "template": "{{PD-anon-70-EU}}"
+    },
+    "BBB-654": {
+      "templateId": "pd-anon-70-eu",
+      "template": "{{PD-anon-70-EU}}"
+    },
+    "BBB-659": {
+      "templateId": "pd-anon-70-eu",
+      "template": "{{PD-anon-70-EU}}"
+    },
+    "BBB-661": {
+      "templateId": "pd-anon-70-eu",
+      "template": "{{PD-anon-70-EU}}"
+    },
+    "BBB-669": {
+      "templateId": "pd-anon-70-eu",
+      "template": "{{PD-anon-70-EU}}"
+    },
+    "BBB-670": {
+      "templateId": "pd-anon-70-eu",
+      "template": "{{PD-anon-70-EU}}"
+    },
+    "BBB-671": {
+      "templateId": "pd-anon-70-eu",
+      "template": "{{PD-anon-70-EU}}"
+    },
+    "BBB-1268": {
+      "templateId": "pd-art",
+      "template": "{{PD-Art|PD-old-70-expired}}"
+    },
+    "BBB-1282": {
+      "templateId": "pd-art",
+      "template": "{{PD-Art|PD-old-70-expired}}"
+    },
+    "BBB-1295": {
+      "templateId": "pd-art",
+      "template": "{{PD-Art|PD-old-70-expired}}"
+    },
+    "BBB-1296": {
+      "templateId": "pd-art",
+      "template": "{{PD-Art|PD-old-70-expired}}"
+    },
+    "BBB-1297": {
+      "templateId": "pd-art",
+      "template": "{{PD-Art|PD-old-70-expired}}"
+    },
+    "BBB-1298": {
+      "templateId": "pd-art",
+      "template": "{{PD-Art|PD-old-70-expired}}"
+    },
+    "BBB-1300": {
+      "templateId": "pd-art",
+      "template": "{{PD-Art|PD-old-70-expired}}"
+    },
+    "BBB-1301": {
+      "templateId": "pd-art",
+      "template": "{{PD-Art|PD-old-70-expired}}"
+    },
+    "BBB-1302": {
+      "templateId": "pd-art",
+      "template": "{{PD-Art|PD-old-70-expired}}"
+    },
+    "BBB-1304": {
+      "templateId": "pd-art",
+      "template": "{{PD-Art|PD-old-70-expired}}"
+    },
+    "BBB-833": {
+      "templateId": "pd-art",
+      "template": "{{PD-Art|PD-old-70-expired}}"
+    },
+    "BBB-1128": {
+      "templateId": "pd-art",
+      "template": "{{PD-Art|PD-old-70-expired}}"
+    },
+    "BBB-1129": {
+      "templateId": "pd-art",
+      "template": "{{PD-Art|PD-old-70-expired}}"
+    },
+    "BBB-1130": {
+      "templateId": "pd-art",
+      "template": "{{PD-Art|PD-old-70-expired}}"
+    },
+    "BBB-1131": {
+      "templateId": "pd-art",
+      "template": "{{PD-Art|PD-old-70-expired}}"
+    },
+    "BBB-1132": {
+      "templateId": "pd-art",
+      "template": "{{PD-Art|PD-old-70-expired}}"
+    },
+    "BBB-1133": {
+      "templateId": "pd-art",
+      "template": "{{PD-Art|PD-old-70-expired}}"
+    },
+    "BBB-111": {
+      "templateId": "pd-art",
+      "template": "{{PD-Art|PD-old-70-expired}}"
+    },
+    "BBB-112": {
+      "templateId": "pd-art",
+      "template": "{{PD-Art|PD-old-70-expired}}"
+    },
+    "BBB-1371": {
+      "templateId": "pd-art",
+      "template": "{{PD-Art|PD-old-70-expired}}"
+    },
+    "BBB-1372": {
+      "templateId": "pd-art",
+      "template": "{{PD-Art|PD-old-70-expired}}"
+    },
+    "BBB-1313": {
+      "templateId": "pd-art",
+      "template": "{{PD-Art|PD-old-70-expired}}"
+    },
+    "BBB-1318": {
+      "templateId": "pd-art",
+      "template": "{{PD-Art|PD-old-70-expired}}"
+    },
+    "BBB-1319": {
+      "templateId": "pd-art",
+      "template": "{{PD-Art|PD-old-70-expired}}"
+    },
+    "BBB-858": {
+      "templateId": "pd-old-70",
+      "template": "{{PD-old-70-expired}}"
+    },
+    "BBB-859": {
+      "templateId": "pd-old-70",
+      "template": "{{PD-old-70-expired}}"
+    },
+    "BBB-1197": {
+      "templateId": "pd-old-70",
+      "template": "{{PD-old-70-expired}}"
+    },
+    "BBB-418": {
+      "templateId": "pd-art",
+      "template": "{{PD-Art|PD-old-70-expired}}"
+    },
+    "BBB-419": {
+      "templateId": "pd-art",
+      "template": "{{PD-Art|PD-old-70-expired}}"
+    },
+    "BBB-1311": {
+      "templateId": "pd-art",
+      "template": "{{PD-Art|PD-old-70-expired}}"
+    },
+    "BBB-1312": {
+      "templateId": "pd-art",
+      "template": "{{PD-Art|PD-old-70-expired}}"
+    },
+    "BBB-804": {
+      "templateId": "pd-art",
+      "template": "{{PD-Art|PD-old-70-expired}}"
+    },
+    "BBB-805": {
+      "templateId": "pd-art",
+      "template": "{{PD-Art|PD-old-70-expired}}"
+    },
+    "BBB-1074": {
+      "templateId": "pd-old-70",
+      "template": "{{PD-old-70-expired}}"
+    },
+    "BBB-1075": {
+      "templateId": "pd-old-70",
+      "template": "{{PD-old-70-expired}}"
+    },
+    "BBB-1341": {
+      "templateId": "pd-art",
+      "template": "{{PD-Art|PD-old-70-expired}}"
+    },
+    "BBB-1342": {
+      "templateId": "pd-art",
+      "template": "{{PD-Art|PD-old-70-expired}}"
+    },
+    "BBB-430": {
+      "templateId": "pd-art",
+      "template": "{{PD-Art|PD-old-70-expired}}"
+    },
+    "BBB-431": {
+      "templateId": "pd-art",
+      "template": "{{PD-Art|PD-old-70-expired}}"
+    },
+    "BBB-164": {
+      "templateId": "pd-art",
+      "template": "{{PD-Art|PD-old-70-expired}}"
+    },
+    "BBB-165": {
+      "templateId": "pd-art",
+      "template": "{{PD-Art|PD-old-70-expired}}"
+    },
+    "BBB-1393": {
+      "templateId": "pd-art",
+      "template": "{{PD-Art|PD-old-70-expired}}"
+    },
+    "BBB-1408": {
+      "templateId": "pd-art",
+      "template": "{{PD-Art|PD-old-70-expired}}"
+    },
+    "BBB-404": {
+      "templateId": "pd-art",
+      "template": "{{PD-Art|PD-old-70-expired}}"
+    },
+    "BBB-1399": {
+      "templateId": "pd-old-70",
+      "template": "{{PD-old-70-expired}}"
+    },
+    "BBB-818": {
+      "templateId": "pd-art",
+      "template": "{{PD-Art|PD-old-70-expired}}"
+    },
+    "BBB-451": {
+      "templateId": "pd-old-70",
+      "template": "{{PD-old-70-expired}}"
+    },
+    "BBB-130": {
+      "templateId": "pd-old-70",
+      "template": "{{PD-old-70-expired}}"
+    },
+    "BBB-798": {
+      "templateId": "pd-art",
+      "template": "{{PD-Art|PD-old-70-expired}}"
+    },
+    "BBB-1530": {
+      "templateId": "pd-old-70",
+      "template": "{{PD-old-70-expired}}"
+    },
+    "BBB-1062": {
+      "templateId": "pd-art",
+      "template": "{{PD-Art|PD-old-70-expired}}"
+    },
+    "BBB-942": {
+      "templateId": "pd-art",
+      "template": "{{PD-Art|PD-old-70-expired}}"
+    },
+    "BBB-1307": {
+      "templateId": "pd-art",
+      "template": "{{PD-Art|PD-old-70-expired}}"
+    },
+    "BBB-1401": {
+      "templateId": "pd-art",
+      "template": "{{PD-Art|PD-old-70-expired}}"
+    },
+    "BBB-967": {
+      "templateId": "pd-art",
+      "template": "{{PD-Art|PD-old-70-expired}}"
+    },
+    "BBB-422": {
+      "templateId": "pd-old-70",
+      "template": "{{PD-old-70-expired}}"
+    },
+    "BBB-420": {
+      "templateId": "pd-old-70",
+      "template": "{{PD-old-70-expired}}"
+    },
+    "BBB-778": {
+      "templateId": "pd-old-70",
+      "template": "{{PD-old-70-expired}}"
+    },
+    "BBB-1525": {
+      "templateId": "pd-art",
+      "template": "{{PD-Art|PD-old-70-expired}}"
+    },
+    "BBB-206": {
+      "templateId": "pd-art",
+      "template": "{{PD-Art|PD-old-70-expired}}"
+    },
+    "BBB-1526": {
+      "templateId": "pd-old-70",
+      "template": "{{PD-old-70-expired}}"
+    },
+    "BBB-1212": {
+      "templateId": "pd-old-70",
+      "template": "{{PD-old-70-expired}}"
+    },
+    "BBB-1529": {
+      "templateId": "pd-old-70",
+      "template": "{{PD-old-70-expired}}"
+    },
+    "BBB-403": {
+      "templateId": "pd-old-70",
+      "template": "{{PD-old-70-expired}}"
+    },
+    "BBB-1758": {
+      "templateId": "pd-art",
+      "template": "{{PD-Art|PD-old-70-expired}}"
+    },
+    "BBB-424": {
+      "templateId": "pd-old-70",
+      "template": "{{PD-old-70-expired}}"
+    },
+    "BBB-423": {
+      "templateId": "pd-old-70",
+      "template": "{{PD-old-70-expired}}"
+    },
+    "BBB-176": {
+      "templateId": "pd-art",
+      "template": "{{PD-Art|PD-old-70-expired}}"
+    },
+    "BBB-1398": {
+      "templateId": "pd-old-70",
+      "template": "{{PD-old-70-expired}}"
+    },
+    "BBB-1063": {
+      "templateId": "pd-old-70",
+      "template": "{{PD-old-70-expired}}"
+    },
+    "BBB-450": {
+      "templateId": "pd-old-70",
+      "template": "{{PD-old-70-expired}}"
+    },
+    "BBB-1407": {
+      "templateId": "pd-art",
+      "template": "{{PD-Art|PD-old-70-expired}}"
+    },
+    "BBB-1109": {
+      "templateId": "pd-art",
+      "template": "{{PD-Art|PD-old-70-expired}}"
+    },
+    "BBB-414": {
+      "templateId": "pd-old-70",
+      "template": "{{PD-old-70-expired}}"
+    },
+    "BBB-1196": {
+      "templateId": "pd-old-70",
+      "template": "{{PD-old-70-expired}}"
+    },
+    "BBB-1382": {
+      "templateId": "pd-old-70",
+      "template": "{{PD-old-70-expired}}"
+    },
+    "BBB-861": {
+      "templateId": "pd-art",
+      "template": "{{PD-Art|PD-old-70-expired}}"
+    },
+    "BBB-1535": {
+      "templateId": "pd-old-70",
+      "template": "{{PD-old-70-expired}}"
+    },
+    "BBB-1559": {
+      "templateId": "pd-old-70",
+      "template": "{{PD-old-70-expired}}"
+    },
+    "BBB-1531": {
+      "templateId": "pd-old-70",
+      "template": "{{PD-old-70-expired}}"
+    },
+    "BBB-1532": {
+      "templateId": "pd-old-70",
+      "template": "{{PD-old-70-expired}}"
+    },
+    "BBB-1527": {
+      "templateId": "pd-old-70",
+      "template": "{{PD-old-70-expired}}"
+    },
+    "BBB-817": {
+      "templateId": "pd-old-70",
+      "template": "{{PD-old-70-expired}}"
+    },
+    "BBB-1058": {
+      "templateId": "pd-old-70",
+      "template": "{{PD-old-70-expired}}"
+    },
+    "BBB-1528": {
+      "templateId": "pd-old-70",
+      "template": "{{PD-old-70-expired}}"
+    },
+    "BBB-1558": {
+      "templateId": "pd-old-70",
+      "template": "{{PD-old-70-expired}}"
+    },
+    "BBB-405": {
+      "templateId": "pd-art",
+      "template": "{{PD-Art|PD-old-70-expired}}"
+    },
+    "BBB-115": {
+      "templateId": "pd-old-70",
+      "template": "{{PD-old-70-expired}}"
+    },
+    "BBB-449": {
+      "templateId": "pd-old-70",
+      "template": "{{PD-old-70-expired}}"
+    },
+    "BBB-930": {
+      "templateId": "pd-art",
+      "template": "{{PD-Art|PD-old-70-expired}}"
+    },
+    "BBB-421": {
+      "templateId": "pd-old-70",
+      "template": "{{PD-old-70-expired}}"
+    }
+  }
+}

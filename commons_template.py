@@ -20,7 +20,7 @@ Categories:
     - Base: [[Category:Beeldbank Nederlandse Boekgeschiedenis]]
     - Additional: from 'commons_categories' column
 
-License: {{PD-US-expired|PD-old-70}}
+License: {{PD-old-70-expired}}
 
 Usage:
     from commons_template import generate_wikitext, get_upload_filename
@@ -28,7 +28,6 @@ Usage:
     wikitext = generate_wikitext(row)
     filename = get_upload_filename(row)
 """
-
 # Mapping: Excel column -> Artwork template field
 # Format: (excel_column, template_field, required, transform_function_name)
 FIELD_MAPPING = [
@@ -52,7 +51,7 @@ SOURCE_TEMPLATE = """{{{{Koninklijke Bibliotheek}}}}
 * Metadata: {detail_url}
 * Beeldbank Nederlandse Boekgeschiedenis Identifier: {unique_id}"""
 
-LICENSE = "{{PD-US-expired|PD-old-70}}"
+DEFAULT_LICENSE = "{{PD-old-70-expired}}"
 CATEGORY = "[[Category:Beeldbank Nederlandse Boekgeschiedenis]]"
 
 # The complete wikitext template
@@ -162,12 +161,14 @@ def build_categories(row):
     return '\n'.join(categories)
 
 
-def generate_wikitext(row):
+def generate_wikitext(row, license_template=None):
     """
     Generate wikitext for a single record from the Excel data.
 
     Args:
         row: A pandas Series or dict-like object with the Excel columns
+        license_template: Optional custom license template (e.g., "{{PD-Art|PD-old-70-expired}}")
+                         If None, uses DEFAULT_LICENSE ("{{PD-old-70-expired}}")
 
     Returns:
         str: The complete wikitext for the Wikimedia Commons file page
@@ -194,6 +195,9 @@ def generate_wikitext(row):
     # Build categories (base + commons_categories)
     categories = build_categories(row)
 
+    # Use custom license template or default
+    license_text = license_template if license_template else DEFAULT_LICENSE
+
     # Generate the complete wikitext
     wikitext = ARTWORK_TEMPLATE.format(
         title=title,
@@ -206,7 +210,7 @@ def generate_wikitext(row):
         source=source,
         accession_number=accession_number,
         notes=notes,
-        license=LICENSE,
+        license=license_text,
         categories=categories
     )
 

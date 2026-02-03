@@ -6,10 +6,10 @@ are mapped to which Wikimedia Commons categories. Useful for quality control
 before uploading.
 
 Usage:
-    python create_preview.py                    # Create all preview pages
-    python create_preview.py "Dutch typography" # Create specific category preview
+    python tools/create_preview.py                    # Create all preview pages
+    python tools/create_preview.py "Dutch typography" # Create specific category preview
 
-Output files (in previews/ folder):
+Output files (in tools/previews/ folder):
     - pd_preview_dutch_typography.html
     - pd_preview_printing_netherlands.html
     - pd_preview_bookbinding_netherlands.html
@@ -19,6 +19,12 @@ Output files (in previews/ folder):
 import pandas as pd
 import os
 import sys
+
+# Ensure we're working from project root
+script_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.dirname(script_dir)
+os.chdir(project_root)
+sys.path.insert(0, project_root)
 
 # Excel file path
 EXCEL_FILE = 'nbg-beeldbank_all_24012026.xlsx'
@@ -1461,12 +1467,12 @@ if __name__ == "__main__":
     # Read the public-domain-files sheet from the Excel file
     df = pd.read_excel(EXCEL_FILE, sheet_name='public-domain-files')
 
-    # Categories to create previews for (output to previews/ folder)
+    # Categories to create previews for (output to tools/previews/ folder)
     categories = [
-        ('Dutch typography', 'previews/pd_preview_dutch_typography.html'),
-        ('Printing in the Netherlands', 'previews/pd_preview_printing_netherlands.html'),
-        ('Bookbinding in the Netherlands', 'previews/pd_preview_bookbinding_netherlands.html'),
-        ('Libraries in the Netherlands', 'previews/pd_preview_libraries_netherlands.html'),
+        ('Dutch typography', 'tools/previews/pd_preview_dutch_typography.html'),
+        ('Printing in the Netherlands', 'tools/previews/pd_preview_printing_netherlands.html'),
+        ('Bookbinding in the Netherlands', 'tools/previews/pd_preview_bookbinding_netherlands.html'),
+        ('Libraries in the Netherlands', 'tools/previews/pd_preview_libraries_netherlands.html'),
     ]
 
     # If command line argument provided, only create that one
@@ -1482,7 +1488,7 @@ if __name__ == "__main__":
             create_preview_html(df, name, filename)
 
         # Also create combined preview with tabs
-        create_combined_preview_html(df, 'previews/pd_preview_all.html')
+        create_combined_preview_html(df, 'tools/previews/pd_preview_all.html')
 
         # Create public domain review page for copyright verification
-        create_public_domain_review_html(df, 'previews/pd_review_all.html')
+        create_public_domain_review_html(df, 'tools/previews/pd_review_all.html')

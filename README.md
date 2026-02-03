@@ -212,7 +212,7 @@ The `{{Artwork}}` template is populated as follows:
 | `accession number` | `aanwezig_in` | Optional |
 | `notes` | `origineel` (prefixed with "Orgineel:") | Optional |
 
-**License**: `{{PD-US-expired|PD-old-70}}`
+**License**: `{{PD-old-70-expired}}`
 
 ## Classification to Commons Categories Mapping
 
@@ -298,26 +298,53 @@ python structured_data.py --all BBB-1
 python structured_data.py --batch 0 10 --all
 ```
 
-## Preview and Review Pages
-
-The `previews/` folder contains HTML-based tools for reviewing and processing images. All pages require a local web server:
+### tools/upload_new_pd_files.py
+Uploads newly discovered public domain files using custom license templates from the template selector.
 
 ```bash
-python -m http.server 8000  # Start in project root, then open http://localhost:8000/previews/
+# Preview without uploading
+python tools/upload_new_pd_files.py --dry-run
+
+# Upload all files
+python tools/upload_new_pd_files.py
+
+# Resume from specific position
+python tools/upload_new_pd_files.py --start 50
+
+# Upload limited number
+python tools/upload_new_pd_files.py --limit 10
+
+# Custom delay between uploads
+python tools/upload_new_pd_files.py --delay 10
+```
+
+**Features:**
+- Uses license templates from `pd_templates_for_upload.json`
+- Adds structured data automatically after each upload
+- Updates both Excel sheets ('all' and 'public-domain-files')
+- Saves progress periodically (every 10 uploads)
+- Supports resuming from any position
+
+## Preview and Review Pages
+
+The `tools/previews/` folder contains HTML-based tools for reviewing and processing images. All pages require a local web server:
+
+```bash
+python -m http.server 8000  # Start in project root, then open http://localhost:8000/tools/previews/
 ```
 
 **Browser requirement:** Use Chrome or Edge (Firefox doesn't support the File System Access API for saving).
 
-See [`previews/README.md`](previews/README.md) for detailed documentation.
+See [`tools/previews/README.md`](tools/previews/README.md) for detailed documentation.
 
 ### Overview
 
 | Page | Purpose | Status |
 |------|---------|--------|
-| [pd_review_all.html](previews/pd_review_all.html) | Verify the 803 pre-1886 files are truly public domain | Completed |
-| [non_pd_review.html](previews/non_pd_review.html) | Find additional PD files among the 829 non-PD items | 197 files found |
-| [pd_template_selector.html](previews/pd_template_selector.html) | Assign license templates to newly discovered files | In progress |
-| [pd_preview_all.html](previews/pd_preview_all.html) | Select Commons categories for uploaded files | Completed |
+| [pd_review_all.html](http://localhost:8000/tools/previews/pd_review_all.html) | Verify the 803 pre-1886 files are truly public domain | Completed |
+| [non_pd_review.html](http://localhost:8000/tools/previews/non_pd_review.html) | Find additional PD files among the 829 non-PD items | 197 files found |
+| [pd_template_selector.html](http://localhost:8000/tools/previews/pd_template_selector.html) | Assign license templates to newly discovered files | Completed |
+| [pd_preview_all.html](http://localhost:8000/tools/previews/pd_preview_all.html) | Select Commons categories for uploaded files | Completed |
 
 ---
 
@@ -357,22 +384,37 @@ The initial 803 files were clearly public domain (pre-1886). However, the remain
 
 ```bash
 # Generate the review pages
-python create_non_pd_review.py
-python create_pd_template_selector.py
+python tools/create_non_pd_review.py
+python tools/create_pd_template_selector.py
 
 # Start webserver
 python -m http.server 8000
 ```
 
-1. **Open** [non_pd_review.html](http://localhost:8000/previews/non_pd_review.html)
+1. **Open** [non_pd_review.html](http://localhost:8000/tools/previews/non_pd_review.html)
 2. **Review** images by creator (use sidebar), mark files that ARE public domain
-3. **Export** → Click "Export PD IDs for Upload" → saves [`newly_discovered_public_domain.json`](previews/newly_discovered_public_domain.json)
-4. **Open** [pd_template_selector.html](http://localhost:8000/previews/pd_template_selector.html)
+3. **Export** → Click "Export PD IDs for Upload" → saves `newly_discovered_public_domain.json`
+4. **Open** [pd_template_selector.html](http://localhost:8000/tools/previews/pd_template_selector.html)
 5. **Assign templates:**
+   - Select creators in sidebar, use bulk-assign buttons
    - Click "Auto-assign Unknown (PD-anon-70-EU)" for anonymous works
-   - Click "Auto-assign Remaining (PD-old-70)" for known creators
+   - Click "Auto-assign Remaining (PD-old-70-expired)" for known creators
    - Review and adjust individual files as needed
-6. **Upload:** `python upload_new_pd_files.py newly_discovered_public_domain.json`
+6. **Save** → Click "Export for Upload" → saves `pd_templates_for_upload.json`
+7. **Upload:**
+   ```bash
+   python tools/upload_new_pd_files.py --dry-run  # Preview first
+   python tools/upload_new_pd_files.py            # Upload all 197 files
+   ```
+
+#### Available License Templates
+
+| Template | Use for |
+|----------|---------|
+| `{{PD-old-70-expired}}` | Known authors who died 70+ years ago |
+| `{{PD-anon-70-EU}}` | Anonymous EU works 70+ years old |
+| `{{PD-anon-expired}}` | Anonymous works, expired copyright |
+| `{{PD-Art\|PD-old-70-expired}}` | Faithful reproduction of 2D PD artwork |
 
 ---
 
@@ -382,15 +424,15 @@ Used `pd_preview_all.html` to select which images receive specific Commons categ
 
 | Category | Images |
 |----------|--------|
-| [Dutch typography](previews/pd_preview_dutch_typography.html) | 44 |
-| [Printing in the Netherlands](previews/pd_preview_printing_netherlands.html) | 300 |
-| [Bookbinding in the Netherlands](previews/pd_preview_bookbinding_netherlands.html) | 98 |
-| [Libraries in the Netherlands](previews/pd_preview_libraries_netherlands.html) | 50 |
+| [Dutch typography](http://localhost:8000/tools/previews/pd_preview_dutch_typography.html) | 44 |
+| [Printing in the Netherlands](http://localhost:8000/tools/previews/pd_preview_printing_netherlands.html) | 300 |
+| [Bookbinding in the Netherlands](http://localhost:8000/tools/previews/pd_preview_bookbinding_netherlands.html) | 98 |
+| [Libraries in the Netherlands](http://localhost:8000/tools/previews/pd_preview_libraries_netherlands.html) | 50 |
 
 Exclusions saved to `category_exclusions.json`, read by `uploader.py`.
 
 ```bash
-python create_preview.py  # Regenerate preview pages
+python tools/create_preview.py  # Regenerate preview pages
 ```
 
 ## Installation
@@ -427,4 +469,10 @@ See `requirements.txt`:
 
 ## License
 
-This project uploads **public domain content** from the KB collection to Wikimedia Commons. All images in this collection are out of copyright in both the Netherlands/EU (life of author + 70 years) and the USA, making them free to use worldwide. Files are tagged with `{{PD-US-expired|PD-old-70}}` on Commons.
+This project uploads **public domain content** from the KB collection to Wikimedia Commons. All images in this collection are out of copyright in both the Netherlands/EU (life of author + 70 years) and the USA, making them free to use worldwide.
+
+Files are tagged with appropriate PD templates on Commons:
+- `{{PD-old-70-expired}}` - Known authors who died 70+ years ago
+- `{{PD-anon-70-EU}}` - Anonymous EU works 70+ years old
+- `{{PD-anon-expired}}` - Anonymous works with expired copyright
+- `{{PD-Art|PD-old-70-expired}}` - Faithful reproductions of 2D PD artwork
