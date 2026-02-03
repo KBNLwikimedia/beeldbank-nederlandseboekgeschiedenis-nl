@@ -49,11 +49,11 @@ ETL pipeline for the **Beeldbank (Image Bank) of Nederlandse Boekgeschiedenis (D
 | Metric | Count |
 |--------|-------|
 | Total items in collection | 1,632 |
-| Public domain items | 803 |
-| **Uploaded to Commons** | **803 (100%)** |
-| **With structured data** | **803 (100%)** |
+| Public domain items | 999 |
+| **Uploaded to Commons** | **999 (100%)** |
+| **With structured data** | **999 (100%)** |
 
-All 803 public domain files have been successfully uploaded to Wikimedia Commons with complete metadata (using the `{{Artwork}}` template) and structured data (Wikibase statements). The uploads were completed on **29 January 2026**.
+All 999 public domain files have been successfully uploaded to Wikimedia Commons with complete metadata (using the `{{Artwork}}` template) and structured data (Wikibase statements). The uploads were completed on **3 February 2026**.
 
 ## Examples of Uploaded Images
 
@@ -71,7 +71,7 @@ The main data file (`nbg-beeldbank_all_24012026.xlsx`) contains all scraped meta
 
 **Sheets:**
 - **all**: All 1,632 records with tracking columns
-- **public-domain-files**: 803 records filtered for public domain (pre-1886)
+- **public-domain-files**: 999 records filtered for public domain
 
 **Columns:**
 
@@ -127,14 +127,14 @@ These queries retrieve all files from [Category:Beeldbank Nederlandse Boekgeschi
 This project:
 * **Extracted** metadata and images from the **1,632 digitized historical book-related items** in the [Beeldbank Nederlandse Boekgeschiedenis](https://www.nederlandseboekgeschiedenis.nl/nl/beeldbank),
 * **Transformed** them into Wikimedia Commons suitable data, and
-* **Loaded** all 803 public domain files to Wikimedia Commons with proper metadata, structured data, and categorization.
+* **Loaded** all 999 public domain files to Wikimedia Commons with proper metadata, structured data, and categorization.
 
 ## Completed Goals
 
 - Scraped all metadata and image URLs from the Beeldbank (1,632 items)
 - Downloaded high-resolution images locally
-- Uploaded 803 public domain images to Wikimedia Commons using the `{{Artwork}}` template
-- Added structured data (Wikibase statements) to all 803 files
+- Uploaded 999 public domain images to Wikimedia Commons using the `{{Artwork}}` template
+- Added structured data (Wikibase statements) to all 999 files
 - Properly categorized files based on classification
 
 ## Copyright Status
@@ -342,7 +342,7 @@ See [`tools/previews/README.md`](tools/previews/README.md) for detailed document
 | Page | Purpose | Status |
 |------|---------|--------|
 | [pd_review_all.html](http://localhost:8000/tools/previews/pd_review_all.html) | Verify the 803 pre-1886 files are truly public domain | Completed |
-| [non_pd_review.html](http://localhost:8000/tools/previews/non_pd_review.html) | Find additional PD files among the 829 non-PD items | 197 files found |
+| [non_pd_review.html](http://localhost:8000/tools/previews/non_pd_review.html) | Find additional PD files among the 829 non-PD items | 196 files found |
 | [pd_template_selector.html](http://localhost:8000/tools/previews/pd_template_selector.html) | Assign license templates to newly discovered files | Completed |
 | [pd_preview_all.html](http://localhost:8000/tools/previews/pd_preview_all.html) | Select Commons categories for uploaded files | Completed |
 
@@ -358,7 +358,7 @@ Used `pd_review_all.html` to visually verify all 803 pre-1886 files were correct
 
 ### 2. Discovering Additional Public Domain Files
 
-The initial 803 files were clearly public domain (pre-1886). However, the remaining 829 files may also contain public domain works:
+The initial 803 files were clearly public domain (pre-1886). The remaining 829 files were reviewed for additional public domain works:
 
 | Reason | Example |
 |--------|---------|
@@ -366,7 +366,7 @@ The initial 803 files were clearly public domain (pre-1886). However, the remain
 | **Anonymous work** | 70+ years since publication → public domain in EU |
 | **Institutional work** | Publishers/companies may have different rules |
 
-**Result:** 197 additional public domain files were discovered.
+**Result:** 196 additional public domain files were discovered, bringing the total to 999.
 
 #### Workflow
 
@@ -404,7 +404,7 @@ python -m http.server 8000
 7. **Upload:**
    ```bash
    python tools/upload_new_pd_files.py --dry-run  # Preview first
-   python tools/upload_new_pd_files.py            # Upload all 197 files
+   python tools/upload_new_pd_files.py            # Upload all 196 files
    ```
 
 #### Available License Templates
