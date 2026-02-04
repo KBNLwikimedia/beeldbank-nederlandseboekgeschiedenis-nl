@@ -13,7 +13,7 @@ TL;DR:
 * Source of images: 1.632 images from https://www.nederlandseboekgeschiedenis.nl/nl/beeldbank, a collection of digitized images about the history of printed books in the Netherlands, largely from the collections of the KB, National Library of the Netherlands.
 * Result: 999 public domain images uploaded to Wikimedia Commons: [Category:Beeldbank Nederlandse Boekgeschiedenis](https://commons.wikimedia.org/wiki/Category:Beeldbank_Nederlandse_Boekgeschiedenis), including 
   * [structured data statements](#structured-data-statements) and associated [SPARQL queries](#quality-control-sparql-queries), 
-  * (partial) categorisation into topical Wikimedia Commons categories, and a  
+  * (partial) categorisation into [topical Wikimedia Commons categories](#classification-to-commons-categories-mapping), and a  
   * [dataset as Excel](#excel-data-file). 
 
 ## Table of contents
