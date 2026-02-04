@@ -218,16 +218,16 @@ This project targets only images that are **in the public domain** - works that 
 
 
 
-## Classification to Commons Categories Mapping
+## Classification to Commons categories mapping
 
 Only specific Dutch classifications are mapped to Commons categories (to avoid overly broad categorization):
 
-| Code | Dutch Classification | Commons Category |
-|------|---------------------|------------------|
+| Code | Dutch Classification (Excel column 'classificatie')           | Commons Category |
+|------|----------------------------------------------------------------|------------------|
 | C | Paleografie, letterontwerp, lettertypen, lettergieten, schrift | [Dutch typography](https://commons.wikimedia.org/wiki/Category:Dutch_typography) |
-| D | Geschiedenis van de boekdrukkunst | [Printing in the Netherlands](https://commons.wikimedia.org/wiki/Category:Printing_in_the_Netherlands) |
-| F | Bindkunst | [Bookbinding in the Netherlands](https://commons.wikimedia.org/wiki/Category:Bookbinding_in_the_Netherlands) |
-| J | Bibliotheken en instellingen | [Libraries in the Netherlands](https://commons.wikimedia.org/wiki/Category:Libraries_in_the_Netherlands) |
+| D | Geschiedenis van de boekdrukkunst                              | [Printing in the Netherlands](https://commons.wikimedia.org/wiki/Category:Printing_in_the_Netherlands) |
+| F | Bindkunst                                                      | [Bookbinding in the Netherlands](https://commons.wikimedia.org/wiki/Category:Bookbinding_in_the_Netherlands) |
+| J | Bibliotheken en instellingen                                   | [Libraries in the Netherlands](https://commons.wikimedia.org/wiki/Category:Libraries_in_the_Netherlands) |
 
 **Excluded classifications** (too broad):
 - B, E, G, H, K, L (book-specific but no Dutch variant)
