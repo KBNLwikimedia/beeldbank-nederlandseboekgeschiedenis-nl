@@ -20,28 +20,22 @@ TL;DR:
 
 ### Outcomes
 - [Project Status](#project-status-complete)
+- [Examples of Source Images](#examples-of-source-images-and-their-metadata)
 - [Examples of Uploaded Images](#examples-of-uploaded-images)
 - [Excel Data File](#excel-data-file)
+- [Artwork Wikitext Template Mapping](#artwork-wikitext-template-mapping)
+- [Structured Data Statements](#structured-data-statements)
 - [Quality Control: SPARQL Queries](#quality-control-sparql-queries)
 
-### Project context
+### Project Background
 - [Project Scope and Completed Goals](#project-scope-and-completed-goals)
 - [Copyright Status](#copyright-status)
-- [Relevant Websites](#relevant-websites)
 
-### Approach
-- [Technical Approach](#technical-approach)
-- [Structured Data Statements](#structured-data-statements)
-- [Artwork Template Mapping](#artwork-template-mapping)
+### Technical Approach
+- [Step-by-Step Process](#step-by-step-process)
 - [Classification to Commons Categories Mapping](#classification-to-commons-categories-mapping)
-
-### Technical Reference
-- [Scripts](#scripts)
-- [Preview and Review Pages](#preview-and-review-pages)
-- [Installation](#installation)
-- [Configuration](#configuration)
-- [Requirements](#requirements)
-- [License](#license)
+- [Licensing](#licensing)
+- [Contact & Credits](#contact--credits)
 
 ---
 
