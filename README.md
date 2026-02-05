@@ -39,7 +39,7 @@ TL;DR:
 
 ---
 
-# Outcomes
+# Outcomes  
 
 ## Project status: Complete
 
@@ -193,9 +193,9 @@ This project targets only images that are **in the public domain** - works that 
 
 ---
 
-# Technical Approach
+# Technical approach
 
-## Step-by-Step Process
+## Step-by-step process
 
 1. **Scrape metadata** (`scripts/scraper.py`) - Extract metadata from Beeldbank search results using Playwright (browser automation required due to JavaScript/AJAX content)
 2. **Download images** (`scripts/download_images.py`) - Download full-resolution images from KB resolver service
@@ -219,6 +219,9 @@ Only specific Dutch classifications are mapped to Commons categories (to avoid o
 
 All files are automatically added to [`Category:Beeldbank Nederlandse Boekgeschiedenis`](https://commons.wikimedia.org/wiki/Category:Beeldbank_Nederlandse_Boekgeschiedenis).
 
+
+# Licensing and contact
+
 ## Licensing
 
 All 999 historical images in this collection are out of copyright in both the Netherlands/EU (life of author + 70 years) and the USA, making them free to use worldwide.
@@ -227,7 +230,7 @@ All 999 historical images in this collection are out of copyright in both the Ne
 
 The Python scripts and Excel file in this repo are released into the public domain under [CC0 1.0 public domain dedication](LICENSE). Feel free to reuse and adapt. Attribution *(KB, National Library of the Netherlands)* is appreciated but not required.
 
-## Contact & Credits
+## Contact & credits
 
 <img src="media-assets/icon_kb2.png" width="200" style="margin:4px 10px 0px 20px;" align="right"/>
 
