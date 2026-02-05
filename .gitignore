@@ -1,5 +1,7 @@
 # Environment and credentials
 .env
+.env.example
+
 
 # IDE settings
 .idea/
@@ -15,7 +17,8 @@ venv/
 env/
 .venv/
 
-# Data files
+#  Folders
+tools/
 images/
 
 # Excel backup/copy files (but keep main data file)
@@ -32,3 +35,6 @@ CLAUDE.md
 # OS files
 .DS_Store
 Thumbs.db
+
+# Other
+category_exclusions.json

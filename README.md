@@ -25,8 +25,7 @@ TL;DR:
 - [Quality Control: SPARQL Queries](#quality-control-sparql-queries)
 
 ### Project context
-- [Project Scope](#project-scope)
-- [Completed Goals](#completed-goals)
+- [Project Scope and Completed Goals](#project-scope-and-completed-goals)
 - [Copyright Status](#copyright-status)
 - [Relevant Websites](#relevant-websites)
 
@@ -59,6 +58,13 @@ TL;DR:
 
 All 999 public domain files from this image bank have been successfully uploaded to Wikimedia Commons with complete Wikitext metadata, using the `{{Artwork}}` template and structured data (Wikibase statements). The uploads were completed on **3 February 2026**.
 
+## Examples of source images and their metadata
+
+The source of the images and their metadata is https://www.nederlandseboekgeschiedenis.nl/nl/beeldbank. You can query for '*' to see all results.
+
+<img src="media-assets/beeldbank-homepage-with-results.jpg" alt="Beeldbank Nederlandse Boekgeschiedenis search interface" width="350"><br>
+<em>Homepage with search results of https://www.nederlandseboekgeschiedenis.nl/nl/beeldbank, dd 28-01-2026</em>
+
 ## Examples of uploaded images
 
 Three example files uploaded to [Wikimedia Commons](https://commons.wikimedia.org/wiki/Category:Beeldbank_Nederlandse_Boekgeschiedenis):
@@ -73,7 +79,7 @@ Three example files uploaded to [Wikimedia Commons](https://commons.wikimedia.or
 
 The main data file (`nbg-beeldbank_all_24012026.xlsx`) contains all metadata and upload tracking information.
 
-**Sheets:**
+**Excel sheets:**
 - **all**: All 1,632 records with tracking columns
 - **public-domain-files**: 999 records filtered for public domain that have been uploaded to Commons
 
@@ -104,9 +110,9 @@ The main data file (`nbg-beeldbank_all_24012026.xlsx`) contains all metadata and
 | `structured_data_added` | Whether structured data was added | Tracking                        |
 
 
-## Artwork template mapping
+## Artwork Wikitext template mapping
 
-The `{{Artwork}}` Wikitext template is populated as follows:
+The [`{{Artwork}}` Wikitext template](https://commons.wikimedia.org/w/index.php?title=File:19e_eeuwse_boekbinderij,_1861_-_BBB-478.jpg&action=edit) is populated as follows:
 
 | Template Field | Source / Excel column               | Required |
 |----------------|------------------------------------------------------|----------|
@@ -121,11 +127,18 @@ The `{{Artwork}}` Wikitext template is populated as follows:
 | `accession number` | `aanwezig_in`                                        | Optional |
 | `notes` | `origineel` (prefixed with "Orgineel:")              | Optional |
 
-**License**: `{{PD-old-70-expired}}` or `{{PD-Art|PD-old-70-expired}}` or in case of unkown/anonymous creators `{{PD-anon-70-EU}}` or  `{{PD-anon-expired}}` 
+**Available license templates:**
+
+| Template                                                                                 | Use for |
+|------------------------------------------------------------------------------------------|---------|
+| [`{{PD-old-70-expired}}`](https://commons.wikimedia.org/wiki/Template:PD-old-70-expired) | Known authors who died 70+ years ago |
+| [`{{PD-anon-70-EU}}`](https://commons.wikimedia.org/wiki/Template:PD-anon-70-EU)         | Anonymous EU works 70+ years old |
+| [`{{PD-anon-expired}}`](https://commons.wikimedia.org/wiki/Template:PD-anon-expired)     | Anonymous works, expired copyright |
+| [`{{PD-Art\|PD-old-70-expired}}`](https://commons.wikimedia.org/wiki/Template:PD-Art)    | Faithful reproduction of 2D PD artwork |
 
 ## Structured data statements
 
-Each uploaded file receives the following Wikibase statements:
+Each uploaded file has received the following Wikibase statements:
 
 | Property | Name | Value |
 |----------|------|-------|
@@ -139,7 +152,7 @@ Each uploaded file receives the following Wikibase statements:
 | ↳ P953 | Full work available at URL | (from `image_url`) |
 | ↳ P973 | Described at URL | (from `detail_url`) |
 
-Additionally, a Dutch label (caption) is added from the Excel `titel` column.
+Additionally, a Dutch label (caption) for each file has been added from the Excel `titel` column.
 
 ## Quality control: SPARQL queries
 
@@ -164,319 +177,71 @@ These queries retrieve all files from [Category:Beeldbank Nederlandse Boekgeschi
 
 # Project background
 
-## Project scope
+## Project scope and completed goals
 
-This ETL project
-* **Extracted** metadata and images from the **1,632 digitized historical book-related items** in the [Beeldbank Nederlandse Boekgeschiedenis](https://www.nederlandseboekgeschiedenis.nl/nl/beeldbank),
-* **Transformed** them into Wikimedia Commons suitable data, and
-* **Loaded** all 999 public domain files to Wikimedia Commons with proper Wikitext metadata, structured data, and categorization.
+This ETL project 
+* **Extracted** metadata and images from the **1,632 digitized historical book-related items** in the [Beeldbank Nederlandse Boekgeschiedenis](https://www.nederlandseboekgeschiedenis.nl/nl/beeldbank), 
+* **Transformed** them into Wikimedia Commons-suitable data, and
+* **upLoaded** all 999 public domain files to Wikimedia Commons.
 
-<img src="media-assets/beeldbank-homepage-with-results.jpg" alt="Beeldbank Nederlandse Boekgeschiedenis search interface" width="350"><br>
-<em>Homepage with search results of https://www.nederlandseboekgeschiedenis.nl/nl/beeldbank, dd 28-01-2026</em>
-
-## Completed goals
-
+**Completed:**
 - Scraped all metadata and image URLs from the Beeldbank (1,632 items)
 - Downloaded high-resolution images locally
 - Uploaded 999 public domain images to Wikimedia Commons using the `{{Artwork}}` template
 - Added structured data (Wikibase statements) to all 999 files
-- Properly categorized files based on classification
+- Categorized files based on classification mapping
 
 ## Copyright status
 
 This project targets only images that are **in the public domain** - works that are out of copyright both in the Netherlands/EU and in the USA. The collection primarily contains historical book-related materials (manuscripts, prints, illustrations) from before the 20th century, ensuring they are no longer protected by copyright in any major jurisdiction.
 
-**Used public domain license templates**: `{{PD-old-70-expired}}` or `{{PD-Art|PD-old-70-expired}}` or in case of unkown/anonymous creators `{{PD-anon-70-EU}}` or  `{{PD-anon-expired}}` 
+**Used public domain license templates**: [`{{PD-old-70-expired}}`](https://commons.wikimedia.org/wiki/Template:PD-old-70-expired) or [`{{PD-Art|PD-old-70-expired}}`](https://commons.wikimedia.org/wiki/Template:PD-Art) or in case of unkown/anonymous creators [`{{PD-anon-70-EU}}`](https://commons.wikimedia.org/wiki/Template:PD-anon-70-EU) or  [`{{PD-anon-expired}}`](https://commons.wikimedia.org/wiki/Template:PD-anon-expired). 
 
 ---
 
-# Approach
+# Technical Approach
 
-## Technical Approach
+## Step-by-Step Process
 
-### Pipeline Overview
-
-```
-┌─────────────┐    ┌──────────────────┐    ┌─────────────┐    ┌─────────────────┐
-│  scraper.py │ -> │ download_images.py│ -> │ uploader.py │ -> │structured_data.py│
-│  (metadata) │    │    (images)       │    │  (upload)   │    │  (statements)   │
-└─────────────┘    └──────────────────┘    └─────────────┘    └─────────────────┘
-       ↓                   ↓                      ↓                    ↓
-   Excel file         images/folder         Commons files      Structured data
-```
-
-### Step-by-Step Process
-
-1. **Scrape metadata** (`scraper.py`) - Extract metadata from Beeldbank search results
-2. **Download images** (`download_images.py`) - Download full-resolution images from KB resolver
-3. **Prepare filenames** - Clean and standardize filenames for Commons (manual step in Excel)
-4. **Map categories** - Map Dutch classifications to Commons categories
-5. **Upload to Commons** (`uploader.py`) - Upload images with `{{Artwork}}` template
-6. **Add structured data** (`structured_data.py`) - Add Wikibase statements to each file
-
-
-
-
+1. **Scrape metadata** (`scraper.py`) - Extract metadata from Beeldbank search results using Playwright (browser automation required due to JavaScript/AJAX content)
+2. **Download images** (`download_images.py`) - Download full-resolution images from KB resolver service
+3. **Prepare filenames** - Clean and standardize filenames for Commons (manual step in Excel)                                               
+4. **Upload to Commons** (`uploader.py`) - Upload images with `{{Artwork}}` template wikitext generated by `commons_template.py`. Includes throttling and exponential backoff.
+5. **Add structured data** (`structured_data.py`) - Add Wikibase structured data statements to each file
+6. **Map categories** - Map Dutch classifications to topical Commons categories (see below)   
 
 ## Classification to Commons categories mapping
 
 Only specific Dutch classifications are mapped to Commons categories (to avoid overly broad categorization):
 
-| Code | Dutch Classification (Excel column 'classificatie')           | Commons Category |
-|------|----------------------------------------------------------------|------------------|
-| C | Paleografie, letterontwerp, lettertypen, lettergieten, schrift | [Dutch typography](https://commons.wikimedia.org/wiki/Category:Dutch_typography) |
-| D | Geschiedenis van de boekdrukkunst                              | [Printing in the Netherlands](https://commons.wikimedia.org/wiki/Category:Printing_in_the_Netherlands) |
-| F | Bindkunst                                                      | [Bookbinding in the Netherlands](https://commons.wikimedia.org/wiki/Category:Bookbinding_in_the_Netherlands) |
-| J | Bibliotheken en instellingen                                   | [Libraries in the Netherlands](https://commons.wikimedia.org/wiki/Category:Libraries_in_the_Netherlands) |
+| Code | Dutch Classification | Commons Category | Images |
+|------|----------------------|------------------|--------|
+| C | Paleografie, letterontwerp, lettertypen, lettergieten, schrift | [Dutch typography](https://commons.wikimedia.org/wiki/Category:Dutch_typography) | 44 |
+| D | Geschiedenis van de boekdrukkunst | [Printing in the Netherlands](https://commons.wikimedia.org/wiki/Category:Printing_in_the_Netherlands) | 300 |
+| F | Bindkunst | [Bookbinding in the Netherlands](https://commons.wikimedia.org/wiki/Category:Bookbinding_in_the_Netherlands) | 98 |
+| J | Bibliotheken en instellingen | [Libraries in the Netherlands](https://commons.wikimedia.org/wiki/Category:Libraries_in_the_Netherlands) | 50 |
 
-**Excluded classifications** (too broad):
-- B, E, G, H, K, L (book-specific but no Dutch variant)
-- M0-M9 (general subject classifications)
+**Excluded classifications** (too broad): B, E, G, H, K, L (book-specific but no Dutch variant), M0-M9 (general subject classifications).
 
-All files are automatically added to `[[Category:Beeldbank Nederlandse Boekgeschiedenis]]`.
+All files are automatically added to [`Category:Beeldbank Nederlandse Boekgeschiedenis`](https://commons.wikimedia.org/wiki/Category:Beeldbank_Nederlandse_Boekgeschiedenis).
 
----
-
-# Technical Reference
-
-## Scripts
-
-### scraper.py
-Scrapes metadata from the Beeldbank search interface using Playwright (browser automation required due to JavaScript/AJAX content).
-
-```bash
-python scraper.py
-```
-
-### download_images.py
-Downloads high-resolution images from the KB resolver service.
-
-```bash
-python download_images.py
-```
-
-### commons_template.py
-Defines the mapping between Excel columns and the `{{Artwork}}` template fields. Generates wikitext for file description pages.
-
-**Key functions:**
-- `generate_wikitext(row)` - Generate complete wikitext for a record
-- `get_upload_filename(row)` - Get the Commons filename
-- `format_bilingual_type(type_str)` - Format type as `{{nl|...}} {{en|...}}`
-
-### uploader.py
-Uploads images to Wikimedia Commons with proper metadata. Includes throttling and exponential backoff to avoid overwhelming the server.
-
-```bash
-# Preview upload
-python uploader.py --preview BBB-1
-
-# Upload single file
-python uploader.py BBB-1
-
-# Batch upload (rows 0-10)
-python uploader.py --batch 0 10
-
-# Batch upload with custom delay (10 seconds between uploads)
-python uploader.py --batch 0 10 --delay 10
-```
-
-**Throttling defaults:**
-- Delay between uploads: 5 seconds
-- Max retries on failure: 3 (with exponential backoff)
-- Backoff factor: 2x per retry (5s → 10s → 20s)
-
-### structured_data.py
-Adds structured data (Wikibase statements) to Commons files.
-
-```bash
-# Add Dutch description only
-python structured_data.py BBB-1
-
-# Add statements only
-python structured_data.py --statements BBB-1
-
-# Add both description and statements
-python structured_data.py --all BBB-1
-
-# Batch mode
-python structured_data.py --batch 0 10 --all
-```
-
-### tools/upload_new_pd_files.py
-Uploads newly discovered public domain files using custom license templates from the template selector.
-
-```bash
-# Preview without uploading
-python tools/upload_new_pd_files.py --dry-run
-
-# Upload all files
-python tools/upload_new_pd_files.py
-
-# Resume from specific position
-python tools/upload_new_pd_files.py --start 50
-
-# Upload limited number
-python tools/upload_new_pd_files.py --limit 10
-
-# Custom delay between uploads
-python tools/upload_new_pd_files.py --delay 10
-```
-
-**Features:**
-- Uses license templates from `pd_templates_for_upload.json`
-- Adds structured data automatically after each upload
-- Updates both Excel sheets ('all' and 'public-domain-files')
-- Saves progress periodically (every 10 uploads)
-- Supports resuming from any position
-
-## Preview and Review Pages
-
-The `tools/previews/` folder contains HTML-based tools for reviewing and processing images. All pages require a local web server:
-
-```bash
-python -m http.server 8000  # Start in project root, then open http://localhost:8000/tools/previews/
-```
-
-**Browser requirement:** Use Chrome or Edge (Firefox doesn't support the File System Access API for saving).
-
-See [`tools/previews/README.md`](tools/previews/README.md) for detailed documentation.
-
-### Overview
-
-| Page | Purpose | Status |
-|------|---------|--------|
-| [pd_review_all.html](http://localhost:8000/tools/previews/pd_review_all.html) | Verify the 803 pre-1886 files are truly public domain | Completed |
-| [non_pd_review.html](http://localhost:8000/tools/previews/non_pd_review.html) | Find additional PD files among the 829 non-PD items | 196 files found |
-| [pd_template_selector.html](http://localhost:8000/tools/previews/pd_template_selector.html) | Assign license templates to newly discovered files | Completed |
-| [pd_preview_all.html](http://localhost:8000/tools/previews/pd_preview_all.html) | Select Commons categories for uploaded files | Completed |
-
----
-
-### 1. Verifying Public Domain Files (Completed)
-
-Used `pd_review_all.html` to visually verify all 803 pre-1886 files were correctly identified as public domain.
-
-**Features:** Pagination (100/page), flag incorrect files, search/filter, export flagged IDs.
-
----
-
-### 2. Discovering Additional Public Domain Files
-
-The initial 803 files were clearly public domain (pre-1886). The remaining 829 files were reviewed for additional public domain works:
-
-| Reason | Example |
-|--------|---------|
-| **Unknown creator** | No death date → cannot calculate copyright expiration |
-| **Anonymous work** | 70+ years since publication → public domain in EU |
-| **Institutional work** | Publishers/companies may have different rules |
-
-**Result:** 196 additional public domain files were discovered, bringing the total to 999.
-
-#### Workflow
-
-```
-┌─────────────────────┐     ┌─────────────────────┐     ┌─────────────────┐
-│  1. Non-PD Review   │ --> │ 2. PD Template      │ --> │ 3. Upload to    │
-│                     │     │    Selector         │     │    Commons      │
-└─────────────────────┘     └─────────────────────┘     └─────────────────┘
-         ↓                           ↓                          ↓
- newly_discovered_           pd_template_               Files with correct
- public_domain.json          assignments.json           license templates
-```
-
-#### Step-by-step
-
-```bash
-# Generate the review pages
-python tools/create_non_pd_review.py
-python tools/create_pd_template_selector.py
-
-# Start webserver
-python -m http.server 8000
-```
-
-1. **Open** [non_pd_review.html](http://localhost:8000/tools/previews/non_pd_review.html)
-2. **Review** images by creator (use sidebar), mark files that ARE public domain
-3. **Export** → Click "Export PD IDs for Upload" → saves `newly_discovered_public_domain.json`
-4. **Open** [pd_template_selector.html](http://localhost:8000/tools/previews/pd_template_selector.html)
-5. **Assign templates:**
-   - Select creators in sidebar, use bulk-assign buttons
-   - Click "Auto-assign Unknown (PD-anon-70-EU)" for anonymous works
-   - Click "Auto-assign Remaining (PD-old-70-expired)" for known creators
-   - Review and adjust individual files as needed
-6. **Save** → Click "Export for Upload" → saves `pd_templates_for_upload.json`
-7. **Upload:**
-   ```bash
-   python tools/upload_new_pd_files.py --dry-run  # Preview first
-   python tools/upload_new_pd_files.py            # Upload all 196 files
-   ```
-
-#### Available License Templates
-
-| Template | Use for |
-|----------|---------|
-| `{{PD-old-70-expired}}` | Known authors who died 70+ years ago |
-| `{{PD-anon-70-EU}}` | Anonymous EU works 70+ years old |
-| `{{PD-anon-expired}}` | Anonymous works, expired copyright |
-| `{{PD-Art\|PD-old-70-expired}}` | Faithful reproduction of 2D PD artwork |
-
----
-
-### 3. Category Selection (Completed)
-
-Used `pd_preview_all.html` to select which images receive specific Commons categories. Images are grouped by classification, allowing exclusion of specific files from each category.
-
-| Category | Images |
-|----------|--------|
-| [Dutch typography](http://localhost:8000/tools/previews/pd_preview_dutch_typography.html) | 44 |
-| [Printing in the Netherlands](http://localhost:8000/tools/previews/pd_preview_printing_netherlands.html) | 300 |
-| [Bookbinding in the Netherlands](http://localhost:8000/tools/previews/pd_preview_bookbinding_netherlands.html) | 98 |
-| [Libraries in the Netherlands](http://localhost:8000/tools/previews/pd_preview_libraries_netherlands.html) | 50 |
-
-Exclusions saved to `category_exclusions.json`, read by `uploader.py`.
-
-```bash
-python tools/create_preview.py  # Regenerate preview pages
-```
-
-## Installation
-
-```bash
-# Install dependencies
-pip install -r requirements.txt
-
-# Install Playwright browser
-python -m playwright install chromium
-```
-
-## Configuration
-
-Create a `.env` file with your Wikimedia Commons credentials:
-
-```env
-COMMONS_USERNAME=YourUsername@YourBotName
-COMMONS_PASSWORD=your_bot_password_here
-COMMONS_USER_AGENT=Your tool description (contact@email.com)
-```
-
-Bot passwords can be created at: https://commons.wikimedia.org/wiki/Special:BotPasswords
-
-## Requirements
-
-See `requirements.txt`:
-- playwright (browser automation for scraping)
-- pandas (data handling)
-- openpyxl (Excel files)
-- mwclient (Wikimedia API)
-- python-dotenv (environment variables)
-- requests (HTTP requests)
 
 ## License
 
-This project uploads **public domain content** from the KB collection to Wikimedia Commons. All images in this collection are out of copyright in both the Netherlands/EU (life of author + 70 years) and the USA, making them free to use worldwide.
+This project uploads **public domain content** from the KB collection to Wikimedia Commons. 
 
-Files are tagged with appropriate PD templates on Commons:
-- `{{PD-old-70-expired}}` - Known authors who died 70+ years ago
-- `{{PD-anon-70-EU}}` - Anonymous EU works 70+ years old
-- `{{PD-anon-expired}}` - Anonymous works with expired copyright
-- `{{PD-Art|PD-old-70-expired}}` - Faithful reproductions of 2D PD artwork
+
+## Licensing
+
+All historical collection images in this collection are out of copyright in both the Netherlands/EU (life of author + 70 years) and the USA, making them free to use worldwide.
+
+<img src="media-assets/icon_cc0.png" width="100" style="4px 10px 0px 20px;" align="right"/>
+
+The Python scripts and Excel file in this repo are released into the public domain under [CC0 1.0 public domain dedication](LICENSE). Feel free to reuse and adapt. Attribution *(KB, National Library of the Netherlands)* is appreciated but not required.
+
+## Contact & Credits
+
+<img src="media-assets/icon_kb2.png" width="200" style="margin:4px 10px 0px 20px;" align="right"/>
+
+* Author: Olaf Janssen, Wikimedia coordinator [@ KB, National Library of the Netherlands](https://www.kb.nl)
+* Contact via [KB expert page](https://www.kb.nl/over-ons/experts/olaf-janssen) or [Wikimedia user page](https://commons.wikimedia.org/wiki/User:OlafJanssen).
