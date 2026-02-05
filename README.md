@@ -27,13 +27,15 @@ TL;DR:
 - [Structured Data Statements](#structured-data-statements)
 - [Quality Control: SPARQL Queries](#quality-control-sparql-queries)
 
-### Project Background
+### Project background
 - [Project Scope and Completed Goals](#project-scope-and-completed-goals)
 - [Copyright Status](#copyright-status)
 
-### Technical Approach
+### Technical approach
 - [Step-by-Step Process](#step-by-step-process)
 - [Classification to Commons Categories Mapping](#classification-to-commons-categories-mapping)
+
+### Licensing and contact
 - [Licensing](#licensing)
 - [Contact & Credits](#contact--credits)
 
